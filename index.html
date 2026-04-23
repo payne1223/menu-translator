@@ -158,7 +158,7 @@
 </div>
 
 <script>
-  const API_KEY = "在這裡貼上你的API_KEY";
+  const API_KEY = "AIzaSyDfF2Rzbl-j4rd1SU2SjEd9nBTqwNM_Jlg";
 
   let selectedLang = "English";
   let imageBase64 = "";
@@ -192,7 +192,7 @@
   });
 
   async function callGemini(modelName) {
-    const prompt = `你是一位專業的餐廳菜單翻譯助手。
+  const prompt = `你是一位專業的餐廳菜單翻譯助手。
 請仔細分析這張菜單圖片，找出所有套餐與菜色。
 請將每道菜的名稱、食材內容、數量、價格全部翻譯成「${selectedLang}」。
 
@@ -202,17 +202,17 @@
     {
       "original": "原始菜名",
       "translated": "翻譯後的菜名（${selectedLang}）",
-      "description": "完整食材與數量，例如：Clams 6pcs, Salmon 8oz, Shrimp 2pcs",
-      "price": "價格，例如：$559"
+      "description": "完整食材說明與數量",
+      "price": "價格（例如：FREE、+$70、+$110，直接從圖片抄下來）"
     }
   ]
 }
 
 注意：
 - 只回傳 JSON，不要有其他文字
-- description 必須包含所有食材與數量，不可省略
-- 數量單位請保留並翻譯成${selectedLang}
-- price 直接從圖片抄下來，保留原始金額`;
+- price 欄位非常重要，必須填入，格式可能是 FREE、+70、+100、$559 等，直接抄圖片上的數字
+- 如果圖片上沒有價格就填入空字串
+- description 必須包含所有食材與數量，不可省略`;
 
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${API_KEY}`,
