@@ -3,292 +3,310 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>菜單翻譯 Menu Translator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+  <title>滿築 · 菜單 Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #1a1a1a;
+      background: #111;
       min-height: 100vh;
-      padding: 24px 16px;
       color: #fff;
+      padding-bottom: 40px;
     }
-    .container { max-width: 960px; margin: 0 auto; }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 700;
+    .header {
+      background: #1a1a1a;
+      padding: 20px 16px 16px;
       text-align: center;
+      border-bottom: 1px solid #2a2a2a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #e63946;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .lang-grid {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .lang-btn {
+      padding: 6px 12px;
+      border: 1.5px solid #333;
+      border-radius: 20px;
+      background: #222;
+      font-size: 12px;
+      cursor: pointer;
+      color: #aaa;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .lang-btn.active {
+      border-color: #e63946;
+      background: #2a0a0d;
+      color: #e63946;
+      font-weight: 600;
+    }
+    .menu-image-section {
+      max-width: 700px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+    .menu-image-section img {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #2a2a2a;
+    }
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .divider {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .divider-line { flex: 1; height: 1px; background: #2a2a2a; }
+    .divider-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #e63946;
+      letter-spacing: 0.1em;
+    }
+    .menu-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .menu-item {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .item-info { flex: 1; }
+    .item-original { font-size: 11px; color: #555; margin-bottom: 4px; }
+    .item-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 600;
       color: #e63946;
       margin-bottom: 4px;
-      letter-spacing: 0.05em;
+      line-height: 1.3;
     }
-    .subtitle { font-size: 13px; color: #666; text-align: center; margin-bottom: 24px; }
-    .lang-label { font-size: 13px; color: #888; margin-bottom: 8px; }
-    .lang-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
-    .lang-btn {
-      padding: 10px 4px; border: 1.5px solid #333; border-radius: 10px;
-      background: #222; font-size: 12px; cursor: pointer; text-align: center;
-      transition: all 0.15s; color: #aaa; display: flex; flex-direction: column; align-items: center;
-    }
-    .lang-btn.active { border-color: #e63946; background: #2a0a0d; color: #e63946; font-weight: 600; }
-    .flag { font-size: 18px; margin-bottom: 2px; }
-    .photo-area {
-      background: #222; border: 2px dashed #444; border-radius: 16px;
-      padding: 32px 16px; text-align: center; margin-bottom: 16px;
-      cursor: pointer; transition: border-color 0.15s;
-    }
-    .photo-area:hover { border-color: #e63946; }
-    .photo-area.has-image { border-style: solid; border-color: #e63946; padding: 0; }
-    #preview { width: 100%; border-radius: 14px; display: block; }
-    #fileInput { display: none; }
-    .translate-btn {
-      width: 100%; padding: 16px; background: #e63946; color: #fff;
-      border: none; border-radius: 14px; font-size: 16px; font-weight: 600;
-      font-family: 'Playfair Display', serif; cursor: pointer;
-      transition: background 0.15s; margin-bottom: 20px; letter-spacing: 0.05em;
-    }
-    .translate-btn:hover { background: #c1121f; }
-    .translate-btn:disabled { background: #5a1a1a; color: #888; cursor: not-allowed; }
-    .loading { text-align: center; padding: 24px; color: #888; display: none; }
-    .loading.show { display: block; }
-    .spinner {
-      width: 28px; height: 28px; border: 3px solid #333;
-      border-top-color: #e63946; border-radius: 50%;
-      animation: spin 0.8s linear infinite; margin: 0 auto 10px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .error-msg {
-      background: #2a0a0d; color: #e63946; padding: 12px 16px;
-      border-radius: 10px; font-size: 13px; margin-bottom: 12px;
-      display: none; border: 1px solid #e63946;
-    }
-    .error-msg.show { display: block; }
-    .result-wrapper { display: none; gap: 16px; margin-top: 8px; }
-    .result-wrapper.show { display: flex; }
-    .original-panel { flex: 1; min-width: 0; }
-    .panel-label {
-      font-size: 12px; color: #666; text-align: center;
-      margin-bottom: 8px; letter-spacing: 0.05em; text-transform: uppercase;
-    }
-    .original-panel img { width: 100%; border-radius: 12px; border: 1px solid #333; }
-    .translated-panel { flex: 1; min-width: 0; }
-    .menu-card {
-      background: #111; border: 1px solid #333;
-      border-radius: 12px; padding: 20px 16px; height: 100%;
-    }
-    .menu-card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px; font-weight: 700; color: #e63946;
-      text-align: center; margin-bottom: 4px; letter-spacing: 0.08em;
-    }
-    .menu-card-divider { border: none; border-top: 1px solid #e63946; margin: 12px 0; opacity: 0.4; }
-    .menu-item { padding: 10px 0; border-bottom: 1px solid #2a2a2a; }
-    .menu-item:last-child { border-bottom: none; }
-    .item-original { font-size: 11px; color: #555; margin-bottom: 3px; }
-    .item-translated {
-      font-family: 'Playfair Display', 'Noto Serif TC', serif;
-      font-size: 15px; font-weight: 600; color: #e63946; line-height: 1.4;
-    }
+    .item-desc { font-size: 12px; color: #888; line-height: 1.5; }
+    .item-note { font-size: 11px; color: #e63946; opacity: 0.7; margin-top: 4px; }
     .item-price {
       font-family: 'Playfair Display', serif;
-      font-size: 15px; font-weight: 700;
-      color: #e63946; white-space: nowrap;
+      font-size: 16px;
+      font-weight: 700;
+      color: #e63946;
+      white-space: nowrap;
+      background: #2a0a0d;
+      border: 1px solid #e63946;
+      border-radius: 8px;
+      padding: 4px 10px;
+      align-self: center;
     }
-    .item-desc { font-size: 11px; color: #666; margin-top: 4px; line-height: 1.5; }
-    .item-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-    @media (max-width: 600px) {
-      .result-wrapper { flex-direction: column; }
+    .popular-badge {
+      display: inline-block;
+      font-size: 10px;
+      background: #e63946;
+      color: #fff;
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-bottom: 4px;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
-<div class="container">
-  <h1>🍽️ Menu Translator</h1>
-  <p class="subtitle">拍照即可翻譯菜單 · Photo to translate menu</p>
 
-  <p class="lang-label">選擇翻譯語言 / Select Language</p>
+<div class="header">
+  <h1>🍲 滿築鍋物 · SOUP BASE</h1>
   <div class="lang-grid">
-    <button class="lang-btn active" data-lang="English"><span class="flag">🇺🇸</span>English</button>
-    <button class="lang-btn" data-lang="日本語"><span class="flag">🇯🇵</span>日本語</button>
-    <button class="lang-btn" data-lang="한국어"><span class="flag">🇰🇷</span>한국어</button>
-    <button class="lang-btn" data-lang="繁體中文"><span class="flag">🇹🇼</span>繁體中文</button>
-    <button class="lang-btn" data-lang="Français"><span class="flag">🇫🇷</span>Français</button>
-    <button class="lang-btn" data-lang="Español"><span class="flag">🇪🇸</span>Español</button>
-    <button class="lang-btn" data-lang="Deutsch"><span class="flag">🇩🇪</span>Deutsch</button>
-    <button class="lang-btn" data-lang="ภาษาไทย"><span class="flag">🇹🇭</span>ภาษาไทย</button>
-  </div>
-
-  <div class="photo-area" id="photoArea" onclick="document.getElementById('fileInput').click()">
-    <div id="placeholder">
-      <p style="font-size:44px">📷</p>
-      <p style="margin-top:10px;color:#888">點此拍照或選擇圖片</p>
-      <p style="font-size:12px;color:#555;margin-top:4px">Tap to take a photo or choose image</p>
-    </div>
-    <img id="preview" style="display:none" />
-  </div>
-  <input type="file" id="fileInput" accept="image/*" capture="environment" />
-
-  <div class="error-msg" id="errorMsg"></div>
-
-  <button class="translate-btn" id="translateBtn" onclick="startTranslation()" disabled>
-    翻譯菜單 / Translate Menu
-  </button>
-
-  <div class="loading" id="loading">
-    <div class="spinner"></div>
-    <p id="loadingText" style="font-size:14px">AI 辨識菜單中，請稍候…</p>
-  </div>
-
-  <div class="result-wrapper" id="resultWrapper">
-    <div class="original-panel">
-      <p class="panel-label">原始菜單 Original</p>
-      <img id="originalImg" src="" alt="原始菜單" />
-    </div>
-    <div class="translated-panel">
-      <p class="panel-label">翻譯結果 Translation</p>
-      <div class="menu-card">
-        <p class="menu-card-title">MENU</p>
-        <hr class="menu-card-divider">
-        <div id="resultContent"></div>
-      </div>
-    </div>
+    <button class="lang-btn active" onclick="setLang('en', this)">🇺🇸 EN</button>
+    <button class="lang-btn" onclick="setLang('jp', this)">🇯🇵 JP</button>
+    <button class="lang-btn" onclick="setLang('kr', this)">🇰🇷 KR</button>
+    <button class="lang-btn" onclick="setLang('zh', this)">🇹🇼 繁中</button>
+    <button class="lang-btn" onclick="setLang('fr', this)">🇫🇷 FR</button>
+    <button class="lang-btn" onclick="setLang('es', this)">🇪🇸 ES</button>
+    <button class="lang-btn" onclick="setLang('de', this)">🇩🇪 DE</button>
+    <button class="lang-btn" onclick="setLang('th', this)">🇹🇭 TH</button>
   </div>
 </div>
 
+<div class="menu-image-section" style="margin-top:20px;">
+  <p class="section-label">原始菜單 · Original Menu</p>
+  <img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE%E6%9B%B4%E6%96%B0%E7%89%88-0423-03.png" alt="湯底菜單" />
+</div>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-text">STEP 01 · 研製湯底</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="menu-section" id="menuSection"></div>
+
 <script>
-  const API_KEY = "AIzaSyDfF2Rzbl-j4rd1SU2SjEd9nBTqwNM_Jlg";
-
-  let selectedLang = "English";
-  let imageBase64 = "";
-  let imageSrc = "";
-
-  document.querySelectorAll(".lang-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      selectedLang = btn.dataset.lang;
-    });
-  });
-
-  document.getElementById("fileInput").addEventListener("change", function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      imageSrc = e.target.result;
-      imageBase64 = imageSrc.split(",")[1];
-      const preview = document.getElementById("preview");
-      preview.src = imageSrc;
-      preview.style.display = "block";
-      document.getElementById("placeholder").style.display = "none";
-      document.getElementById("photoArea").classList.add("has-image");
-      document.getElementById("translateBtn").disabled = false;
-      document.getElementById("resultWrapper").classList.remove("show");
-      document.getElementById("errorMsg").classList.remove("show");
-    };
-    reader.readAsDataURL(file);
-  });
-
-  async function callGemini(modelName) {
-  const prompt = `你是一位專業的餐廳菜單翻譯助手。
-請仔細分析這張菜單圖片，找出所有套餐與菜色。
-請將每道菜的名稱、食材內容、數量、價格全部翻譯成「${selectedLang}」。
-
-請以以下 JSON 格式回應：
-{
-  "items": [
-    {
-      "original": "原始菜名",
-      "translated": "翻譯後的菜名（${selectedLang}）",
-      "description": "完整食材說明與數量",
-      "price": "價格（例如：FREE、+$70、+$110，直接從圖片抄下來）"
+const menuData = [
+  {
+    original: "柴魚昆布鍋",
+    price: "FREE",
+    popular: false,
+    translations: {
+      en: { name: "Bonito & Kelp Broth", desc: "Clear, sweet and mellow broth that brings out the natural freshness of meat." },
+      jp: { name: "鰹節と昆布の出汁鍋", desc: "澄んだ甘みのある出汁で、お肉の旨みを引き出します。" },
+      kr: { name: "가다랑어 다시마 육수", desc: "맑고 달콤한 육수로 고기의 신선한 맛을 살려줍니다." },
+      zh: { name: "柴魚昆布鍋", desc: "湯頭清甜甘醇，吃出肉品鮮甜！" },
+      fr: { name: "Bouillon Bonite & Kombu", desc: "Bouillon clair et doux qui révèle la fraîcheur naturelle des viandes." },
+      es: { name: "Caldo de Bonito y Kombu", desc: "Caldo claro y dulce que resalta la frescura natural de las carnes." },
+      de: { name: "Bonito & Kombu Brühe", desc: "Klare, süße Brühe, die die natürliche Frische des Fleisches hervorhebt." },
+      th: { name: "น้ำซุปปลาโอและสาหร่ายคอมบุ", desc: "น้ำซุปใสหวานนุ่ม ดึงความสดของเนื้อออกมาได้ดีเยี่ยม" }
     }
-  ]
+  },
+  {
+    original: "蔬果酸菜鍋",
+    price: "+$70",
+    popular: false,
+    translations: {
+      en: { name: "Pickled Vegetable & Fruit Broth", desc: "Refreshing and appetizing sour broth with a sweet, lingering finish." },
+      jp: { name: "野菜と酸菜の鍋", desc: "さっぱりとした酸味が食欲をそそり、甘みが後を引きます。" },
+      kr: { name: "채소 김치 육수", desc: "상큼하고 입맛을 돋우는 새콤달콤한 육수입니다." },
+      zh: { name: "蔬果酸菜鍋", desc: "清爽開胃酸香回甘。" },
+      fr: { name: "Bouillon Légumes & Chou Mariné", desc: "Bouillon rafraîchissant et appétissant, acidulé avec une fin sucrée." },
+      es: { name: "Caldo de Verduras y Col Encurtida", desc: "Caldo refrescante y apetitoso, ácido con un final dulce y persistente." },
+      de: { name: "Gemüse & Sauerkraut Brühe", desc: "Erfrischende, appetitanregende saure Brühe mit süßem Nachklang." },
+      th: { name: "น้ำซุปผักดองและผลไม้", desc: "น้ำซุปเปรี้ยวสดชื่น เรียกน้ำย่อย รสหวานชื่นใจ" }
+    }
+  },
+  {
+    original: "養生藥膳鍋",
+    price: "+$70",
+    popular: false,
+    note: "⚠️ 含中藥材，感冒及孕婦請斟酌食用 / Contains herbal medicine, not recommended for pregnant women or those with colds",
+    translations: {
+      en: { name: "Herbal Wellness Broth", desc: "Slow-simmered nourishing Chinese herbal broth. ⚠️ Not recommended during pregnancy or illness." },
+      jp: { name: "薬膳養生鍋", desc: "漢方薬材をじっくり煮込んだ滋養たっぷりのスープ。⚠️ 妊婦・風邪の方はご注意ください。" },
+      kr: { name: "약선 건강 육수", desc: "한방 약재를 천천히 끓인 보양 육수。⚠️ 임산부·감기 환자는 주의하세요." },
+      zh: { name: "養生藥膳鍋", desc: "溫補養生漢方溫潤慢燉。⚠️ 感冒及孕婦請斟酌食用。" },
+      fr: { name: "Bouillon aux Herbes Médicinales", desc: "Bouillon nourrissant aux herbes chinoises. ⚠️ Déconseillé aux femmes enceintes et personnes enrhumées." },
+      es: { name: "Caldo de Hierbas Medicinales", desc: "Nutritivo caldo de hierbas chinas. ⚠️ No recomendado para embarazadas o personas resfriadas." },
+      de: { name: "Heilkräuter Wellness Brühe", desc: "Nährende Kräuterbrühe. ⚠️ Nicht empfohlen für Schwangere oder Erkältungskranke." },
+      th: { name: "น้ำซุปยาจีนบำรุงสุขภาพ", desc: "น้ำซุปสมุนไพรจีนต้มนาน ⚠️ ไม่แนะนำสำหรับหญิงมีครรภ์หรือผู้ป่วยหวัด" }
+    }
+  },
+  {
+    original: "胡椒豚味鍋",
+    price: "+$100",
+    popular: true,
+    translations: {
+      en: { name: "Black Pepper Pork Bone Broth", desc: "House-recipe broth with rich, aromatic black pepper and savory pork bone flavors." },
+      jp: { name: "胡椒豚骨スープ鍋", desc: "独自レシピの胡椒の香り豊かな豚骨スープ。" },
+      kr: { name: "후추 돼지뼈 육수", desc: "특제 레시피로 진하고 향긋한 후추와 돼지뼈 육수." },
+      zh: { name: "胡椒豚味鍋", desc: "獨門研製，胡椒辛香濃郁滋味。" },
+      fr: { name: "Bouillon Poivre & Os de Porc", desc: "Recette maison avec un riche bouillon de porc aromatique au poivre noir." },
+      es: { name: "Caldo de Pimienta y Hueso de Cerdo", desc: "Receta exclusiva con rico caldo aromático de pimienta negra y hueso de cerdo." },
+      de: { name: "Pfeffer & Schweineknochen Brühe", desc: "Hausrezept mit reichhaltiger, aromatischer Pfefferbrühe aus Schweineknochen." },
+      th: { name: "น้ำซุปพริกไทยกระดูกหมู", desc: "สูตรเฉพาะของร้าน กลิ่นหอมพริกไทยเข้มข้น" }
+    }
+  },
+  {
+    original: "重慶麻辣鍋",
+    price: "+$110",
+    popular: true,
+    translations: {
+      en: { name: "Chongqing Spicy Mala Broth", desc: "Intensely numbing and spicy broth with bold Sichuan peppercorn aroma. 🌶️🌶️🌶️" },
+      jp: { name: "重慶麻辣鍋", desc: "しびれる辛さと花椒の香りが際立つ本格麻辣スープ。🌶️🌶️🌶️" },
+      kr: { name: "충칭 마라 육수", desc: "얼얼하고 매운 정통 마라 육수。🌶️🌶️🌶️" },
+      zh: { name: "重慶麻辣鍋", desc: "麻辣夠勁香氣四溢。🌶️🌶️🌶️" },
+      fr: { name: "Bouillon Épicé Mala de Chongqing", desc: "Bouillon intensément épicé avec arôme de poivre de Sichuan. 🌶️🌶️🌶️" },
+      es: { name: "Caldo Picante Mala de Chongqing", desc: "Caldo intensamente picante con aroma de pimienta de Sichuan. 🌶️🌶️🌶️" },
+      de: { name: "Chongqing Mala Brühe", desc: "Intensiv scharfe Brühe mit Sichuanpfeffer-Aroma. 🌶️🌶️🌶️" },
+      th: { name: "น้ำซุปมาล่าฉงชิ่ง", desc: "น้ำซุปเผ็ดชาลิ้นเข้มข้น 🌶️🌶️🌶️" }
+    }
+  },
+  {
+    original: "滿築牛奶鍋",
+    price: "+$110",
+    popular: false,
+    translations: {
+      en: { name: "Manzhu Creamy Milk Broth", desc: "Rich and creamy milk-based broth, indulgent yet not heavy." },
+      jp: { name: "満築ミルク鍋", desc: "濃厚でクリーミーなミルクベースのスープ、飲み飽きしない美味しさ。" },
+      kr: { name: "만주 밀크 육수", desc: "진하고 크리미한 우유 베이스 육수，느끼하지 않고 부드럽습니다." },
+      zh: { name: "滿築牛奶鍋", desc: "醇香過癮不膩口。" },
+      fr: { name: "Bouillon Crémeux au Lait Manzhu", desc: "Bouillon riche et crémeux à base de lait, indulgent mais pas trop lourd." },
+      es: { name: "Caldo Cremoso de Leche Manzhu", desc: "Rico y cremoso caldo a base de leche, indulgente pero no pesado." },
+      de: { name: "Manzhu Cremige Milchbrühe", desc: "Reichhaltige, cremige Milchbrühe, genussvoll aber nicht schwer." },
+      th: { name: "น้ำซุปนมมันจู", desc: "น้ำซุปนมเข้มข้นครีมมี่ อร่อยเต็มคำแต่ไม่เลี่ยน" }
+    }
+  },
+  {
+    original: "南洋叻沙鍋",
+    price: "+$120",
+    popular: false,
+    translations: {
+      en: { name: "Southeast Asian Laksa Broth", desc: "Rich coconut milk broth with bold Southeast Asian spices and aromatic herbs." },
+      jp: { name: "南洋ラクサスープ鍋", desc: "ココナッツミルクの濃厚な旨みと南洋スパイスが香るスープ。" },
+      kr: { name: "동남아 락사 육수", desc: "진한 코코넛 밀크와 동남아시아 향신료가 가득한 육수." },
+      zh: { name: "南洋叻沙鍋", desc: "椰香濃郁，南洋辛香風味十足。" },
+      fr: { name: "Bouillon Laksa d'Asie du Sud-Est", desc: "Bouillon riche au lait de coco avec des épices généreuses d'Asie du Sud-Est." },
+      es: { name: "Caldo Laksa del Sudeste Asiático", desc: "Rico caldo de leche de coco con audaces especias del sudeste asiático." },
+      de: { name: "Südostasiatische Laksa Brühe", desc: "Reichhaltige Kokosbrühe mit kräftigen südostasiatischen Gewürzen." },
+      th: { name: "น้ำซุปลักซาเอเชียตะวันออกเฉียงใต้", desc: "น้ำกะทิเข้มข้นหอมกลิ่นเครื่องเทศอาเซียนจัดจ้าน" }
+    }
+  }
+];
+
+let currentLang = 'en';
+
+function setLang(lang, el) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderMenu();
 }
 
-注意：
-- 只回傳 JSON，不要有其他文字
-- price 欄位非常重要，必須填入，格式可能是 FREE、+70、+100、$559 等，直接抄圖片上的數字
-- 如果圖片上沒有價格就填入空字串
-- description 必須包含所有食材與數量，不可省略`;
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${API_KEY}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{
-            parts: [
-              { text: prompt },
-              { inline_data: { mime_type: "image/jpeg", data: imageBase64 } }
-            ]
-          }],
-          generationConfig: { temperature: 0.1 }
-        })
-      }
-    );
-    return response;
-  }
-
-  async function startTranslation() {
-    const btn = document.getElementById("translateBtn");
-    const loading = document.getElementById("loading");
-    const loadingText = document.getElementById("loadingText");
-    const errorMsg = document.getElementById("errorMsg");
-    const resultWrapper = document.getElementById("resultWrapper");
-
-    btn.disabled = true;
-    loading.classList.add("show");
-    errorMsg.classList.remove("show");
-    resultWrapper.classList.remove("show");
-
-    try {
-      loadingText.textContent = "Gemini 2.5 Flash 翻譯中...";
-      let response = await callGemini("gemini-2.5-flash");
-
-      if (!response.ok) {
-        loadingText.textContent = "切換至 Gemini 2.5 Pro...";
-        response = await callGemini("gemini-2.5-pro");
-      }
-
-      const data = await response.json();
-      if (data.error) throw new Error(data.error.message);
-
-      let text = data.candidates[0].content.parts[0].text;
-      text = text.replace(/```json|```/g, "").trim();
-      const parsed = JSON.parse(text);
-
-      if (!parsed.items || parsed.items.length === 0) {
-        throw new Error("未偵測到菜單內容，請重新拍攝清晰的菜單照片。");
-      }
-
-      document.getElementById("originalImg").src = imageSrc;
-      document.getElementById("resultContent").innerHTML = parsed.items.map(item => `
-        <div class="menu-item">
-          <p class="item-original">${item.original}</p>
-          <div class="item-row">
-            <p class="item-translated">${item.translated}</p>
-            <p class="item-price">${item.price || ""}</p>
-          </div>
-          <p class="item-desc">${item.description || ""}</p>
+function renderMenu() {
+  const section = document.getElementById('menuSection');
+  section.innerHTML = menuData.map(item => {
+    const t = item.translations[currentLang];
+    return `
+      <div class="menu-item">
+        <div class="item-info">
+          ${item.popular ? '<div class="popular-badge">⭐ POPULAR</div>' : ''}
+          <div class="item-original">${item.original}</div>
+          <div class="item-name">${t.name}</div>
+          <div class="item-desc">${t.desc}</div>
+          ${item.note ? `<div class="item-note">${item.note}</div>` : ''}
         </div>
-      `).join("");
+        <div class="item-price">${item.price}</div>
+      </div>
+    `;
+  }).join('');
+}
 
-      resultWrapper.classList.add("show");
-      resultWrapper.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    } catch (err) {
-      errorMsg.textContent = err.message || "翻譯失敗，請確認網路後再試一次。";
-      errorMsg.classList.add("show");
-      console.error(err);
-    } finally {
-      btn.disabled = false;
-      loading.classList.remove("show");
-    }
-  }
+renderMenu();
 </script>
 </body>
 </html>
