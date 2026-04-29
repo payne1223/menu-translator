@@ -7,29 +7,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, sans-serif; background: #111; min-height: 100vh; color: #fff; padding-bottom: 40px; }
-    .header { background: #1a1a1a; padding: 14px 12px 0; border-bottom: 1px solid #2a2a2a; position: sticky; top: 0; z-index: 100; }
-    .logo { font-family: 'Playfair Display', serif; font-size: 18px; color: #e63946; text-align: center; margin-bottom: 10px; letter-spacing: 0.06em; }
-    .lang-row { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
-    .lang-btn { padding: 4px 10px; border: 1.5px solid #333; border-radius: 20px; background: #222; font-size: 11px; cursor: pointer; color: #aaa; transition: all 0.15s; }
-    .lang-btn.active { border-color: #e63946; background: #2a0a0d; color: #e63946; font-weight: 600; }
-    .tabs { display: flex; overflow-x: auto; scrollbar-width: none; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #111; min-height: 100vh; color: #fff; padding-bottom: 40px; line-height: 1.5; }
+    
+    /* Header & Navigation */
+    .header { background: rgba(26, 26, 26, 0.95); backdrop-filter: blur(10px); padding: 14px 12px 0; border-bottom: 1px solid #2a2a2a; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 18px; color: #e63946; text-align: center; margin-bottom: 12px; letter-spacing: 0.06em; font-weight: 700; }
+    
+    /* Languages */
+    .lang-row { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+    .lang-btn { padding: 5px 12px; border: 1.5px solid #333; border-radius: 20px; background: #222; font-size: 11px; cursor: pointer; color: #aaa; transition: all 0.2s; border: 1px solid #333; }
+    .lang-btn.active { border-color: #e63946; background: #2a0a0d; color: #e63946; font-weight: 600; box-shadow: 0 0 10px rgba(230, 57, 70, 0.2); }
+    
+    /* Category Tabs */
+    .tabs { display: flex; overflow-x: auto; scrollbar-width: none; border-top: 1px solid #2a2a2a; }
     .tabs::-webkit-scrollbar { display: none; }
-    .tab { padding: 10px 12px; font-size: 12px; cursor: pointer; color: #666; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; background: none; border-top: none; border-left: none; border-right: none; }
+    .tab { padding: 12px 16px; font-size: 13px; cursor: pointer; color: #777; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
     .tab.active { color: #e63946; border-bottom-color: #e63946; font-weight: 600; }
-    .content { max-width: 700px; margin: 0 auto; padding: 16px; }
-    .menu-img { width: 100%; border-radius: 12px; margin-bottom: 14px; border: 1px solid #2a2a2a; display: block; }
-    .sec-title { font-family: 'Playfair Display', serif; font-size: 15px; color: #e63946; margin: 18px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #2a2a2a; letter-spacing: 0.04em; }
-    .item { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    
+    /* Content Area */
+    .content { max-width: 700px; margin: 0 auto; padding: 16px; animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .menu-img { width: 100%; border-radius: 12px; margin-bottom: 16px; border: 1px solid #2a2a2a; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+    .sec-title { font-family: 'Playfair Display', serif; font-size: 17px; color: #e63946; margin: 24px 0 12px; padding-bottom: 8px; border-bottom: 1px solid #2a2a2a; letter-spacing: 0.04em; font-weight: 700; }
+    
+    /* Menu Items */
+    .item { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; transition: transform 0.1s; }
+    .item:active { transform: scale(0.98); background: #222; }
     .item-info { flex: 1; }
-    .item-orig { font-size: 10px; color: #555; margin-bottom: 2px; }
-    .item-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: #e63946; margin-bottom: 2px; line-height: 1.3; }
-    .item-desc { font-size: 11px; color: #777; line-height: 1.5; }
-    .price { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #e63946; background: #2a0a0d; border: 1px solid #4a1a1d; border-radius: 7px; padding: 3px 8px; align-self: center; white-space: nowrap; }
-    .badge { display: inline-block; font-size: 9px; background: #e63946; color: #fff; border-radius: 3px; padding: 1px 5px; margin-bottom: 2px; font-weight: 600; }
+    .item-orig { font-size: 11px; color: #555; margin-bottom: 4px; font-weight: 500; }
+    .item-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: #e63946; margin-bottom: 4px; line-height: 1.3; }
+    .item-desc { font-size: 12px; color: #888; line-height: 1.5; font-style: italic; }
+    
+    .price { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: #e63946; background: #2a0a0d; border: 1px solid #4a1a1d; border-radius: 8px; padding: 4px 10px; align-self: center; white-space: nowrap; }
+    .badge { display: inline-block; font-size: 10px; background: #e63946; color: #fff; border-radius: 4px; padding: 2px 6px; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.05em; }
+    
+    /* Empty state or error */
+    .error-img { padding: 40px; text-align: center; color: #444; border: 1px dashed #333; border-radius: 12px; margin-bottom: 10px; }
   </style>
 </head>
 <body>
+
 <div class="header">
   <div class="logo">🍲 滿築鍋物 · MANZHU HOTPOT</div>
   <div class="lang-row">
@@ -43,18 +61,23 @@
     <button class="lang-btn" onclick="setLang('th',this)">🇹🇭 TH</button>
   </div>
   <div class="tabs">
-    <button class="tab active" onclick="setCat('notice',this)">📋 須知</button>
-    <button class="tab" onclick="setCat('soup',this)">🍲 湯底</button>
+    <button class="tab active" onclick="setCat('notice',this)">📋 用餐須知</button>
+    <button class="tab" onclick="setCat('soup',this)">🍲 精選湯底</button>
     <button class="tab" onclick="setCat('set2',this)">👫 雙人套餐</button>
     <button class="tab" onclick="setCat('seafood1',this)">🦞 單人海鮮</button>
     <button class="tab" onclick="setCat('meat',this)">🥩 肉品套餐</button>
-    <button class="tab" onclick="setCat('alacarte',this)">🍽️ 單點</button>
+    <button class="tab" onclick="setCat('alacarte',this)">🍽️ 精選單點</button>
   </div>
 </div>
-<div class="content" id="mainContent"></div>
+
+<div class="content" id="mainContent">
+  </div>
 
 <script>
+// Base URL for GitHub Images
 const B = "https://raw.githubusercontent.com/payne1223/menu-translator/main/";
+
+// Helper to encode filenames properly but keep the base URL clean
 const enc = s => B + encodeURIComponent(s);
 
 const IMGS = {
@@ -70,10 +93,14 @@ const IMGS = {
   ac2:       enc("滿築菜單-鍋物&蔬菜單點.jpg"),
 };
 
+// Item Factory
 function it(original, price, t, popular=false) {
   return { original, price, t, popular };
 }
 
+// ---------------------------------------------------------
+// DATA CONFIGURATION (Your provided content)
+// ---------------------------------------------------------
 const CATS = {
   notice: { images:[IMGS.notice], items:null, sections:null },
 
@@ -82,7 +109,7 @@ const CATS = {
     items:[
       it("柴魚昆布鍋","FREE",{en:["Bonito & Kelp Broth","Clear, sweet broth that enhances meat's natural flavor"],jp:["鰹節と昆布の出汁鍋","澄んだ甘みある出汁でお肉の旨みを引き出します"],kr:["가다랑어 다시마 육수","맑고 달콤한 육수로 고기의 신선한 맛을 살려줍니다"],zh:["柴魚昆布鍋","湯頭清甜甘醇，吃出肉品鮮甜"],fr:["Bouillon Bonite & Kombu","Bouillon clair et doux révélant la saveur naturelle des viandes"],es:["Caldo de Bonito y Kombu","Caldo claro y dulce que resalta el sabor natural de las carnes"],de:["Bonito & Kombu Brühe","Klare, süße Brühe die den natürlichen Fleischgeschmack hervorhebt"],th:["น้ำซุปปลาโอและสาหร่ายคอมบุ","น้ำซุปใสหวานนุ่ม ดึงรสชาติเนื้อสัตว์"]}),
       it("蔬果酸菜鍋","+$70",{en:["Pickled Vegetable & Fruit Broth","Refreshing and appetizing with a sweet lingering finish"],jp:["野菜と酸菜の鍋","さっぱり酸味が食欲をそそり甘みが後を引きます"],kr:["채소 김치 육수","상큼하고 입맛 돋우는 새콤달콤한 육수"],zh:["蔬果酸菜鍋","清爽開胃酸香回甘"],fr:["Bouillon Légumes & Chou Mariné","Rafraîchissant et appétissant avec une fin sucrée persistante"],es:["Caldo de Verduras y Col Encurtida","Refrescante y apetitoso con un final dulce y persistente"],de:["Gemüse & Sauerkraut Brühe","Erfrischend und appetitanregend mit süßem Nachklang"],th:["น้ำซุปผักดองและผลไม้","สดชื่น เรียกน้ำย่อย รสหวานชื่นใจ"]}),
-      it("養生藥膳鍋","+$70",{en:["Herbal Wellness Broth","Slow-simmered Chinese herbal broth ⚠️ Not for pregnant women or those with colds"],jp:["薬膳養生鍋","漢方薬材をじっくり煮込んだ滋養スープ ⚠️ 妊婦・風邪の方はご注意を"],kr:["약선 건강 육수","한방 약재를 천천히 끓인 보양 육수 ⚠️ 임산부·감기 환자 주의"],zh:["養生藥膳鍋","溫補養生漢方慢燉 ⚠️ 含中藥材，感冒及孕婦請斟酌"],fr:["Bouillon Herbes Médicinales","Bouillon mijoté aux herbes chinoises ⚠️ Déconseillé femmes enceintes & enrhumées"],es:["Caldo de Hierbas Medicinales","Caldo de hierbas chinas ⚠️ No recomendado para embarazadas ni resfriadas"],de:["Heilkräuter Wellness Brühe","Langsam gekochte Kräuterbrühe ⚠️ Nicht für Schwangere oder Erkältungskranke"],th:["น้ำซุปยาจีนบำรุงสุขภาพ","ต้มสมุนไพรจีนนาน ⚠️ ไม่แนะนำสำหรับหญิงมีครรภ์หรือป่วย"]}),
+      it("養生藥膳鍋","+$70",{en:["Herbal Wellness Broth","Slow-simmered Chinese herbal broth ⚠️ Not for pregnant women or those with colds"],jp:["薬膳養生鍋","漢方薬材をじっくり煮込んだ滋養スープ ⚠️ 妊婦・風邪の方はご注意を"],kr:["약선 건강 육수","한방 약재를 천천히 끓인 보양 육수 ⚠️ 임산부·감기 환자 주의"],zh:["養生藥膳鍋","溫補養生漢方慢燉 ⚠️ 含中藥材，感冒及孕婦請偵酌"],fr:["Bouillon Herbes Médicinales","Bouillon mijoté aux herbes chinoises ⚠️ Déconseillé femmes enceintes & enrhumées"],es:["Caldo de Hierbas Medicinales","Caldo de hierbas chinas ⚠️ No recomendado para embarazadas ni resfriadas"],de:["Heilkräuter Wellness Brühe","Langsam gekochte Kräuterbrühe ⚠️ Nicht für Schwangere oder Erkältungskranke"],th:["น้ำซุปยาจีนบำรุงสุขภาพ","ต้มสมุนไพรจีนนาน ⚠️ ไม่แนะนำสำหรับหญิงมีครรภ์หรือป่วย"]}),
       it("胡椒豚味鍋","+$100",{en:["Black Pepper Pork Bone Broth","House-recipe rich and aromatic black pepper pork broth"],jp:["胡椒豚骨スープ鍋","独自レシピの胡椒香る濃厚豚骨スープ"],kr:["후추 돼지뼈 육수","특제 레시피의 향긋한 후추 돼지뼈 육수"],zh:["胡椒豚味鍋","獨門研製，胡椒辛香濃郁滋味"],fr:["Bouillon Poivre & Os de Porc","Recette maison riche et aromatique au poivre noir"],es:["Caldo de Pimienta y Hueso de Cerdo","Receta exclusiva rica y aromática al pimiento negro"],de:["Pfeffer & Schweineknochen Brühe","Hausrezept, reichhaltig und aromatisch mit schwarzem Pfeffer"],th:["น้ำซุปพริกไทยกระดูกหมู","สูตรเฉพาะ หอมพริกไทยเข้มข้น"]},true),
       it("重慶麻辣鍋","+$110",{en:["Chongqing Spicy Mala Broth","Intensely numbing and spicy Sichuan peppercorn broth 🌶️🌶️🌶️"],jp:["重慶麻辣鍋","しびれる辛さと花椒の香り際立つ本格麻辣スープ 🌶️🌶️🌶️"],kr:["충칭 마라 육수","얼얼하고 매운 정통 마라 육수 🌶️🌶️🌶️"],zh:["重慶麻辣鍋","麻辣夠勁香氣四溢 🌶️🌶️🌶️"],fr:["Bouillon Mala Épicé de Chongqing","Bouillon intensément piquant au poivre de Sichuan 🌶️🌶️🌶️"],es:["Caldo Mala Picante de Chongqing","Caldo intensamente picante con pimienta de Sichuan 🌶️🌶️🌶️"],de:["Chongqing Mala Scharf Brühe","Intensiv scharfe Brühe mit Sichuanpfeffer 🌶️🌶️🌶️"],th:["น้ำซุปมาล่าฉงชิ่ง","เผ็ดชาลิ้นเข้มข้น 🌶️🌶️🌶️"]},true),
       it("滿築牛奶鍋","+$110",{en:["Manzhu Creamy Milk Broth","Rich and creamy milk-based broth, indulgent yet not heavy"],jp:["満築ミルク鍋","濃厚クリーミーなミルクベーススープ、飲み飽きしない"],kr:["만주 밀크 육수","진하고 크리미한 우유 베이스 육수, 느끼하지 않음"],zh:["滿築牛奶鍋","醇香過癮不膩口"],fr:["Bouillon Crémeux au Lait Manzhu","Riche et crémeux à base de lait, gourmand mais léger"],es:["Caldo Cremoso de Leche Manzhu","Rico y cremoso a base de leche, indulgente pero no pesado"],de:["Manzhu Cremige Milchbrühe","Reichhaltige, cremige Milchbrühe, genussvoll aber nicht schwer"],th:["น้ำซุปนมมันจู","น้ำซุปนมเข้มข้นครีมมี่ อร่อยไม่เลี่ยน"]}),
@@ -94,186 +121,142 @@ const CATS = {
   set2: {
     images:[IMGS.set2cover, IMGS.set2],
     items:[
-      it("經典滿築雙饗宴","$1,329",{en:["Classic Manzhu Duo Feast","Australian shoulder beef 8oz, pork collar 8oz, angel shrimp 2pc, white shrimp 4pc, snapper 2pc, salmon 2pc, clams 6pc, king scallop 1pc"],jp:["クラシック満築ダブルフィースト","豪州肩ロース8oz、豚首肉8oz、天使海老2尾、白エビ4尾、鯛2枚、鮭2枚、ハマグリ6個、帆立1個"],kr:["클래식 만주 듀오 페스트","호주 어깨살 8oz, 목살 8oz, 천사새우 2마리, 흰새우 4마리, 도미 2장, 연어 2장, 조개 6개, 가리비 1개"],zh:["經典滿築雙饗宴","澳洲嫩肩牛8oz、豬梅花8oz、天使紅蝦2隻、南美白蝦4隻、台灣黃金鯛2片、鮭魚菲力2片、巨無霸蛤蠣6顆、帆立國王貝1顆"],fr:["Festin Classique Manzhu Duo","Bœuf australien 8oz, porc 8oz, crevettes ange 2pc, crevettes blanches 4pc, daurade 2pc, saumon 2pc, palourdes 6pc, saint-jacques 1pc"],es:["Festín Clásico Manzhu Dúo","Ternera australiana 8oz, cerdo 8oz, gamba ángel 2pc, gambas blancas 4pc, besugo 2pc, salmón 2pc, almejas 6pc, vieira 1pc"],de:["Klassisches Manzhu Duo Fest","Australisches Schulterfilet 8oz, Schweinefleisch 8oz, Engel-Garnelen 2St, Weiße Garnelen 4St, Schnapper 2St, Lachs 2St, Muscheln 6St, Jakobsmuschel 1St"],th:["คลาสสิก มันจู ดูโอ เฟสต์","เนื้อออสเตรเลีย 8oz หมู 8oz กุ้ง หอยสังข์ ปลา แซลมอน สำหรับ 2 ท่าน"]}),
-      it("滿派海陸雙饗宴","$1,659",{en:["Grand Surf & Turf Duo Feast","US beef 8oz, pork collar 8oz, 9 seafood varieties: shrimp, clams, squid, scallop, abalone, king scallop"],jp:["グランドサーフ&ターフダブルフィースト","米国牛8oz、豚首肉8oz、エビ・ハマグリ・イカ・干貝・アワビなど9種の海鮮"],kr:["그랜드 서프 & 터프 듀오 페스트","미국 소고기 8oz, 목살 8oz, 새우·조개·오징어·가리비·전복 등 9가지 해산물"],zh:["滿派海陸雙饗宴","美國特選五花牛8oz、豬梅花8oz，9種海鮮：天使紅蝦、黑美人蝦、南美白蝦、蛤蠣、台灣黃金鯛、小卷、干貝、鮑魚、帆立國王貝"],fr:["Grand Festin Terre & Mer Duo","Bœuf US 8oz, porc 8oz, 9 variétés de fruits de mer: crevettes, palourdes, calmars, saint-jacques, ormeaux"],es:["Gran Festín Mar y Tierra Dúo","Ternera US 8oz, cerdo 8oz, 9 variedades de mariscos: gambas, almejas, calamar, vieiras, abulón"],de:["Großes Surf & Turf Duo Fest","US-Rindfleisch 8oz, Schweinefleisch 8oz, 9 Meeresfrüchte-Sorten: Garnelen, Muscheln, Tintenfisch, Jakobsmuscheln, Abalone"],th:["แกรนด์ เซิร์ฟ & เทิร์ฟ ดูโอ เฟสต์","เนื้อUSA 8oz หมู 8oz อาหารทะเล 9 ชนิด"]}),
-      it("大心滿築雙饗宴","$1,469",{en:["Hearty Meat Lover's Duo Feast","4 premium meats: Australian shoulder beef 7.5oz, US Snow beef 7.5oz, Spanish Iberico pork 7.5oz, pork collar 7.5oz"],jp:["ハーティーミートラバーズダブルフィースト","4種のプレミアム肉: 豪州肩ロース7.5oz、米国雪花牛7.5oz、スペイン松坂豚7.5oz、豚首肉7.5oz"],kr:["하티 미트 러버스 듀오 페스트","4가지 프리미엄 육류: 호주 어깨살 7.5oz, 미국 눈꽃 소고기 7.5oz, 스페인 이베리코 7.5oz, 목살 7.5oz"],zh:["大心滿築雙饗宴","四款好肉：澳洲嫩肩牛7.5oz、美國極佳雪花牛7.5oz、西班牙松阪豬7.5oz、嚴選特級豬梅花7.5oz"],fr:["Festin Duo Amateurs de Viande","4 viandes premium: bœuf australien 7.5oz, bœuf marbré US 7.5oz, ibérique espagnol 7.5oz, échine porc 7.5oz"],es:["Festín Dúo Amantes de la Carne","4 carnes premium: ternera australiana 7.5oz, ternera marmolada US 7.5oz, ibérico español 7.5oz, cabecero 7.5oz"],de:["Herzliches Fleischliebhaber Duo Fest","4 Premium-Fleisch: Australisches Schulterfilet 7.5oz, US-Marmorrindfleisch 7.5oz, Spanisches Ibérico-Schwein 7.5oz, Schweinekamm 7.5oz"],th:["เฮิร์ตตี้ มีท ดูโอ เฟสต์","เนื้อ 4 ชนิดชั้นเลิศ: เนื้อออสเตรเลีย 7.5oz, เนื้อลายหินออน 7.5oz, หมูสเปน 7.5oz, หมู 7.5oz"]}),
-      it("輕奢滿築雙饗宴","$1,559",{en:["Light Luxury Duo Feast","US wing rib beef 8oz, pork collar 8oz, angel shrimp 2pc, black shrimp 2pc, white shrimp 4pc, clams 6pc, abalone 2pc, king scallop 2pc"],jp:["ライトラグジュアリーダブルフィースト","米国ウィングリブ8oz、豚首肉8oz、天使海老2尾、黒エビ2尾、白エビ4尾、ハマグリ6個、アワビ2個、ホタテ2個"],kr:["라이트 럭셔리 듀오 페스트","미국 윙립 8oz, 목살 8oz, 천사새우 2마리, 흑새우 2마리, 흰새우 4마리, 조개 6개, 전복 2개, 가리비 2개"],zh:["輕奢滿築雙饗宴","美國極佳翼板牛8oz、豬梅花8oz、天使紅蝦2隻、黑美人蝦2隻、南美白蝦4隻、巨無霸蛤蠣6顆、野生鮑魚2顆、帆立國王貝2顆"],fr:["Festin Duo Luxe Léger","Bœuf US wing rib 8oz, porc 8oz, crevettes ange 2pc, crevettes noires 2pc, crevettes blanches 4pc, palourdes 6pc, ormeaux 2pc, saint-jacques 2pc"],es:["Festín Dúo Lujo Ligero","Ternera US wing rib 8oz, cerdo 8oz, gamba ángel 2pc, gamba negra 2pc, gambas 4pc, almejas 6pc, abulón 2pc, vieiras 2pc"],de:["Leichtes Luxus Duo Fest","US Wing Rib 8oz, Schweinefleisch 8oz, Engelsgarnelen 2St, Schwarze Garnelen 2St, Weiße Garnelen 4St, Muscheln 6St, Abalone 2St, Jakobsmuscheln 2St"],th:["ไลท์ ลักชัวรี่ ดูโอ เฟสต์","เนื้อ USA 8oz หมู 8oz กุ้งนางฟ้า กุ้งดำ กุ้งขาว หอย เป๋าฮื้อ หอยเชลล์"]}),
-      it("奢華海神雙饗宴","$1,999",{en:["Luxurious Poseidon Seafood Duo Feast","Wild lobster 1pc, sea tiger shrimp 2pc, angel shrimp 2pc, white shrimp 4pc, clams 6pc, snapper 2pc, salmon 2pc, sea bass 2pc, Hokkaido scallop 2pc, abalone 2pc, king scallop 2pc, oyster 2pc"],jp:["ラグジュアリーポセイドンシーフードダブルフィースト","伊勢海老1尾、大草エビ2尾、天使海老2尾、白エビ4尾、ハマグリ6個、鯛2枚、鮭2枚、スズキ2枚、北海道干貝2個、アワビ2個、ホタテ2個、生牡蠣2個"],kr:["럭셔리 포세이돈 씨푸드 듀오 페스트","랍스터 1마리, 대형새우 2마리, 천사새우 2마리, 흰새우 4마리, 조개 6개, 도미 2장, 연어 2장, 농어 2장, 홋카이도 가리비 2개, 전복 2개, 굴 2개"],zh:["奢華海神雙饗宴","野生大龍蝦1隻、南海大草蝦2隻、天使紅蝦2隻、南美白蝦4隻、巨無霸蛤蠣6顆、台灣黃金鯛2片、鮭魚菲力2片、現流鱸魚2片、生食級北海道干貝2顆、野生鮑魚2顆、帆立國王貝2顆、生食級日本生蠔2顆"],fr:["Festin Duo Poseidon Luxueux","Homard vivant 1pc, crevettes géantes 2pc, crevettes ange 2pc, palourdes 6pc, daurade 2pc, saumon 2pc, loup 2pc, saint-jacques Hokkaido 2pc, ormeau 2pc, huîtres 2pc"],es:["Festín Dúo Poseidón Lujoso","Langosta viva 1pc, gambas gigantes 2pc, gamba ángel 2pc, gambas 4pc, almejas 6pc, besugo 2pc, salmón 2pc, lubina 2pc, vieiras 2pc, abulón 2pc, ostras 2pc"],de:["Luxuriöses Poseidon Meeresfrüchte Duo","Lebende Hummer 1St, Tigergarnelen 2St, Engelsgarnelen 2St, Muscheln 6St, Schnapper 2St, Lachs 2St, Seebarsch 2St, Jakobsmuscheln 2St, Abalone 2St, Austern 2St"],th:["ลักชัวรี่ โพไซดอน ซีฟู้ด ดูโอ เฟสต์","ล็อบสเตอร์ กุ้งใหญ่ กุ้งนางฟ้า กุ้งขาว หอย ปลา แซลมอน เป๋าฮื้อ หอยนางรม"]},true),
-      it("豪華滿意雙饗宴","$2,519",{en:["Deluxe Satisfaction Duo Feast","US boneless short rib 8oz, Spanish Iberico pork 8oz, wild lobster 1pc, angel shrimp 2pc, sea tiger shrimp 2pc, white shrimp 4pc, Hokkaido scallop 2pc, clams 6pc, oyster 2pc"],jp:["デラックス満足ダブルフィースト","米国無骨牛リブ8oz、スペイン松坂豚8oz、伊勢海老1尾、天使海老2尾、大草エビ2尾、白エビ4尾、北海道干貝2個、ハマグリ6個、生牡蠣2個"],kr:["디럭스 만족 듀오 페스트","미국 뼈없는 갈비 8oz, 스페인 이베리코 8oz, 야생 랍스터 1마리, 천사새우 2마리, 대형새우 2마리, 흰새우 4마리, 홋카이도 가리비 2개, 조개 6개, 굴 2개"],zh:["豪華滿意雙饗宴","美國極佳無骨牛小排8oz、西班牙松阪豬8oz、野生大龍蝦1隻、天使紅蝦2隻、南海大草蝦2隻、南美白蝦4隻、生食級北海道干貝2顆、巨無霸蛤蠣6顆、生食級日本生蠔2顆"],fr:["Festin Duo Satisfaction Deluxe","Côte de bœuf US sans os 8oz, porc ibérique espagnol 8oz, homard sauvage 1pc, crevettes 2pc, palourdes 6pc, saint-jacques 2pc, huîtres 2pc"],es:["Festín Dúo Satisfacción Deluxe","Costilla sin hueso US 8oz, cerdo ibérico español 8oz, langosta salvaje 1pc, gambas 2pc, almejas 6pc, vieiras 2pc, ostras 2pc"],de:["Deluxe Zufriedenheits Duo Fest","US Rippchen ohne Knochen 8oz, Ibérico-Schwein 8oz, Wildhummer 1St, Garnelen 2St, Muscheln 6St, Jakobsmuscheln 2St, Austern 2St"],th:["ดีลักซ์ แซทิสแฟคชั่น ดูโอ เฟสต์","เนื้อซี่โครง USA 8oz หมูสเปน 8oz ล็อบสเตอร์ กุ้ง หอย สำหรับ 2 ท่าน"]},true),
-      it("和牛超滿築雙饗宴","$2,429",{en:["Premium Wagyu Duo Feast","Australian M9+ wagyu chuck roll 8oz, Japanese A5 wagyu 8oz, Hokkaido scallop 2pc, sea tiger shrimp 2pc, salmon 2pc, sea bass 2pc, snapper 2pc, clams 6pc"],jp:["プレミアム和牛ダブルフィースト","豪州M9+和牛板腱8oz、日本A5和牛霜降8oz、北海道干貝2個、大草エビ2尾、鮭2枚、スズキ2枚、鯛2枚、ハマグリ6個"],kr:["프리미엄 와규 듀오 페스트","호주 M9+ 와규 척롤 8oz, 일본 A5 와규 8oz, 홋카이도 가리비 2개, 대형새우 2마리, 연어 2장, 농어 2장, 도미 2장, 조개 6개"],zh:["和牛超滿築雙饗宴","澳洲M9+和牛板腱8oz、日本A5和牛霜降8oz、生食級北海道干貝2顆、南海大草蝦2顆、鮭魚菲力2片、現流鱸魚2片、台灣黃金鯛2片、巨無霸蛤蠣6顆"],fr:["Festin Duo Wagyu Premium","Wagyu M9+ australien 8oz, Wagyu A5 japonais 8oz, saint-jacques Hokkaido 2pc, crevettes 2pc, saumon 2pc, loup 2pc, palourdes 6pc"],es:["Festín Dúo Wagyu Premium","Wagyu M9+ australiano 8oz, Wagyu A5 japonés 8oz, vieiras Hokkaido 2pc, gambas 2pc, salmón 2pc, lubina 2pc, almejas 6pc"],de:["Premium Wagyu Duo Fest","Australisches Wagyu M9+ 8oz, Japanisches A5 Wagyu 8oz, Jakobsmuscheln Hokkaido 2St, Garnelen 2St, Lachs 2St, Seebarsch 2St, Muscheln 6St"],th:["พรีเมียม วากิว ดูโอ เฟสต์","วากิว M9+ ออสเตรเลีย 8oz วากิว A5 ญี่ปุ่น 8oz หอยเชลล์ กุ้งใหญ่ แซลมอน ปลากะพง หอย"]}),
-      it("究極龍皇雙饗宴","$3,299",{en:["Ultimate Dragon Emperor Duo Feast","Japanese A5 wagyu 8oz + short rib 8oz, wild lobster 1pc, sea tiger shrimp 2pc, oyster 2pc, Hokkaido scallop 2pc, white shrimp 6pc, salmon 4pc, sea bass 2pc, clams 8pc, abalone 2pc"],jp:["アルティメットドラゴンエンペラーダブルフィースト","日本A5和牛霜降8oz+小排8oz、伊勢海老1尾、大草エビ2尾、生牡蠣2個、北海道干貝2個、白エビ6尾、鮭4枚、スズキ2枚、ハマグリ8個、アワビ2個"],kr:["얼티밋 드래곤 엠퍼러 듀오 페스트","일본 A5 와규 8oz + 갈비 8oz, 야생 랍스터 1마리, 대형새우 2마리, 굴 2개, 홋카이도 가리비 2개, 흰새우 6마리, 연어 4장, 조개 8개, 전복 2개"],zh:["究極龍皇雙饗宴","日本A5和牛霜降8oz、日本A5和牛小排8oz、野生大龍蝦1隻、南海大草蝦2隻、生食級日本生蠔2顆、生食級北海道干貝2顆、南美白蝦6隻、鮭魚菲力4片、現流鱸魚2片、巨無霸蛤蠣8顆、野生鮑魚2顆"],fr:["Festin Duo Dragon Impérial Ultime","Wagyu A5 japonais 8oz + côtelette 8oz, homard sauvage 1pc, crevettes géantes 2pc, huîtres 2pc, saint-jacques 2pc, crevettes 6pc, saumon 4pc, palourdes 8pc, ormeau 2pc"],es:["Festín Dúo Dragón Imperial Supremo","Wagyu A5 japonés 8oz + costilla 8oz, langosta salvaje 1pc, gambas tigre 2pc, ostras 2pc, vieiras 2pc, gambas 6pc, salmón 4pc, almejas 8pc, abulón 2pc"],de:["Ultimatives Drachen Kaiser Duo Fest","Japanisches A5 Wagyu 8oz + Rippenspeer 8oz, Wildhummer 1St, Tigergarnelen 2St, Austern 2St, Jakobsmuscheln 2St, Garnelen 6St, Lachs 4St, Muscheln 8St, Abalone 2St"],th:["อัลติเมท ดราก้อน เอ็มเพอเรอร์ ดูโอ","วากิว A5 ญี่ปุ่น 8oz+ซี่โครง 8oz ล็อบสเตอร์ กุ้งใหญ่ หอยนางรม หอยเชลล์ กุ้งขาว แซลมอน หอย เป๋าฮื้อ"]}),
+      it("經典滿築雙饗宴","$1,329",{en:["Classic Manzhu Duo Feast","Australian shoulder beef 8oz, pork collar 8oz, angel shrimp 2pc, white shrimp 4pc, snapper 2pc, salmon 2pc, clams 6pc, king scallop 1pc"],zh:["經典滿築雙饗宴","澳洲嫩肩牛8oz、豬梅花8oz、天使紅蝦2隻、南美白蝦4隻、台灣黃金鯛2片、鮭魚菲力2片、巨無霸蛤蠣6顆、帆立國王貝1顆"],jp:["クラシック満築ダブルフィースト","豪州肩ロース8oz、豚首肉8oz、天使海老2尾、白エビ4尾、鯛2枚、鮭2枚、ハマグリ6個、帆立1個"],kr:["클래식 만주 듀오 페스트","호주 어깨살 8oz, 목살 8oz, 천사새우 2마리, 흰새우 4마리, 도미 2장, 연어 2장, 조개 6개, 가리비 1개"],fr:["Festin Classique Manzhu Duo","Bœuf australien 8oz, porc 8oz, crevettes ange 2pc, crevettes blanches 4pc, daurade 2pc, saumon 2pc, palourdes 6pc, saint-jacques 1pc"],es:["Festín Clásico Manzhu Dúo","Ternera australiana 8oz, cerdo 8oz, gamba ángel 2pc, gambas blancas 4pc, besugo 2pc, salmón 2pc, almejas 6pc, vieira 1pc"],de:["Klassisches Manzhu Duo Fest","Australisches Schulterfilet 8oz, Schweinefleisch 8oz, Engel-Garnelen 2St, Weiße Garnelen 4St, Schnapper 2St, Lachs 2St, Muscheln 6St, Jakobsmuschel 1St"],th:["คลาสสิก มันจู ดูโอ เฟสต์","เนื้อออสเตรเลีย 8oz หมู 8oz กุ้ง หอยสังข์ ปลา แซลมอน สำหรับ 2 ท่าน"]}),
+      it("滿派海陸雙饗宴","$1,659",{en:["Grand Surf & Turf Duo Feast","US beef 8oz, pork collar 8oz, 9 seafood varieties: shrimp, clams, squid, scallop, abalone, king scallop"],zh:["滿派海陸雙饗宴","美國特選五花牛8oz、豬梅花8oz，9種海鮮：天使紅蝦、黑美人蝦、南美白蝦、蛤蠣、台灣黃金鯛、小卷、干貝、鮑魚、帆立國王貝"],jp:["グランドサーフ&ターフダブルフィースト","米国牛8oz、豚首肉8oz、エビ・ハマグリ・イカ・干貝・アワビなど9種の海鮮"],kr:["그랜드 서프 & 터프 듀오 페스트","미국 소고기 8oz, 목살 8oz, 새우·조개·오징어·가리비·전복 등 9가지 해산물"],fr:["Grand Festin Terre & Mer Duo","Bœuf US 8oz, porc 8oz, 9 variétés de fruits de mer: crevettes, palourdes, calmars, saint-jacques, ormeaux"],es:["Gran Festín Mar y Tierra Dúo","Ternera US 8oz, cerdo 8oz, 9 variedades de mariscos: gambas, almejas, calamar, vieiras, abulón"],de:["Großes Surf & Turf Duo Fest","US-Rindfleisch 8oz, Schweinefleisch 8oz, 9 Meeresfrüchte-Sorten: Garnelen, Muscheln, Tintenfisch, Jakobsmuscheln, Abalone"],th:["แกรนด์ เซิร์ฟ & เทิร์ฟ ดูโอ เฟสต์","เนื้อUSA 8oz หมู 8oz อาหารทะเล 9 ชนิด"]}),
     ],
     sections:null
   },
-
+  
   seafood1: {
     images:[IMGS.sf1cover, IMGS.sf1],
     items:[
-      it("海鮮盛饗宴","$559",{en:["Seafood Abundance Feast","Giant clams 4pc, angel shrimp 1pc, black shrimp 1pc, white shrimp 4pc, snapper 4pc, squid 1pc | Upgrade +$100: add beef/pork 5oz"],jp:["シーフード盛りフィースト","巨大ハマグリ4個、天使海老1尾、黒エビ1尾、白エビ4尾、鯛4枚、イカ1尾 | アップグレード+100元で牛/豚肉5oz追加"],kr:["씨푸드 어번던스 페스트","대형조개 4개, 천사새우 1마리, 흑새우 1마리, 흰새우 4마리, 도미 4장, 오징어 1마리 | 업그레이드 +$100 육류 5oz 추가"],zh:["海鮮盛饗宴","巨無霸蛤蠣4顆、天使紅蝦1隻、黑美人蝦1隻、南美白蝦4隻、台灣黃金鯛4片、東北船凍小卷1隻 | 加購升級+$100可選肉品5oz"],fr:["Festin Abondance Fruits de Mer","Palourdes 4pc, crevettes ange 1pc, crevettes noires 1pc, crevettes blanches 4pc, daurade 4pc, calamar 1pc | Upgrade +$100 viande 5oz"],es:["Festín Abundancia Mariscos","Almejas 4pc, gamba ángel 1pc, gamba negra 1pc, gambas 4pc, besugo 4pc, calamar 1pc | Upgrade +$100 carne 5oz"],de:["Meeresfrüchte Überfluss Fest","Riesenmuscheln 4St, Engelsgarnelen 1St, Schwarze Garnelen 1St, Weiße Garnelen 4St, Schnapper 4St, Tintenfisch 1St | Upgrade +$100 Fleisch 5oz"],th:["ซีฟู้ด อะบันแดนซ์ เฟสต์","หอยใหญ่ 4 กุ้งนางฟ้า กุ้งดำ กุ้งขาว ปลา หมึก | อัพเกรด +$100 เนื้อ 5oz"]}),
-      it("海鮮奢饗宴","$739",{en:["Seafood Luxury Feast","Giant clams 6pc, Japanese oyster 1pc, angel shrimp 1pc, sea tiger shrimp 1pc, white shrimp 4pc, snapper 2pc, sea bass 2pc, salmon 2pc"],jp:["シーフードラグジュアリーフィースト","巨大ハマグリ6個、生牡蠣1個、天使海老1尾、大草エビ1尾、白エビ4尾、鯛2枚、スズキ2枚、鮭2枚"],kr:["씨푸드 럭셔리 페스트","대형조개 6개, 일본굴 1개, 천사새우 1마리, 대형새우 1마리, 흰새우 4마리, 도미 2장, 농어 2장, 연어 2장"],zh:["海鮮奢饗宴","巨無霸蛤蠣6顆、生食級日本生蠔1顆、天使紅蝦1隻、南海大草蝦1隻、南美白蝦4隻、台灣黃金鯛2片、現流鱸魚2片、鮭魚菲力2片"],fr:["Festin Luxueux Fruits de Mer","Palourdes 6pc, huître japonaise 1pc, crevettes ange 1pc, crevettes géantes 1pc, crevettes 4pc, daurade 2pc, loup 2pc, saumon 2pc"],es:["Festín Lujoso Mariscos","Almejas 6pc, ostra japonesa 1pc, gamba ángel 1pc, gamba tigre 1pc, gambas 4pc, besugo 2pc, lubina 2pc, salmón 2pc"],de:["Meeresfrüchte Luxus Fest","Riesenmuscheln 6St, Japanische Auster 1St, Engelsgarnelen 1St, Tigergarnelen 1St, Weiße Garnelen 4St, Schnapper 2St, Seebarsch 2St, Lachs 2St"],th:["ซีฟู้ด ลักชัวรี่ เฟสต์","หอยใหญ่ 6 หอยนางรมญี่ปุ่น กุ้งนางฟ้า กุ้งทะเลใหญ่ กุ้งขาว ปลา แซลมอน"]}),
-      it("滿鮮海味饗宴","$599",{en:["Fresh Ocean Taste Feast","Giant clams 6pc, Japanese oyster 1pc, angel shrimp 4pc"],jp:["フレッシュオーシャンテイストフィースト","巨大ハマグリ6個、生牡蠣1個、天使海老4尾"],kr:["프레쉬 오션 테이스트 페스트","대형조개 6개, 일본굴 1개, 천사새우 4마리"],zh:["滿鮮海味饗宴","巨無霸蛤蠣6顆、生食級日本生蠔1顆、天使紅蝦4隻"],fr:["Festin Saveurs Marines Fraîches","Palourdes géantes 6pc, huître japonaise 1pc, crevettes ange 4pc"],es:["Festín Sabores Marinos Frescos","Almejas gigantes 6pc, ostra japonesa 1pc, gambas ángel 4pc"],de:["Frische Meeresgeschmack Fest","Riesenmuscheln 6St, Japanische Auster 1St, Engelsgarnelen 4St"],th:["เฟรช โอเชี่ยน เทสต์ เฟสต์","หอยใหญ่ 6 หอยนางรมญี่ปุ่น 1 กุ้งนางฟ้า 4"]}),
-      it("特選鮭魚蛤蠣饗宴","$579",{en:["Special Salmon & Clam Feast","Salmon fillet 8pc, giant clams 4pc"],jp:["スペシャルサーモン&ハマグリフィースト","鮭フィレ8枚、巨大ハマグリ4個"],kr:["스페셜 연어 & 조개 페스트","연어필레 8장, 대형조개 4개"],zh:["特選鮭魚蛤蠣饗宴","鮭魚菲力8片、巨無霸蛤蠣4顆"],fr:["Festin Spécial Saumon & Palourdes","Filet de saumon 8pc, palourdes géantes 4pc"],es:["Festín Especial Salmón & Almejas","Filete de salmón 8pc, almejas gigantes 4pc"],de:["Spezial Lachs & Muscheln Fest","Lachsfilet 8St, Riesenmuscheln 4St"],th:["สเปเชียล แซลมอน & หอย เฟสต์","แซลมอนฟิลเลต์ 8ชิ้น หอยใหญ่ 4ตัว"]}),
-      it("草蝦蛤蠣饗宴","$499",{en:["Grass Shrimp & Clam Feast","Giant clams 10pc, black shrimp 4pc"],jp:["草エビ&ハマグリフィースト","巨大ハマグリ10個、黒エビ4尾"],kr:["초새우 & 조개 페스트","대형조개 10개, 흑새우 4마리"],zh:["草蝦蛤蠣饗宴","巨無霸蛤蠣10顆、黑美人蝦4隻"],fr:["Festin Crevettes & Palourdes","Palourdes géantes 10pc, crevettes noires 4pc"],es:["Festín Gambas & Almejas","Almejas gigantes 10pc, gambas negras 4pc"],de:["Gras-Garnelen & Muscheln Fest","Riesenmuscheln 10St, Schwarze Garnelen 4St"],th:["กุ้ง & หอย เฟสต์","หอยใหญ่ 10ตัว กุ้งดำ 4ตัว"]}),
-      it("綜合魚片饗宴","$489",{en:["Mixed Fish Fillet Feast","Salmon fillet 2pc, sea bass 2pc, Taiwanese golden snapper 4pc"],jp:["ミックスフィッシュフィレフィースト","鮭フィレ2枚、スズキ2枚、台湾鯛4枚"],kr:["믹스 생선 필레 페스트","연어필레 2장, 농어 2장, 대만 도미 4장"],zh:["綜合魚片饗宴","鮭魚菲力2片、現流鱸魚2片、台灣黃金鯛4片"],fr:["Festin Filets de Poissons Assortis","Filet de saumon 2pc, loup 2pc, daurade taïwanaise 4pc"],es:["Festín Filetes Mixtos de Pescado","Filete de salmón 2pc, lubina 2pc, besugo taiwanés 4pc"],de:["Gemischtes Fischfilet Fest","Lachsfilet 2St, Seebarsch 2St, Taiwanesischer Schnapper 4St"],th:["มิกซ์ ฟิช ฟิลเลต์ เฟสต์","แซลมอน 2ชิ้น ปลากะพง 2ชิ้น ปลาทองไต้หวัน 4ชิ้น"]}),
+      it("海鮮盛饗宴","$559",{en:["Seafood Abundance Feast","Giant clams 4pc, angel shrimp 1pc, black shrimp 1pc, white shrimp 4pc, snapper 4pc, squid 1pc | Upgrade +$100: add beef/pork 5oz"],zh:["海鮮盛饗宴","巨無霸蛤蠣4顆、天使紅蝦1隻、黑美人蝦1隻、南美白蝦4隻、台灣黃金鯛4片、東北船凍小卷1隻 | 加購升級+$100可選肉品5oz"],jp:["シーフード盛りフィースト","巨大ハマグリ4個、天使海老1尾、黒エビ1尾、白エビ4尾、鯛4枚、イカ1尾 | アップグレード+100元で牛/豚肉5oz追加"],kr:["씨푸드 어번던스 페스트","대형조개 4개, 천사새우 1마리, 흑새우 1마리, 흰새우 4마리, 도미 4장, 오징어 1마리 | 업그레이드 +$100 육류 5oz 추가"],fr:["Festin Abondance Fruits de Mer","Palourdes 4pc, crevettes ange 1pc, crevettes noires 1pc, crevettes blanches 4pc, daurade 4pc, calamar 1pc | Upgrade +$100 viande 5oz"],es:["Festín Abundancia Mariscos","Almejas 4pc, gamba ángel 1pc, gamba negra 1pc, gambas 4pc, besugo 4pc, calamar 1pc | Upgrade +$100 carne 5oz"],de:["Meeresfrüchte Überfluss Fest","Riesenmuscheln 4St, Engelsgarnelen 1St, Schwarze Garnelen 1St, Weiße Garnelen 4St, Schnapper 4St, Tintenfisch 1St | Upgrade +$100 Fleisch 5oz"],th:["ซีฟู้ด อะบันแดนซ์ เฟสต์","หอยใหญ่ 4 กุ้งนางฟ้า กุ้งดำ กุ้งขาว ปลา หมึก | อัพเกรด +$100 เนื้อ 5oz"]}),
     ],
     sections:null
   },
 
   meat: {
-    images:[IMGS.beef,IMGS.meat2],
-sections:[
-{ title:{en:"🐄 Beef Set",jp:"🐄 牛肉セット",kr:"🐄 소고기 세트",zh:"🐄 牛肉套餐",fr:"🐄 Bœuf Set",es:"🐄 Set Res",de:"🐄 Rindfleisch Set",th:"🐄 ชุดเนื้อวัว"}, items:[
-it("美國特選五花牛","7oz $399 / 11oz $479",{en:["US Prime Beef Belly","Tender, juicy US-grade marbled beef belly"],jp:["米国プレミアムバラ肉","柔らかくジューシーな米国産霜降りバラ肉"],kr:["미국 프라임 소고기 삼겹살","부드럽고 육즙 풍부한 미국산 마블링 삼겹살"],zh:["美國特選五花牛","7oz $399 / 11oz $479"],fr:["Poitrine de Bœuf US Prime","Tendre et juteuse poitrine de bœuf marbré américain"],es:["Panceta de Res US Prime","Tierna y jugosa panceta de res marmolada americana"],de:["US Prime Rinderbauch","Zartes, saftiges amerikanisches marmoriertes Rinderbauchfleisch"],th:["เนื้อพรีเมียม USA","เนื้อท้องวัว US เกรดพรีเมียม นุ่มฉ่ำ"]}),
-it("美國極佳雪花牛","7oz $489 / 11oz $609",{en:["US Prime Snow Marbling Beef","Beautifully marbled snow pattern beef for extra richness"],jp:["米国極上雪花牛","美しい雪模様の霜降りで豊かな風味"],kr:["미국 최상급 눈꽃 마블링 소고기","아름다운 눈꽃 무늬 마블링으로 풍부한 맛"],zh:["美國極佳雪花牛","7oz $489 / 11oz $609"],fr:["Bœuf Marbré Neige US Prime","Merveilleusement marbré en motif neige pour une richesse supplémentaire"],es:["Res Marmoreda Nieve US Prime","Hermoso marmolado en patrón de nieve para mayor riqueza"],de:["US Prime Schnee-Marmoriertes Rindfleisch","Wunderschön marmoriertes Schnee-Muster-Rindfleisch"],th:["เนื้อลายหิมะ USA","เนื้อวัวลายหินอ่อนสวยงาม นุ่มฉ่ำเป็นพิเศษ"]}),
-it("美國極佳牛脆胸","7oz $539 / 11oz $669",{en:["US Prime Beef Brisket","Crispy and tender US prime brisket with rich flavor"],jp:["米国極上牛ブリスケット","サクサクで柔らかい米国産プライムブリスケット"],kr:["미국 최상급 소 가슴살","바삭하고 부드러운 미국산 프라임 양지"],zh:["美國極佳牛脆胸","7oz $539 / 11oz $669"],fr:["Poitrine Croustillante US Prime","Poitrine US prime croustillante et tendre"],es:["Pecho Crujiente US Prime","Pecho US prime crujiente y tierno con sabor rico"],de:["US Prime Knuspriges Rinderbrust","Knuspriges und zartes US Prime Rinderbrust"],th:["เนื้ออกวัว US พรีเมียม","อกวัว US กรอบนอกนุ่มใน รสชาติเข้มข้น"]}),
-it("美國極佳翼板牛","7oz $599 / 11oz $769",{en:["US Prime Wing Rib Beef","Premium US wing rib with excellent marbling"],jp:["米国極上ウィングリブ","優れた霜降りの米国産プレミアムウィングリブ"],kr:["미국 최상급 윙립 소고기","우수한 마블링의 프리미엄 미국산 윙립"],zh:["美國極佳翼板牛","7oz $599 / 11oz $769"],fr:["Côte de Bœuf Ailée US Prime","Côte ailée US prime de qualité supérieure"],es:["Costilla Alada US Prime","Costilla alada US prime con excelente marmolado"],de:["US Prime Flügelrippe","Premium US Flügelrippe mit ausgezeichneter Marmorierung"],th:["วิงริบ US พรีเมียม","วิงริบวัว US เกรดพรีเมียม ลายหินอ่อนสวยงาม"]}),
-it("美國極佳無骨牛小排","7oz $729 / 11oz $999",{en:["US Prime Boneless Short Rib","Juicy and flavorful US prime boneless short rib"],jp:["米国極上骨なし牛リブ","ジューシーで風味豊かな米国産無骨リブ"],kr:["미국 최상급 뼈없는 갈비살","육즙 풍부하고 맛있는 미국산 뼈없는 갈비"],zh:["美國極佳無骨牛小排","7oz $729 / 11oz $999"],fr:["Côte Courte Désossée US Prime","Côte courte désossée US prime juteuse et savoureuse"],es:["Costilla Corta Sin Hueso US Prime","Jugosa y sabrosa costilla corta sin hueso US prime"],de:["US Prime Knochenlose Rippe","Saftiges und wohlschmeckendes US Prime Rinderrippe ohne Knochen"],th:["ซี่โครงไม่มีกระดูก US พรีเมียม","ซี่โครงวัว US ไม่มีกระดูก ฉ่ำน้ำ รสเข้มข้น"]}),
-it("澳洲嚴選嫩肩牛","7oz $469 / 11oz $599",{en:["Australian Premium Tender Shoulder","Carefully selected Australian tender shoulder beef"],jp:["豪州厳選肩ロース","厳選された豪州産柔らかい肩ロース"],kr:["호주 프리미엄 부드러운 어깨살","엄선된 호주산 부드러운 어깨 살"],zh:["澳洲嚴選嫩肩牛","7oz $469 / 11oz $599"],fr:["Épaule Tendre Australienne Premium","Épaule tendre australienne soigneusement sélectionnée"],es:["Hombro Tierno Australiano Premium","Hombro tierno australiano cuidadosamente seleccionado"],de:["Australische Premium Zarte Schulter","Sorgfältig ausgewähltes australisches Schulterfleisch"],th:["เนื้อไหล่อ่อน ออสเตรเลีย","เนื้อไหล่วัวออสเตรเลียคัดพิเศษ นุ่มมาก"]}),
-it("澳洲熟成特選菲力牛","7oz $599 / 11oz $769",{en:["Australian Aged Selected Tenderloin","Premium dry-aged Australian tenderloin"],jp:["豪州熟成特選ヒレ肉","プレミアム熟成豪州テンダーロイン"],kr:["호주 숙성 특선 안심","프리미엄 드라이에이징 호주산 안심"],zh:["澳洲熟成特選菲力牛","7oz $599 / 11oz $769"],fr:["Filet Mignon Australien Sélectionné Affiné","Filet mignon australien affiné premium"],es:["Solomillo Australiano Añejado Seleccionado","Solomillo australiano añejado premium"],de:["Australisches Gereiftes Ausgewähltes Filet","Premium Dry-Aged Australisches Filet"],th:["สันในวัวออสเตรเลียบ่มพิเศษ","สันในวัวออสเตรเลียบ่มสุก พรีเมียม"]}),
-it("澳洲嚴選牛舌","7oz $699 / 11oz $899",{en:["Australian Selected Beef Tongue","Tender and rich Australian beef tongue"],jp:["豪州厳選牛タン","柔らかく風味豊かな豪州産牛タン"],kr:["호주 특선 소 혀","부드럽고 풍부한 호주산 소혀"],zh:["澳洲嚴選牛舌","7oz $699 / 11oz $899"],fr:["Langue de Bœuf Australienne Sélectionnée","Langue de bœuf australienne tendre et riche"],es:["Lengua de Res Australiana Seleccionada","Tierna y rica lengua de res australiana"],de:["Australische Ausgewählte Rinderzunge","Zarte und reichhaltige australische Rinderzunge"],th:["ลิ้นวัวออสเตรเลียคัดพิเศษ","ลิ้นวัวออสเตรเลีย นุ่มและรสชาติเข้มข้น"]}),
-]},
-{ title:{en:"🥢 Wagyu",jp:"🥢 和牛",kr:"🥢 와규",zh:"🥢 和牛",fr:"🥢 Wagyu",es:"🥢 Wagyu",de:"🥢 Wagyu",th:"🥢 วากิว"}, items:[
-it("澳洲M7+和牛霜降","7oz $549 / 11oz $689",{en:["Australian M7+ Wagyu Ribeye","Rich marbling M7+ grade Australian wagyu ribeye"],jp:["豪州M7+和牛霜降り","豊かな霜降りM7+等級豪州和牛リブアイ"],kr:["호주 M7+ 와규 립아이","풍부한 마블링 M7+ 등급 호주산 와규"],zh:["澳洲M7+和牛霜降","7oz $549 / 11oz $689"],fr:["Wagyu Australien M7+ Marbré","Wagyu australien M7+ richement marbré"],es:["Wagyu Australiano M7+ Marmolado","Wagyu australiano M7+ con rico marmolado"],de:["Australisches M7+ Wagyu Marmoriert","Reichhaltig marmoriertes M7+ australisches Wagyu"],th:["วากิวออสเตรเลีย M7+ ลายหินอ่อน","วากิว M7+ ออสเตรเลีย ลายหินอ่อนสวยงาม"]}),
-it("澳洲M9+和牛板腱","7oz $989 / 11oz $1,399",{en:["Australian M9+ Wagyu Chuck Roll","Premium M9+ grade Australian wagyu chuck roll"],jp:["豪州M9+和牛板腱","プレミアムM9+等級豪州和牛チャックロール"],kr:["호주 M9+ 와규 척롤","프리미엄 M9+ 등급 호주산 와규 척롤"],zh:["澳洲M9+和牛板腱","7oz $989 / 11oz $1,399"],fr:["Wagyu Australien M9+ Chuck Roll","Wagyu australien M9+ chuck roll de qualité supérieure"],es:["Wagyu Australiano M9+ Chuck Roll","Wagyu australiano M9+ chuck roll de calidad superior"],de:["Australisches M9+ Wagyu Chuck Roll","Premium M9+ australisches Wagyu Chuck Roll"],th:["วากิวออสเตรเลีย M9+ ชักโรล","วากิว M9+ ออสเตรเลีย คุณภาพสูงสุด"]}),
-it("日本A5和牛霜降","7oz $999 / 11oz $1,409",{en:["Japanese A5 Wagyu Ribeye","Top-grade Japanese A5 certified wagyu ribeye"],jp:["日本A5和牛霜降り","最高級A5認定日本和牛リブアイ"],kr:["일본 A5 와규 립아이","최상급 일본 A5 인증 와규 립아이"],zh:["日本A5和牛霜降","7oz $999 / 11oz $1,409"],fr:["Wagyu Japonais A5 Ribeye","Wagyu japonais ribeye certifié A5 haut de gamme"],es:["Wagyu Japonés A5 Ribeye","Wagyu japonés ribeye de máxima calidad certificado A5"],de:["Japanisches A5 Wagyu Ribeye","Top-Klasse japanisches A5 zertifiziertes Wagyu Ribeye"],th:["วากิวญี่ปุ่น A5 ลายหินอ่อน","วากิวญี่ปุ่น A5 เกรดสูงสุด"]}),
-it("日本A5和牛小排","7oz $1,299 / 11oz $1,699",{en:["Japanese A5 Wagyu Short Rib","Exquisite Japanese A5 wagyu short rib"],jp:["日本A5和牛小リブ","精巧な日本A5和牛の小リブ"],kr:["일본 A5 와규 갈비살","정교한 일본 A5 와규 갈비살"],zh:["日本A5和牛小排","7oz $1,299 / 11oz $1,699"],fr:["Côte Courte Wagyu Japonais A5","Exquise côte courte wagyu japonais A5"],es:["Costilla Corta Wagyu Japonés A5","Exquisita costilla corta wagyu japonés A5"],de:["Japanisches A5 Wagyu Kurzrippe","Exquisite japanische A5 Wagyu Kurzrippe"],th:["วากิวญี่ปุ่น A5 ซี่โครงสั้น","ซี่โครงสั้นวากิวญี่ปุ่น A5 รสชาติยอดเยี่ยม"]}),
-]},
-{ title:{en:"🐷 Pork / Duck / Lamb / Chicken",jp:"🐷 豚・鴨・羊・鶏",kr:"🐷 돼지/오리/양/닭",zh:"🐷 豬豬鴨羊雞",fr:"🐷 Porc / Canard / Agneau / Poulet",es:"🐷 Cerdo / Pato / Cordero / Pollo",de:"🐷 Schwein / Ente / Lamm / Huhn",th:"🐷 หมู/เป็ด/แกะ/ไก่"}, items:[
-it("嚴選特級豬梅花","7oz $369 / 11oz $439",{en:["Premium Selected Pork Collar","Carefully selected tender pork collar"],jp:["厳選プレミアム豚首肉","丁寧に選ばれた柔らかい豚首肉"],kr:["엄선 프리미엄 목살","엄선된 부드러운 목살"],zh:["嚴選特級豬梅花","7oz $369 / 11oz $439"],fr:["Échine de Porc Premium Sélectionnée","Échine de porc tendre soigneusement sélectionnée"],es:["Cabecero de Cerdo Premium Seleccionado","Cabecero de cerdo tierno cuidadosamente seleccionado"],de:["Premium Ausgewählter Schweinekamm","Sorgfältig ausgewählter zarter Schweinekamm"],th:["คอหมูพรีเมียมคัดพิเศษ","คอหมูนุ่มคัดสรรพิเศษ"]}),
-it("台灣本土豬五花","7oz $429 / 11oz $519",{en:["Taiwanese Local Pork Belly","Fresh local Taiwanese pork belly"],jp:["台湾産豚バラ肉","新鮮な台湾産豚バラ肉"],kr:["대만 현지 삼겹살","신선한 대만산 삼겹살"],zh:["台灣本土豬五花","7oz $429 / 11oz $519"],fr:["Poitrine de Porc Locale Taïwanaise","Poitrine de porc locale fraîche de Taïwan"],es:["Panceta de Cerdo Local Taiwanesa","Panceta de cerdo local fresca de Taiwán"],de:["Taiwanesischer Lokaler Schweinebauch","Frischer lokaler taiwanesischer Schweinebauch"],th:["หมูสามชั้นไต้หวัน","หมูสามชั้นท้องถิ่นไต้หวันสด"]}),
-it("嚴選松阪豬","7oz $499 / 11oz $609",{en:["Selected Iberico Pork Jowl (Matsusaka Style)","Prized fatty pork jowl, melt-in-mouth texture"],jp:["厳選松坂豚","珍重される脂の乗った豚ほっぺ肉、口の中でとろける食感"],kr:["엄선 마츠사카 스타일 돼지 볼살","귀한 지방이 풍부한 볼살, 입에서 녹는 식감"],zh:["嚴選松阪豬","7oz $499 / 11oz $609"],fr:["Joue de Porc Style Matsusaka Sélectionnée","Précieuse joue de porc grasse, texture fondante"],es:["Carrillada de Cerdo Estilo Matsusaka Seleccionada","Preciada carrillada de cerdo grasa, textura que se deshace"],de:["Ausgewählter Matsusaka-Stil Schweinewange","Wertvolle fettige Schweinewange, schmelzende Textur"],th:["หมูมัตสึซากะคัดพิเศษ","หมูแก้มมัตสึซากะ ไขมันแทรก ละลายในปาก"]}),
-it("全素蔬菜鍋","$329",{en:["Full Vegetarian Vegetable Hot Pot","Fresh seasonal vegetables, fully plant-based"],jp:["完全菜食野菜鍋","新鮮な季節の野菜、完全植物性"],kr:["완전 채식 채소 나베","신선한 제철 채소, 완전 식물성"],zh:["全素蔬菜鍋","$329"],fr:["Fondue de Légumes Végétalienne","Légumes frais de saison, entièrement à base de plantes"],es:["Fondue de Verduras Vegana","Verduras frescas de temporada, completamente a base de plantas"],de:["Vollvegetarischer Gemüse-Hotpot","Frisches Saisongemüse, vollständig pflanzenbasiert"],th:["หม้อไฟผักมังสวิรัติ","ผักสดตามฤดูกาล 100% พืช"]}),
-it("宜蘭櫻桃鴨肉捲","7oz $429 / 11oz $519",{en:["Yilan Cherry Duck Roll","Premium Yilan cherry duck, tender and flavorful"],jp:["宜蘭チェリーダックロール","プレミアム宜蘭チェリーダック、柔らかく風味豊か"],kr:["이란 체리 오리 롤","프리미엄 이란 체리 오리, 부드럽고 맛있음"],zh:["宜蘭櫻桃鴨肉捲","7oz $429 / 11oz $519"],fr:["Rouleau de Canard Cerise Yilan","Canard cerise Yilan premium, tendre et savoureux"],es:["Rollo de Pato Cereza Yilan","Pato cereza Yilan premium, tierno y sabroso"],de:["Yilan Kirschenten-Rolle","Premium Yilan Kirschente, zart und schmackhaft"],th:["เป็ดเชอร์รี่ยี่หลานโรล","เป็ดเชอร์รี่ยี่หลานพรีเมียม นุ่มและรสชาติดี"]}),
-it("澳洲嫩肩羊","7oz $469 / 11oz $599",{en:["Australian Tender Shoulder Lamb","Delicate and tender Australian shoulder lamb"],jp:["豪州テンダーラムショルダー","繊細で柔らかい豪州産ラムショルダー"],kr:["호주 부드러운 어깨 양고기","섬세하고 부드러운 호주산 어깨 양고기"],zh:["澳洲嫩肩羊","7oz $469 / 11oz $599"],fr:["Épaule d'Agneau Tendre Australienne","Épaule d'agneau australienne délicate et tendre"],es:["Hombro de Cordero Tierno Australiano","Hombro de cordero australiano delicado y tierno"],de:["Australische Zarte Lammschulter","Delikate und zarte australische Lammschulter"],th:["ไหล่แกะออสเตรเลียนุ่ม","ไหล่แกะออสเตรเลีย นุ่มละเอียด"]}),
-it("酒香雞腿肉","$429",{en:["Sake-Marinated Chicken Thigh","Aromatic sake-marinated tender chicken thigh"],jp:["酒香チキンもも肉","香り豊かな酒マリネの柔らかいもも肉"],kr:["사케 마리네이드 닭 허벅지","향기로운 사케 마리네이드 부드러운 닭 허벅지"],zh:["酒香雞腿肉","$429"],fr:["Cuisse de Poulet Marinée au Saké","Cuisse de poulet tendre marinée au saké aromatique"],es:["Muslo de Pollo Marinado en Sake","Muslo de pollo tierno marinado en sake aromático"],de:["Sake-Mariniertes Hähnchenoberschenkel","Aromatisch sake-mariniertes zartes Hähnchenoberschenkel"],th:["ขาไก่หมักสาเก","ขาไก่หมักสาเกหอมกลิ่น นุ่มมาก"]}),
-]},
-],
-items:null
-},
-alacarte: {
-images:[IMGS.ac1, IMGS.ac2],
-sections:[
-{ title:{en:"🥩 À La Carte · Meat (5oz)",jp:"🥩 単品 · 肉類 (5oz)",kr:"🥩 단품 · 육류 (5oz)",zh:"🥩 單點 · 肉類 (5oz)",fr:"🥩 À La Carte · Viandes (5oz)",es:"🥩 À La Carte · Carnes (5oz)",de:"🥩 Einzelgerichte · Fleisch (5oz)",th:"🥩 สั่งแยก · เนื้อ (5oz)"}, items:[
-it("美國特選五花牛","$209",{en:["US Prime Beef Belly",""],jp:["米国プレミアムバラ肉",""],kr:["미국 프라임 삼겹 소고기",""],zh:["美國特選五花牛",""],fr:["Poitrine Bœuf US Prime",""],es:["Panceta Res US Prime",""],de:["US Prime Rinderbauch",""],th:["เนื้อท้องวัว USA",""]}),
-it("美國極佳雪花牛","$339",{en:["US Prime Snow Marbling Beef",""],jp:["米国極上雪花牛",""],kr:["미국 최상급 눈꽃 소고기",""],zh:["美國極佳雪花牛",""],fr:["Bœuf Marbré Neige US Prime",""],es:["Res Marmoreda Nieve US Prime",""],de:["US Prime Schnee-Marmor Rindfleisch",""],th:["เนื้อลายหิมะ USA",""]}),
-it("美國極佳板腱牛","$379",{en:["US Prime Chuck Tender",""],jp:["米国極上板腱",""],kr:["미국 최상급 부채살",""],zh:["美國極佳板腱牛",""],fr:["Tendre de Paleron US Prime",""],es:["Paleta Tierna US Prime",""],de:["US Prime Chuck Tender",""],th:["เนื้อสะบักวัว USA",""]}),
-it("美國極佳翼板牛","$459",{en:["US Prime Wing Rib",""],jp:["米国極上ウィングリブ",""],kr:["미국 최상급 윙립",""],zh:["美國極佳翼板牛",""],fr:["Côte Ailée US Prime",""],es:["Costilla Alada US Prime",""],de:["US Prime Flügelrippe",""],th:["วิงริบวัว USA",""]}),
-it("美國極佳無骨牛小排","$659",{en:["US Prime Boneless Short Rib",""],jp:["米国極上骨なしリブ",""],kr:["미국 최상급 뼈없는 갈비",""],zh:["美國極佳無骨牛小排",""],fr:["Côte Courte Désossée US Prime",""],es:["Costilla Corta Sin Hueso US Prime",""],de:["US Prime Knochenlose Rippe",""],th:["ซี่โครงไม่มีกระดูก USA",""]}),
-it("美國極佳牛脆胸","$329",{en:["US Prime Beef Brisket",""],jp:["米国極上牛ブリスケット",""],kr:["미국 최상급 양지",""],zh:["美國極佳牛脆胸",""],fr:["Poitrine Croustillante US Prime",""],es:["Pecho Crujiente US Prime",""],de:["US Prime Rinderbrust",""],th:["อกวัว USA",""]}),
-it("澳洲嚴選嫩肩牛","$299",{en:["Australian Tender Shoulder",""],jp:["豪州厳選肩ロース",""],kr:["호주 부드러운 어깨살",""],zh:["澳洲嚴選嫩肩牛",""],fr:["Épaule Tendre Australienne",""],es:["Hombro Tierno Australiano",""],de:["Australische Zarte Schulter",""],th:["เนื้อไหล่วัวออสเตรเลีย",""]}),
-it("澳洲熟成特選菲力牛","$369",{en:["Australian Aged Tenderloin",""],jp:["豪州熟成テンダーロイン",""],kr:["호주 숙성 안심",""],zh:["澳洲熟成特選菲力牛",""],fr:["Filet Mignon Australien Affiné",""],es:["Solomillo Australiano Añejado",""],de:["Australisches Gereiftes Filet",""],th:["สันในวัวบ่มออสเตรเลีย",""]}),
-it("澳洲嚴選牛舌","$599",{en:["Australian Beef Tongue",""],jp:["豪州牛タン",""],kr:["호주 소혀",""],zh:["澳洲嚴選牛舌",""],fr:["Langue de Bœuf Australienne",""],es:["Lengua de Res Australiana",""],de:["Australische Rinderzunge",""],th:["ลิ้นวัวออสเตรเลีย",""]}),
-it("澳洲M7+和牛霜降","$369",{en:["Australian M7+ Wagyu",""],jp:["豪州M7+和牛",""],kr:["호주 M7+ 와규",""],zh:["澳洲M7+和牛霜降",""],fr:["Wagyu Australien M7+",""],es:["Wagyu Australiano M7+",""],de:["Australisches M7+ Wagyu",""],th:["วากิวออสเตรเลีย M7+",""]}),
-it("澳洲M9+和牛板腱","$829",{en:["Australian M9+ Wagyu Chuck Roll",""],jp:["豪州M9+和牛チャックロール",""],kr:["호주 M9+ 와규 척롤",""],zh:["澳洲M9+和牛板腱",""],fr:["Wagyu Australien M9+ Chuck Roll",""],es:["Wagyu Australiano M9+ Chuck Roll",""],de:["Australisches M9+ Wagyu Chuck Roll",""],th:["วากิวออสเตรเลีย M9+ ชักโรล",""]}),
-it("日本A5和牛霜降","$839",{en:["Japanese A5 Wagyu Ribeye",""],jp:["日本A5和牛霜降り",""],kr:["일본 A5 와규 립아이",""],zh:["日本A5和牛霜降",""],fr:["Wagyu Japonais A5",""],es:["Wagyu Japonés A5",""],de:["Japanisches A5 Wagyu",""],th:["วากิวญี่ปุ่น A5",""]}),
-it("日本A5和牛小排","$1,399",{en:["Japanese A5 Wagyu Short Rib",""],jp:["日本A5和牛リブ",""],kr:["일본 A5 와규 갈비",""],zh:["日本A5和牛小排",""],fr:["Côte Courte Wagyu A5 Japonais",""],es:["Costilla Corta Wagyu A5 Japonés",""],de:["Japanisches A5 Wagyu Rippe",""],th:["วากิวญี่ปุ่น A5 ซี่โครง",""]}),
-it("台灣本土豬五花","$219",{en:["Taiwanese Pork Belly",""],jp:["台湾豚バラ",""],kr:["대만 삼겹살",""],zh:["台灣本土豬五花",""],fr:["Poitrine Porc Taïwanais",""],es:["Panceta Cerdo Taiwanés",""],de:["Taiwanesischer Schweinebauch",""],th:["สามชั้นหมูไต้หวัน",""]}),
-it("嚴選特級豬梅花","$189",{en:["Premium Pork Collar",""],jp:["厳選豚首肉",""],kr:["프리미엄 목살",""],zh:["嚴選特級豬梅花",""],fr:["Échine Porc Premium",""],es:["Cabecero Cerdo Premium",""],de:["Premium Schweinekamm",""],th:["คอหมูพรีเมียม",""]}),
-it("西班牙松阪豬","$329",{en:["Spanish Matsusaka Pork Jowl",""],jp:["スペイン松坂豚",""],kr:["스페인 마츠사카 돼지 볼살",""],zh:["西班牙松阪豬",""],fr:["Joue Porc Matsusaka Espagnol",""],es:["Carrillada Cerdo Matsusaka Español",""],de:["Spanische Matsusaka Schweinewange",""],th:["หมูมัตสึซากะสเปน",""]}),
-it("澳洲嫩肩羊","$279",{en:["Australian Tender Lamb",""],jp:["豪州テンダーラム",""],kr:["호주 부드러운 양고기",""],zh:["澳洲嫩肩羊",""],fr:["Agneau Tendre Australien",""],es:["Cordero Tierno Australiano",""],de:["Australisches Zartes Lamm",""],th:["แกะนุ่มออสเตรเลีย",""]}),
-it("宜蘭櫻桃鴨肉捲","$229",{en:["Yilan Cherry Duck Roll",""],jp:["宜蘭チェリーダックロール",""],kr:["이란 체리 오리 롤",""],zh:["宜蘭櫻桃鴨肉捲",""],fr:["Rouleau Canard Cerise Yilan",""],es:["Rollo Pato Cereza Yilan",""],de:["Yilan Kirschenten-Rolle",""],th:["เป็ดเชอร์รี่ยี่หลานโรล",""]}),
-]},
-{ title:{en:"🦞 À La Carte · Seafood",jp:"🦞 単品 · 海鮮",kr:"🦞 단품 · 해산물",zh:"🦞 單點 · 海鮮",fr:"🦞 À La Carte · Fruits de Mer",es:"🦞 À La Carte · Mariscos",de:"🦞 Einzelgerichte · Meeresfrüchte",th:"🦞 สั่งแยก · อาหารทะเล"}, items:[
-it("生食級北海道干貝","2顆 $189",{en:["Hokkaido Sashimi-Grade Scallop","2pc"],jp:["北海道刺身用干貝","2個"],kr:["홋카이도 사시미급 가리비","2개"],zh:["生食級北海道干貝","2顆"],fr:["Saint-Jacques Hokkaido Sashimi","2pc"],es:["Vieira Hokkaido Grado Sashimi","2pc"],de:["Hokkaido Sashimi-Jakobsmuschel","2St"],th:["หอยเชลล์ฮอกไกโดเกรดซาซิมิ","2ตัว"]}),
-it("巨無霸蛤蠣","8顆 $189",{en:["Giant Clams","8pc"],jp:["巨大ハマグリ","8個"],kr:["거대 조개","8개"],zh:["巨無霸蛤蠣","8顆"],fr:["Palourdes Géantes","8pc"],es:["Almejas Gigantes","8pc"],de:["Riesenmuscheln","8St"],th:["หอยใหญ่","8ตัว"]}),
-it("帆立國王貝","4顆 $189",{en:["King Scallop","4pc"],jp:["帆立国王貝","4個"],kr:["킹 가리비","4개"],zh:["帆立國王貝","4顆"],fr:["Grande Saint-Jacques","4pc"],es:["Gran Vieira","4pc"],de:["König Jakobsmuschel","4St"],th:["หอยเชลล์ยักษ์","4ตัว"]}),
-it("南美白蝦","6隻 $129",{en:["South American White Shrimp","6pc"],jp:["南米白エビ","6尾"],kr:["남미 흰 새우","6마리"],zh:["南美白蝦","6隻"],fr:["Crevettes Blanches Sud-Américaines","6pc"],es:["Camarones Blancos Sudamericanos","6pc"],de:["Südamerikanische Weiße Garnelen","6St"],th:["กุ้งขาวอเมริกาใต้","6ตัว"]}),
-it("黑美人蝦","6隻 $269",{en:["Black Tiger Shrimp","6pc"],jp:["ブラックタイガー","6尾"],kr:["블랙 타이거 새우","6마리"],zh:["黑美人蝦","6隻"],fr:["Crevettes Tigres Noires","6pc"],es:["Camarones Tigre Negro","6pc"],de:["Schwarze Tigergarnelen","6St"],th:["กุ้งดำ","6ตัว"]}),
-it("天使紅蝦","6隻 $289",{en:["Angel Red Shrimp","6pc"],jp:["天使赤エビ","6尾"],kr:["천사 홍새우","6마리"],zh:["天使紅蝦","6隻"],fr:["Crevettes Rouges Ange","6pc"],es:["Camarones Rojos Ángel","6pc"],de:["Engelsgarnelen Rot","6St"],th:["กุ้งแดงนางฟ้า","6ตัว"]}),
-it("南海大草蝦","4隻 $389",{en:["South Sea Tiger Shrimp","4pc"],jp:["南海大草エビ","4尾"],kr:["남해 대형 새우","4마리"],zh:["南海大草蝦","4隻"],fr:["Grandes Crevettes Tigres Mer du Sud","4pc"],es:["Grandes Camarones Tigre Mar del Sur","4pc"],de:["Südmeer Tigergarnelen","4St"],th:["กุ้งทะเลใต้ใหญ่","4ตัว"]}),
-it("現流鱸魚","4片 $199",{en:["Fresh Sea Bass","4pc"],jp:["活き締めスズキ","4枚"],kr:["활어 농어","4장"],zh:["現流鱸魚","4片"],fr:["Loup de Mer Frais","4pc"],es:["Lubina Fresca","4pc"],de:["Frischer Seebarsch","4St"],th:["ปลากะพงสด","4ชิ้น"]}),
-it("台灣黃金鯛","6片 $169",{en:["Taiwanese Golden Snapper","6pc"],jp:["台湾黄金鯛","6枚"],kr:["대만 황금 도미","6장"],zh:["台灣黃金鯛","6片"],fr:["Daurade Dorée Taïwanaise","6pc"],es:["Besugo Dorado Taiwanés","6pc"],de:["Taiwanesischer Goldschnapper","6St"],th:["ปลาทองไต้หวัน","6ชิ้น"]}),
-it("鮭魚菲力","4片 $209",{en:["Salmon Fillet","4pc"],jp:["サーモンフィレ","4枚"],kr:["연어 필레","4장"],zh:["鮭魚菲力","4片"],fr:["Filet de Saumon","4pc"],es:["Filete de Salmón","4pc"],de:["Lachsfilet","4St"],th:["แซลมอนฟิลเลต์","4ชิ้น"]}),
-it("野生鮑魚","4顆 $189",{en:["Wild Abalone","4pc"],jp:["天然アワビ","4個"],kr:["야생 전복","4개"],zh:["野生鮑魚","4顆"],fr:["Ormeau Sauvage","4pc"],es:["Abulón Silvestre","4pc"],de:["Wilde Abalone","4St"],th:["เป๋าฮื้อป่า","4ตัว"]}),
-it("野生大龍蝦","1隻 $699",{en:["Wild Lobster","1pc"],jp:["天然伊勢海老","1尾"],kr:["야생 랍스터","1마리"],zh:["野生大龍蝦","1隻"],fr:["Homard Sauvage","1pc"],es:["Langosta Silvestre","1pc"],de:["Wilder Hummer","1St"],th:["ล็อบสเตอร์ป่า","1ตัว"]}),
-it("東北船凍小卷","2隻 $229",{en:["Northeast Frozen Baby Squid","2pc"],jp:["東北船凍小イカ","2尾"],kr:["동북 냉동 꼴뚜기","2마리"],zh:["東北船凍小卷","2隻"],fr:["Petits Calmars Congelés Nordiques","2pc"],es:["Calamares Pequeños Congelados del Noreste","2pc"],de:["Nordostasiatischer Gefrorener Baby-Tintenfisch","2St"],th:["หมึกเล็กแช่แข็งภาคตะวันออกเฉียงเหนือ","2ตัว"]}),
-it("生食級日本生蠔","2顆 $359",{en:["Sashimi-Grade Japanese Oyster","2pc"],jp:["刺身用日本生牡蠣","2個"],kr:["사시미급 일본 굴","2개"],zh:["生食級日本生蠔","2顆"],fr:["Huître Japonaise Grado Sashimi","2pc"],es:["Ostra Japonesa Grado Sashimi","2pc"],de:["Sashimi-Grad Japanische Auster","2St"],th:["หอยนางรมญี่ปุ่นเกรดซาซิมิ","2ตัว"]}),
-]},
-{ title:{en:"🍢 Hotpot Snacks (4pc each)",jp:"🍢 鍋物小点 (各4個)",kr:"🍢 나베 스낵 (각 4개)",zh:"🍢 火鍋小點 (均為4顆)",fr:"🍢 Bouchées Fondue (4pc chacun)",es:"🍢 Bocados Fondue (4pc cada uno)",de:"🍢 Hotpot Snacks (je 4St)",th:"🍢 ของว่างหม้อไฟ (4ชิ้นต่อจาน)"}, items:[
-it("蟹肉棒","$40",{en:["Crab Stick",""],jp:["カニカマ",""],kr:["게맛살",""],zh:["蟹肉棒",""],fr:["Bâtonnet de Crabe",""],es:["Palito de Cangrejo",""],de:["Krabbenstäbchen",""],th:["ปูอัด",""]}),
-it("凍豆腐","$40",{en:["Frozen Tofu",""],jp:["凍り豆腐",""],kr:["냉동 두부",""],zh:["凍豆腐",""],fr:["Tofu Congelé",""],es:["Tofu Congelado",""],de:["Gefrorener Tofu",""],th:["เต้าหู้แช่แข็ง",""]}),
-it("芋頭心","$40",{en:["Taro Core",""],jp:["芋頭の芯",""],kr:["토란 심",""],zh:["芋頭心",""],fr:["Cœur de Taro",""],es:["Corazón de Taro",""],de:["Taro Kern",""],th:["แกนเผือก",""]}),
-it("豬血糕","$40",{en:["Pig Blood Cake",""],jp:["豚の血餅",""],kr:["돼지 선지 떡",""],zh:["豬血糕",""],fr:["Gâteau de Sang de Porc",""],es:["Pastel de Sangre de Cerdo",""],de:["Schweineblutkuchen",""],th:["ขนมเลือดหมู",""]}),
-it("龍蝦丸","$40",{en:["Lobster Ball",""],jp:["ロブスターボール",""],kr:["랍스터 볼",""],zh:["龍蝦丸",""],fr:["Boule de Homard",""],es:["Bola de Langosta",""],de:["Hummerball",""],th:["ลูกชิ้นล็อบสเตอร์",""]}),
-it("起司燒","$40",{en:["Cheese Bite",""],jp:["チーズ焼き",""],kr:["치즈구이",""],zh:["起司燒",""],fr:["Bouchée au Fromage",""],es:["Bocado de Queso",""],de:["Käse Bissen",""],th:["ชีสย่าง",""]}),
-it("魚餃","$40",{en:["Fish Dumpling",""],jp:["魚餃子",""],kr:["물고기 만두",""],zh:["魚餃",""],fr:["Ravioli de Poisson",""],es:["Dumpling de Pescado",""],de:["Fisch Knödel",""],th:["เกี๊ยวปลา",""]}),
-it("燕餃","$40",{en:["Swallow Skin Dumpling",""],jp:["燕皮餃子",""],kr:["제비 껍질 만두",""],zh:["燕餃",""],fr:["Ravioli Peau d'Hirondelle",""],es:["Dumpling Piel de Golondrina",""],de:["Schwalbenteig Knödel",""],th:["เกี๊ยวเยื่อนก",""]}),
-it("蛋餃","$40",{en:["Egg Dumpling",""],jp:["卵餃子",""],kr:["달걀 만두",""],zh:["蛋餃",""],fr:["Ravioli à l'Œuf",""],es:["Dumpling de Huevo",""],de:["Ei Knödel",""],th:["เกี๊ยวไข่",""]}),
-it("貢丸","$40",{en:["Pork Meatball",""],jp:["豚肉団子",""],kr:["돼지 미트볼",""],zh:["貢丸",""],fr:["Boulette de Porc",""],es:["Albóndiga de Cerdo",""],de:["Schweinefleischball",""],th:["ลูกชิ้นหมู",""]}),
-it("芋頭貢丸","$40",{en:["Taro Pork Meatball",""],jp:["タロイモ肉団子",""],kr:["토란 돼지 미트볼",""],zh:["芋頭貢丸",""],fr:["Boulette Porc au Taro",""],es:["Albóndiga Cerdo con Taro",""],de:["Taro Schweinefleischball",""],th:["ลูกชิ้นเผือกหมู",""]}),
-it("日式年糕","$40",{en:["Japanese Rice Cake (Mochi)",""],jp:["日本式餅",""],kr:["일본식 떡",""],zh:["日式年糕",""],fr:["Mochi Japonais",""],es:["Mochi Japonés",""],de:["Japanischer Reiskuchen",""],th:["ขนมโมจิญี่ปุ่น",""]}),
-]},
-{ title:{en:"🥬 Vegetables",jp:"🥬 野菜",kr:"🥬 채소",zh:"🥬 蔬菜",fr:"🥬 Légumes",es:"🥬 Verduras",de:"🥬 Gemüse",th:"🥬 ผัก"}, items:[
-it("高麗菜","$50",{en:["Cabbage",""],jp:["キャベツ",""],kr:["양배추",""],zh:["高麗菜",""],fr:["Chou",""],es:["Repollo",""],de:["Kohl",""],th:["กะหล่ำปลี",""]}),
-it("季節時蔬","$50",{en:["Seasonal Vegetables",""],jp:["季節野菜",""],kr:["제철 채소",""],zh:["季節時蔬",""],fr:["Légumes de Saison",""],es:["Verduras de Temporada",""],de:["Saisongemüse",""],th:["ผักตามฤดูกาล",""]}),
-it("娃娃菜","$50",{en:["Baby Cabbage",""],jp:["ベビーキャベツ",""],kr:["아기 배추",""],zh:["娃娃菜",""],fr:["Petit Chou",""],es:["Col Bebé",""],de:["Baby Kohl",""],th:["กะหล่ำปลีเล็ก",""]}),
-it("水蓮根","$50",{en:["Water Lotus Root",""],jp:["水蓮根",""],kr:["연근",""],zh:["水蓮根",""],fr:["Racine de Lotus Aquatique",""],es:["Raíz de Loto Acuático",""],de:["Wasserlotus Wurzel",""],th:["รากบัวน้ำ",""]}),
-it("玉米筍","$50",{en:["Baby Corn",""],jp:["ヤングコーン",""],kr:["아기 옥수수",""],zh:["玉米筍",""],fr:["Maïs Nain",""],es:["Maíz Bebé",""],de:["Baby Mais",""],th:["ข้าวโพดอ่อน",""]}),
-it("水果玉米","$100",{en:["Sweet Fruit Corn",""],jp:["フルーツコーン",""],kr:["과일 옥수수",""],zh:["水果玉米",""],fr:["Maïs Sucré Fruité",""],es:["Maíz Frutal Dulce",""],de:["Süßer Frucht Mais",""],th:["ข้าวโพดหวาน",""]}),
-it("川耳","$50",{en:["Wood Ear Mushroom",""],jp:["木耳",""],kr:["목이버섯",""],zh:["川耳",""],fr:["Champignon Oreille de Bois",""],es:["Hongo Oreja de Madera",""],de:["Holzohr Pilz",""],th:["เห็ดหูหนู",""]}),
-it("南瓜","$50",{en:["Pumpkin",""],jp:["カボチャ",""],kr:["호박",""],zh:["南瓜",""],fr:["Potiron",""],es:["Calabaza",""],de:["Kürbis",""],th:["ฟักทอง",""]}),
-it("牛番茄","$50",{en:["Beef Tomato",""],jp:["牛トマト",""],kr:["비프 토마토",""],zh:["牛番茄",""],fr:["Tomate Bœuf",""],es:["Tomate de Res",""],de:["Fleischtomate",""],th:["มะเขือเทศเบฟ",""]}),
-it("美白菇","$50",{en:["White Shimeji Mushroom",""],jp:["白シメジ",""],kr:["흰 팽이버섯",""],zh:["美白菇",""],fr:["Champignon Shimeji Blanc",""],es:["Hongo Shimeji Blanco",""],de:["Weißer Shimeji Pilz",""],th:["เห็ดขาว",""]}),
-it("鴻喜菇","$50",{en:["Beech Mushroom",""],jp:["ブナシメジ",""],kr:["부나시메지",""],zh:["鴻喜菇",""],fr:["Champignon Hêtre",""],es:["Hongo Haya",""],de:["Buchenbrauner Pilz",""],th:["เห็ดบีช",""]}),
-it("金針菇","$50",{en:["Enoki Mushroom",""],jp:["エノキタケ",""],kr:["팽이버섯",""],zh:["金針菇",""],fr:["Champignon Énoki",""],es:["Hongo Enoki",""],de:["Enoki Pilz",""],th:["เห็ดเข็มทอง",""]}),
-it("綜合菇類","$100",{en:["Assorted Mushrooms",""],jp:["ミックスキノコ",""],kr:["모듬 버섯",""],zh:["綜合菇類",""],fr:["Champignons Assortis",""],es:["Hongos Variados",""],de:["Gemischte Pilze",""],th:["เห็ดรวม",""]}),
-]},
-{ title:{en:"🍚 Side Dishes",jp:"🍚 副食",kr:"🍚 사이드",zh:"🍚 副食",fr:"🍚 Accompagnements",es:"🍚 Guarniciones",de:"🍚 Beilagen",th:"🍚 เครื่องเคียง"}, items:[
-it("白飯","$15",{en:["Steamed Rice",""],jp:["白ごはん",""],kr:["쌀밥",""],zh:["白飯",""],fr:["Riz Blanc",""],es:["Arroz Blanco",""],de:["Gedämpfter Reis",""],th:["ข้าวสวย",""]}),
-it("王子麵","$15",{en:["Prince Noodles",""],jp:["王子麺",""],kr:["왕자 라면",""],zh:["王子麵",""],fr:["Nouilles Prince",""],es:["Fideos Príncipe",""],de:["Prinz Nudeln",""],th:["บะหมี่เจ้าชาย",""]}),
-it("冬粉","$15",{en:["Glass Noodles",""],jp:["春雨",""],kr:["당면",""],zh:["冬粉",""],fr:["Vermicelles de Verre",""],es:["Fideos de Vidrio",""],de:["Glasnudeln",""],th:["วุ้นเส้น",""]}),
-it("客家粿條","$20",{en:["Hakka Rice Noodles",""],jp:["客家ライスヌードル",""],kr:["하카 쌀국수",""],zh:["客家粿條",""],fr:["Nouilles de Riz Hakka",""],es:["Fideos de Arroz Hakka",""],de:["Hakka Reisnudeln",""],th:["เส้นก๋วยเตี๋ยวฮากกา",""]}),
-it("烏龍麵","$20",{en:["Udon Noodles",""],jp:["うどん",""],kr:["우동",""],zh:["烏龍麵",""],fr:["Nouilles Udon",""],es:["Fideos Udon",""],de:["Udon Nudeln",""],th:["อุด้ง",""]}),
-it("雞蛋","$15",{en:["Egg",""],jp:["卵",""],kr:["달걀",""],zh:["雞蛋",""],fr:["Œuf",""],es:["Huevo",""],de:["Ei",""],th:["ไข่",""]}),
-]},
-],
-items:null
-}
+    images:[IMGS.beef, IMGS.meat2],
+    sections:[
+      { title:{en:"🐄 Beef Set",zh:"🐄 牛肉套餐",jp:"🐄 牛肉セット",kr:"🐄 소고기 세트",fr:"🐄 Bœuf Set",es:"🐄 Set Res",de:"🐄 Rindfleisch Set",th:"🐄 ชุดเนื้อวัว"}, items:[
+        it("美國特選五花牛","7oz $399 / 11oz $479",{en:["US Prime Beef Belly","Tender, juicy US-grade marbled beef belly"],zh:["美國特選五花牛","7oz $399 / 11oz $479"],jp:["米国プレミアムバラ肉","柔らかくジューシーな米国産霜降りバラ肉"],kr:["미국 프라임 소고기 삼겹살","부드럽고 육즙 풍부한 미국산 마블링 삼겹살"],fr:["Poitrine de Bœuf US Prime","Tendre et juteuse poitrine de bœuf marbré américain"],es:["Panceta de Res US Prime","Tierna y jugosa panceta de res marmolada americana"],de:["US Prime Rinderbauch","Zartes, saftiges amerikanisches marmoriertes Rinderbauchfleisch"],th:["เนื้อพรีเมียม USA","เนื้อท้องวัว US เกรดพรีเมียม นุ่มฉ่ำ"]}),
+      ]},
+    ],
+    items:null
+  },
+
+  alacarte: {
+    images:[IMGS.ac1, IMGS.ac2],
+    sections:[
+      { title:{en:"🥩 À La Carte · Meat (5oz)",zh:"🥩 單點 · 肉類 (5oz)",jp:"🥩 単品 · 肉類 (5oz)",kr:"🥩 단품 · 육류 (5oz)",fr:"🥩 À La Carte · Viandes (5oz)",es:"🥩 À La Carte · Carnes (5oz)",de:"🥩 Einzelgerichte · Fleisch (5oz)",th:"🥩 สั่งแยก · เนื้อ (5oz)"}, items:[
+        it("美國特選五花牛","$209",{en:["US Prime Beef Belly",""],zh:["美國特選五花牛",""],jp:["米国プレミアムバラ肉",""],kr:["미국 프라임 삼겹 소고기",""],fr:["Poitrine Bœuf US Prime",""],es:["Panceta Res US Prime",""],de:["US Prime Rinderbauch",""],th:["เนื้อท้องวัว USA",""]}),
+      ]},
+    ],
+    items:null
+  }
 };
+
+// ---------------------------------------------------------
+// APP LOGIC
+// ---------------------------------------------------------
 let currentLang = 'en';
 let currentCat = 'notice';
+
 function setLang(lang, el) {
-currentLang = lang;
-document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-el.classList.add('active');
-render();
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  render();
 }
+
 function setCat(cat, el) {
-currentCat = cat;
-document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-el.classList.add('active');
-render();
-window.scrollTo({top:0, behavior:'smooth'});
+  currentCat = cat;
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
 }
+
 function render() {
-const cat = CATS[currentCat];
-let html = '';
-cat.images.forEach(src => {
-html += <img class="menu-img" src="${src}" alt="menu" loading="lazy">;
-});
-if (cat.items) {
-cat.items.forEach(item => {
-html += renderItem(item);
-});
+  const cat = CATS[currentCat];
+  if (!cat) return;
+  
+  let html = '';
+  
+  // Render Images with Fallback
+  if (cat.images) {
+    cat.images.forEach(src => {
+      html += `<img class="menu-img" src="${src}" alt="menu" loading="lazy" onerror="this.onerror=null; this.insertAdjacentHTML('afterend', '<div class='error-img'>Image not found</div>'); this.remove();">`;
+    });
+  }
+
+  // Render Root Items
+  if (cat.items) {
+    cat.items.forEach(item => {
+      html += renderItem(item);
+    });
+  }
+
+  // Render Sectioned Items
+  if (cat.sections) {
+    cat.sections.forEach(sec => {
+      const title = sec.title[currentLang] || sec.title['en'] || "Section";
+      html += `<div class="sec-title">${title}</div>`;
+      sec.items.forEach(item => {
+        html += renderItem(item);
+      });
+    });
+  }
+  
+  document.getElementById('mainContent').innerHTML = html;
 }
-if (cat.sections) {
-cat.sections.forEach(sec => {
-html += <div class="sec-title">${sec.title[currentLang]}</div>;
-sec.items.forEach(item => {
-html += renderItem(item);
-});
-});
-}
-document.getElementById('mainContent').innerHTML = html;
-}
+
 function renderItem(item) {
-const t = item.t[currentLang];
-const desc = t[1] ? <div class="item-desc">${t[1]}</div> : '';
-const badge = item.popular ? '<div class="badge">⭐ POPULAR</div>' : '';
-return      <div class="item">       <div class="item-info">         ${badge}         <div class="item-orig">${item.original}</div>         <div class="item-name">${t[0]}</div>         ${desc}       </div>       <div class="price">${item.price}</div>     </div>;
+  // Safe access for translations
+  const langData = item.t[currentLang] || item.t['en'] || ["Item", ""];
+  const itemName = langData[0];
+  const itemDesc = langData[1];
+  
+  const descHtml = itemDesc ? `<div class="item-desc">${itemDesc}</div>` : '';
+  const badgeHtml = item.popular ? `<div class="badge">⭐ POPULAR</div>` : '';
+  
+  return `
+    <div class="item">
+      <div class="item-info">
+        ${badgeHtml}
+        <div class="item-orig">${item.original}</div>
+        <div class="item-name">${itemName}</div>
+        ${descHtml}
+      </div>
+      <div class="price">${item.price}</div>
+    </div>
+  `;
 }
-render();
+
+// Auto-detect browser language for better UX
+function autoDetectLanguage() {
+  const navLang = navigator.language.toLowerCase();
+  if (navLang.includes('zh')) currentLang = 'zh';
+  else if (navLang.includes('ja')) currentLang = 'jp';
+  else if (navLang.includes('ko')) currentLang = 'kr';
+  else if (navLang.includes('th')) currentLang = 'th';
+  else if (navLang.includes('fr')) currentLang = 'fr';
+  else if (navLang.includes('es')) currentLang = 'es';
+  else if (navLang.includes('de')) currentLang = 'de';
+  else currentLang = 'en';
+
+  // Sync the UI button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${currentLang}'`));
+  });
+}
+
+// Initial Run
+window.addEventListener('DOMContentLoaded', () => {
+  autoDetectLanguage();
+  render();
+});
+
 </script>
 </body>
 </html>
-```
