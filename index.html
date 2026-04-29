@@ -102,57 +102,238 @@ function it(original, price, t, popular=false) {
 // DATA CONFIGURATION (Your provided content)
 // ---------------------------------------------------------
 const CATS = {
-  notice: { images:[IMGS.notice], items:null, sections:null },
+  // 1. 用餐須知 (NOTICE)
+  notice: {
+    images: [IMGS.notice],
+    items: null,
+    sections: [
+      {
+        title: { en: "DINING NOTICE", zh: "用餐須知", jp: "ご利用案内", kr: "이용 안내", th: "ข้อกำหนดการใช้บริการ" },
+        items: [
+          it("用餐時間 90 分鐘", "Notice", {
+            en: ["90-Minute Limit", "Applies to weekdays and holidays; 10% service fee applies"],
+            zh: ["用餐時間 90 分鐘", "平日、假日均為90分鐘，酌收10%清潔費"],
+            jp: ["制限時間 90 分", "平日・祝日一律。別途10%の清掃料を申し受けます"],
+            kr: ["식사 시간 90분", "평일 및 공휴일 동일하며, 10% 봉사료가 부과됩니다"],
+            th: ["เวลาทานอาหาร 90 นาที", "รวมวันธรรมดาและวันหยุด มีค่าบริการ 10%"]
+          }),
+          it("共鍋費 / Shared Pot", "$150", {
+            en: ["Shared Pot Fee", "$150 per person (can offset a la carte). Under 110cm free"],
+            zh: ["共鍋費用", "每人酌收150元 (可折抵單點)。110公分以下孩童免收"],
+            jp: ["鍋の共有料", "お一人様150元（単品で相殺可）。110cm以下は無料"],
+            kr: ["공동 냄비 이용료", "1인당 150원(단품 주문 시 차감 가능). 110cm 미만 아동 제외"],
+            th: ["ค่าบริการทานหม้อร่วม", "ท่านละ 150 บาท (หักค่าอาหารจานเดี่ยวได้) เด็กต่ำกว่า 110 ซม. ฟรี"]
+          })
+        ]
+      }
+    ]
+  },
 
+  // 2. 湯底 (SOUP BASE)
   soup: {
-    images:[IMGS.soup],
-    items:[
-      it("柴魚昆布鍋","FREE",{en:["Bonito & Kelp Broth","Clear, sweet broth that enhances meat's natural flavor"],jp:["鰹節と昆布の出汁鍋","澄んだ甘みある出汁でお肉の旨みを引き出します"],kr:["가다랑어 다시마 육수","맑고 달콤한 육수로 고기의 신선한 맛을 살려줍니다"],zh:["柴魚昆布鍋","湯頭清甜甘醇，吃出肉品鮮甜"],fr:["Bouillon Bonite & Kombu","Bouillon clair et doux révélant la saveur naturelle des viandes"],es:["Caldo de Bonito y Kombu","Caldo claro y dulce que resalta el sabor natural de las carnes"],de:["Bonito & Kombu Brühe","Klare, süße Brühe die den natürlichen Fleischgeschmack hervorhebt"],th:["น้ำซุปปลาโอและสาหร่ายคอมบุ","น้ำซุปใสหวานนุ่ม ดึงรสชาติเนื้อสัตว์"]}),
-      it("蔬果酸菜鍋","+$70",{en:["Pickled Vegetable & Fruit Broth","Refreshing and appetizing with a sweet lingering finish"],jp:["野菜と酸菜の鍋","さっぱり酸味が食欲をそそり甘みが後を引きます"],kr:["채소 김치 육수","상큼하고 입맛 돋우는 새콤달콤한 육수"],zh:["蔬果酸菜鍋","清爽開胃酸香回甘"],fr:["Bouillon Légumes & Chou Mariné","Rafraîchissant et appétissant avec une fin sucrée persistante"],es:["Caldo de Verduras y Col Encurtida","Refrescante y apetitoso con un final dulce y persistente"],de:["Gemüse & Sauerkraut Brühe","Erfrischend und appetitanregend mit süßem Nachklang"],th:["น้ำซุปผักดองและผลไม้","สดชื่น เรียกน้ำย่อย รสหวานชื่นใจ"]}),
-      it("養生藥膳鍋","+$70",{en:["Herbal Wellness Broth","Slow-simmered Chinese herbal broth ⚠️ Not for pregnant women or those with colds"],jp:["薬膳養生鍋","漢方薬材をじっくり煮込んだ滋養スープ ⚠️ 妊婦・風邪の方はご注意を"],kr:["약선 건강 육수","한방 약재를 천천히 끓인 보양 육수 ⚠️ 임산부·감기 환자 주의"],zh:["養生藥膳鍋","溫補養生漢方慢燉 ⚠️ 含中藥材，感冒及孕婦請偵酌"],fr:["Bouillon Herbes Médicinales","Bouillon mijoté aux herbes chinoises ⚠️ Déconseillé femmes enceintes & enrhumées"],es:["Caldo de Hierbas Medicinales","Caldo de hierbas chinas ⚠️ No recomendado para embarazadas ni resfriadas"],de:["Heilkräuter Wellness Brühe","Langsam gekochte Kräuterbrühe ⚠️ Nicht für Schwangere oder Erkältungskranke"],th:["น้ำซุปยาจีนบำรุงสุขภาพ","ต้มสมุนไพรจีนนาน ⚠️ ไม่แนะนำสำหรับหญิงมีครรภ์หรือป่วย"]}),
-      it("胡椒豚味鍋","+$100",{en:["Black Pepper Pork Bone Broth","House-recipe rich and aromatic black pepper pork broth"],jp:["胡椒豚骨スープ鍋","独自レシピの胡椒香る濃厚豚骨スープ"],kr:["후추 돼지뼈 육수","특제 레시피의 향긋한 후추 돼지뼈 육수"],zh:["胡椒豚味鍋","獨門研製，胡椒辛香濃郁滋味"],fr:["Bouillon Poivre & Os de Porc","Recette maison riche et aromatique au poivre noir"],es:["Caldo de Pimienta y Hueso de Cerdo","Receta exclusiva rica y aromática al pimiento negro"],de:["Pfeffer & Schweineknochen Brühe","Hausrezept, reichhaltig und aromatisch mit schwarzem Pfeffer"],th:["น้ำซุปพริกไทยกระดูกหมู","สูตรเฉพาะ หอมพริกไทยเข้มข้น"]},true),
-      it("重慶麻辣鍋","+$110",{en:["Chongqing Spicy Mala Broth","Intensely numbing and spicy Sichuan peppercorn broth 🌶️🌶️🌶️"],jp:["重慶麻辣鍋","しびれる辛さと花椒の香り際立つ本格麻辣スープ 🌶️🌶️🌶️"],kr:["충칭 마라 육수","얼얼하고 매운 정통 마라 육수 🌶️🌶️🌶️"],zh:["重慶麻辣鍋","麻辣夠勁香氣四溢 🌶️🌶️🌶️"],fr:["Bouillon Mala Épicé de Chongqing","Bouillon intensément piquant au poivre de Sichuan 🌶️🌶️🌶️"],es:["Caldo Mala Picante de Chongqing","Caldo intensamente picante con pimienta de Sichuan 🌶️🌶️🌶️"],de:["Chongqing Mala Scharf Brühe","Intensiv scharfe Brühe mit Sichuanpfeffer 🌶️🌶️🌶️"],th:["น้ำซุปมาล่าฉงชิ่ง","เผ็ดชาลิ้นเข้มข้น 🌶️🌶️🌶️"]},true),
-      it("滿築牛奶鍋","+$110",{en:["Manzhu Creamy Milk Broth","Rich and creamy milk-based broth, indulgent yet not heavy"],jp:["満築ミルク鍋","濃厚クリーミーなミルクベーススープ、飲み飽きしない"],kr:["만주 밀크 육수","진하고 크리미한 우유 베이스 육수, 느끼하지 않음"],zh:["滿築牛奶鍋","醇香過癮不膩口"],fr:["Bouillon Crémeux au Lait Manzhu","Riche et crémeux à base de lait, gourmand mais léger"],es:["Caldo Cremoso de Leche Manzhu","Rico y cremoso a base de leche, indulgente pero no pesado"],de:["Manzhu Cremige Milchbrühe","Reichhaltige, cremige Milchbrühe, genussvoll aber nicht schwer"],th:["น้ำซุปนมมันจู","น้ำซุปนมเข้มข้นครีมมี่ อร่อยไม่เลี่ยน"]}),
-      it("南洋叻沙鍋","+$120",{en:["Southeast Asian Laksa Broth","Rich coconut milk broth with bold Southeast Asian spices"],jp:["南洋ラクサスープ鍋","ココナッツミルクと南洋スパイスの濃厚スープ"],kr:["동남아 락사 육수","진한 코코넛 밀크와 동남아 향신료 육수"],zh:["南洋叻沙鍋","椰香濃郁，南洋辛香風味十足"],fr:["Bouillon Laksa d'Asie du Sud-Est","Riche au lait de coco avec des épices d'Asie du Sud-Est"],es:["Caldo Laksa del Sudeste Asiático","Rico en leche de coco con audaces especias del sudeste asiático"],de:["Südostasiatische Laksa Brühe","Reichhaltige Kokosbrühe mit kräftigen südostasiatischen Gewürzen"],th:["น้ำซุปลักซาเอเชียตะวันออกเฉียงใต้","น้ำกะทิเข้มข้นหอมเครื่องเทศอาเซียน"]}),
-    ],
-    sections:null
+    images: [IMGS.soup],
+    items: [
+      it("柴魚昆布鍋", "FREE", {
+        en: ["Bonito & Kelp", "Clear and sweet, enhances meat's natural sweetness"],
+        zh: ["柴魚昆布鍋", "湯頭清甜甘醇，吃出肉品鮮甜"],
+        jp: ["鰹節と昆布出汁", "澄んだ甘みのあるスープで肉の旨みを引き立てます"],
+        kr: ["가다랑어 다시마", "맑고 달콤하여 고기 본연의 맛을 살려줍니다"],
+        th: ["ซุปปลาโอและคอมบุ", "น้ำซุปใสรสหวานธรรมชาติ"]
+      }),
+      it("蔬果酸菜鍋", "+$70", {
+        en: ["Pickled Cabbage", "Refreshing and appetizing with a sour-sweet finish"],
+        zh: ["蔬果酸菜鍋", "清爽開胃酸香回甘"],
+        jp: ["野菜と酸菜のスープ", "さっぱりとした酸味で食欲をそそります"],
+        kr: ["야채 백김치 육수", "상큼하고 개운하며 뒷맛이 깔끔합니다"],
+        th: ["ซุปผักและผักกาดดอง", "หอมเปรี้ยวสดชื่น ช่วยให้เจริญอาหาร"]
+      }),
+      it("養生藥膳鍋", "+$70", {
+        en: ["Herbal Wellness", "Slow-simmered Chinese herbs. ⚠️ Not for pregnant women"],
+        zh: ["養生藥膳鍋", "漢方慢燉。⚠️ 含中藥材，感冒及孕婦請斟酌"],
+        jp: ["薬膳スープ", "漢方じっくり煮込み。⚠️ 妊婦・風邪の方はご注意を"],
+        kr: ["한방 약선 육수", "한약재를 넣고 천천히 달임. ⚠️ 임산부 주의"],
+        th: ["ซุปสมุนไพรบำรุง", "ตุ๋นสมุนไพรจีน ⚠️ ไม่แนะนำสำหรับสตรีมีครรภ์"]
+      }),
+      it("胡椒豚味鍋", "+$100", {
+        en: ["Black Pepper Pork", "Rich house recipe with bold pepper aroma"],
+        zh: ["胡椒豚味鍋", "獨門研製，胡椒辛香濃郁滋味"],
+        jp: ["胡椒豚骨スープ", "独自配合のスパイシーで濃厚な豚骨スープ"],
+        kr: ["후추 돼지 육수", "자체 개발한 진하고 칼칼한 후추 풍미"],
+        th: ["ซุปพริกไทยขาวกระดูกหมู", "สูตรพิเศษเฉพาะตัว หอมเข้มข้น"]
+      }, true),
+      it("重慶麻辣鍋", "+$110", {
+        en: ["Chongqing Spicy", "Bold Sichuan spice and rich aroma 🌶️"],
+        zh: ["重慶麻辣鍋", "麻辣夠勁香氣四溢"],
+        jp: ["重慶風麻辣鍋", "本格的な辛さと華やかな香り 🌶️"],
+        kr: ["중경 마라 육수", "중독성 강한 맵고 얼얼한 맛 🌶️"],
+        th: ["ซุปหม่าล่าฉงชิ่ง", "เผ็ดร้อนสะใจ สไตล์ฉงชิ่งแท้ 🌶️"]
+      }, true),
+      it("滿築牛奶鍋", "+$110", {
+        en: ["Creamy Milk", "Rich, velvety aroma without being oily"],
+        zh: ["滿築牛奶鍋", "醇香過癮不膩口"],
+        jp: ["満築ミルク鍋", "濃厚でクリーミー、飽きのこない味わい"],
+        kr: ["만주 우유 육수", "고소하고 진하며 느끼하지 않은 맛"],
+        th: ["ซุปนมแมนจู", "หอมมันเข้มข้น อร่อยไม่เลี่ยน"]
+      }),
+      it("南洋叻沙鍋", "+$120", {
+        en: ["SE Asian Laksa", "Indulgent coconut milk and bold spices"],
+        zh: ["南洋叻沙鍋", "椰香濃郁，南洋辛香風味十足"],
+        jp: ["南洋ラクサ鍋", "ココナッツミルクのコクとスパイスの香り"],
+        kr: ["동남아 락사 육수", "진한 코코넛 우유와 향신료의 조화"],
+        th: ["ซุปหลักซา", "หอมกะทิเข้มข้น รสชาติสไตล์เอเชียตะวันออกเฉียงใต้"]
+      })
+    ]
   },
 
+  // 3. 雙人套餐 (SET FOR TWO) - 完整食材翻譯
   set2: {
-    images:[IMGS.set2cover, IMGS.set2],
-    items:[
-      it("經典滿築雙饗宴","$1,329",{en:["Classic Manzhu Duo Feast","Australian shoulder beef 8oz, pork collar 8oz, angel shrimp 2pc, white shrimp 4pc, snapper 2pc, salmon 2pc, clams 6pc, king scallop 1pc"],zh:["經典滿築雙饗宴","澳洲嫩肩牛8oz、豬梅花8oz、天使紅蝦2隻、南美白蝦4隻、台灣黃金鯛2片、鮭魚菲力2片、巨無霸蛤蠣6顆、帆立國王貝1顆"],jp:["クラシック満築ダブルフィースト","豪州肩ロース8oz、豚首肉8oz、天使海老2尾、白エビ4尾、鯛2枚、鮭2枚、ハマグリ6個、帆立1個"],kr:["클래식 만주 듀오 페스트","호주 어깨살 8oz, 목살 8oz, 천사새우 2마리, 흰새우 4마리, 도미 2장, 연어 2장, 조개 6개, 가리비 1개"],fr:["Festin Classique Manzhu Duo","Bœuf australien 8oz, porc 8oz, crevettes ange 2pc, crevettes blanches 4pc, daurade 2pc, saumon 2pc, palourdes 6pc, saint-jacques 1pc"],es:["Festín Clásico Manzhu Dúo","Ternera australiana 8oz, cerdo 8oz, gamba ángel 2pc, gambas blancas 4pc, besugo 2pc, salmón 2pc, almejas 6pc, vieira 1pc"],de:["Klassisches Manzhu Duo Fest","Australisches Schulterfilet 8oz, Schweinefleisch 8oz, Engel-Garnelen 2St, Weiße Garnelen 4St, Schnapper 2St, Lachs 2St, Muscheln 6St, Jakobsmuschel 1St"],th:["คลาสสิก มันจู ดูโอ เฟสต์","เนื้อออสเตรเลีย 8oz หมู 8oz กุ้ง หอยสังข์ ปลา แซลมอน สำหรับ 2 ท่าน"]}),
-      it("滿派海陸雙饗宴","$1,659",{en:["Grand Surf & Turf Duo Feast","US beef 8oz, pork collar 8oz, 9 seafood varieties: shrimp, clams, squid, scallop, abalone, king scallop"],zh:["滿派海陸雙饗宴","美國特選五花牛8oz、豬梅花8oz，9種海鮮：天使紅蝦、黑美人蝦、南美白蝦、蛤蠣、台灣黃金鯛、小卷、干貝、鮑魚、帆立國王貝"],jp:["グランドサーフ&ターフダブルフィースト","米国牛8oz、豚首肉8oz、エビ・ハマグリ・イカ・干貝・アワビなど9種の海鮮"],kr:["그랜드 서프 & 터프 듀오 페스트","미국 소고기 8oz, 목살 8oz, 새우·조개·오징어·가리비·전복 등 9가지 해산물"],fr:["Grand Festin Terre & Mer Duo","Bœuf US 8oz, porc 8oz, 9 variétés de fruits de mer: crevettes, palourdes, calmars, saint-jacques, ormeaux"],es:["Gran Festín Mar y Tierra Dúo","Ternera US 8oz, cerdo 8oz, 9 variedades de mariscos: gambas, almejas, calamar, vieiras, abulón"],de:["Großes Surf & Turf Duo Fest","US-Rindfleisch 8oz, Schweinefleisch 8oz, 9 Meeresfrüchte-Sorten: Garnelen, Muscheln, Tintenfisch, Jakobsmuscheln, Abalone"],th:["แกรนด์ เซิร์ฟ & เทิร์ฟ ดูโอ เฟสต์","เนื้อUSA 8oz หมู 8oz อาหารทะเล 9 ชนิด"]}),
-    ],
-    sections:null
+    images: [IMGS.set2cover, IMGS.set2],
+    items: [
+      it("1. 經典滿築雙饗宴", "$1,329", {
+        en: ["Classic Duo Feast", "Aus Tender Shoulder(8oz), Pork Collar(8oz), Angel Shrimp(2), White Shrimp(4), Snapper(2), Salmon(2), Clams(6), King Scallop(1)"],
+        zh: ["1. 經典滿築雙饗宴", "澳洲嫩肩牛8oz、梅花豬8oz、天使紅蝦2、白蝦4、黃金鯛2、鮭魚2、蛤蠣6、國王貝1"],
+        jp: ["クラシック海陸ダブル", "肩ロース8oz、豚肩ロース8oz、天使の海老2、白エビ4、鯛2、鮭2、ハマグリ6、ホタテ1"],
+        kr: ["클래식 산해진미", "부채살8oz, 목살8oz, 천사홍새우2, 흰새우4, 도미2, 연어2, 조개6, 관자1"],
+        th: ["ดูโอ้คลาสสิกเฟสต์", "เนื้อออสซี่ 8oz, หมู 8oz, กุ้งแดงนางฟ้า 2, กุ้งขาว 4, ปลา 4, หอย 6, หอยเชลล์ 1"]
+      }),
+      it("2. 滿派海陸雙饗宴", "$1,659", {
+        en: ["Grand Surf & Turf", "US Beef Belly(8oz), Pork Collar(8oz), Angel Shrimp, Black Shrimp, White Shrimp, Clams, Snapper, Baby Squid, Hokkaido Scallops, Abalone, King Scallops"],
+        zh: ["2. 滿派海陸雙饗宴", "五花牛8oz、梅花豬8oz、天使紅蝦、黑美人蝦、南美白蝦、蛤蠣、黃金鯛、小卷、干貝2、鮑魚2、國王貝2"],
+        jp: ["グランド海陸セット", "牛バラ8oz、豚肩ロース8oz、エビ3種、ハマグリ、鯛、イカ、ホタテ2、アワビ2、国主貝2"],
+        kr: ["그랜드 해산물&고기", "우삼겹8oz, 목살8oz, 새우3종, 조개, 도미, 꼴뚜기, 관자2, 전복2"],
+        th: ["แกรนด์เซิร์ฟแอนด์เทิร์ฟ", "เนื้อ US 8oz, หมู 8oz, กุ้ง 3 ชนิด, หอย, ปลา, หมึก, หอยเชลล์, เป๋าฮื้อ"]
+      }),
+      it("5. 奢華海神雙饗宴", "$1,999", {
+        en: ["Poseidon Feast", "Wild Lobster(1), Tiger Shrimp(2), Angel Shrimp(2), White Shrimp(4), Clams(6), Snapper(2), Salmon(2), Sea Bass(2), Scallops(2), Abalone(2), King Scallops(2), Japanese Oysters(2)"],
+        zh: ["5. 奢華海神雙饗宴", "野生大龍蝦1、大草蝦2、天使紅蝦2、白蝦4、蛤蠣6、鯛魚2、鮭魚2、鱸魚2、北海道干貝2、鮑魚2、國王貝2、日本生蠔2"],
+        jp: ["豪華ポセイドン", "伊勢海老1、草エビ2、天使の海老2、白エビ4、ハマグリ6、鯛2、鮭2、スズキ2、ホタテ2、アワビ2、国主貝2、生牡蠣2"],
+        kr: ["럭셔리 포세이돈", "랍스터1, 왕새우2, 천사홍새우2, 흰새우4, 조개6, 도미2, 연어2, 농어2, 가리비2, 전복2, 생굴2"],
+        th: ["โพไซดอนสุดหรู", "ล็อบสเตอร์ 1, กุ้งลายเสือ 2, กุ้งนางฟ้า 2, กุ้งขาว 4, หอย 6, ปลา 6, หอยเชลล์ 2, เป๋าฮื้อ 2, หอยนางรม 2"]
+      }, true)
+    ]
   },
-  
+
+  // 4. 單人海鮮 (SEAFOOD FOR ONE)
   seafood1: {
-    images:[IMGS.sf1cover, IMGS.sf1],
-    items:[
-      it("海鮮盛饗宴","$559",{en:["Seafood Abundance Feast","Giant clams 4pc, angel shrimp 1pc, black shrimp 1pc, white shrimp 4pc, snapper 4pc, squid 1pc | Upgrade +$100: add beef/pork 5oz"],zh:["海鮮盛饗宴","巨無霸蛤蠣4顆、天使紅蝦1隻、黑美人蝦1隻、南美白蝦4隻、台灣黃金鯛4片、東北船凍小卷1隻 | 加購升級+$100可選肉品5oz"],jp:["シーフード盛りフィースト","巨大ハマグリ4個、天使海老1尾、黒エビ1尾、白エビ4尾、鯛4枚、イカ1尾 | アップグレード+100元で牛/豚肉5oz追加"],kr:["씨푸드 어번던스 페스트","대형조개 4개, 천사새우 1마리, 흑새우 1마리, 흰새우 4마리, 도미 4장, 오징어 1마리 | 업그레이드 +$100 육류 5oz 추가"],fr:["Festin Abondance Fruits de Mer","Palourdes 4pc, crevettes ange 1pc, crevettes noires 1pc, crevettes blanches 4pc, daurade 4pc, calamar 1pc | Upgrade +$100 viande 5oz"],es:["Festín Abundancia Mariscos","Almejas 4pc, gamba ángel 1pc, gamba negra 1pc, gambas 4pc, besugo 4pc, calamar 1pc | Upgrade +$100 carne 5oz"],de:["Meeresfrüchte Überfluss Fest","Riesenmuscheln 4St, Engelsgarnelen 1St, Schwarze Garnelen 1St, Weiße Garnelen 4St, Schnapper 4St, Tintenfisch 1St | Upgrade +$100 Fleisch 5oz"],th:["ซีฟู้ด อะบันแดนซ์ เฟสต์","หอยใหญ่ 4 กุ้งนางฟ้า กุ้งดำ กุ้งขาว ปลา หมึก | อัพเกรด +$100 เนื้อ 5oz"]}),
-    ],
-    sections:null
+    images: [IMGS.sf1],
+    items: [
+      it("1. 海鮮盛饗宴", "$559", {
+        en: ["Seafood Abundance", "Clams(4), Angel Shrimp(1), Black Shrimp(1), White Shrimp(4), Snapper(4), Baby Squid(1)"],
+        zh: ["1. 海鮮盛饗宴", "蛤蠣4、天使紅蝦1、黑美人蝦1、白蝦4、鯛魚4、小卷1"],
+        jp: ["海鮮盛り合わせ", "ハマグリ4、天使の海老1、ブラックタイガー1、白エビ4、鯛4、イカ1"],
+        kr: ["해산물 풍성 성찬", "조개4, 천사홍새우1, 블랙타이거1, 흰새우4, 도미4, 꼴뚜기1"],
+        th: ["ทะเลจัดเต็ม", "หอย 4, กุ้งนางฟ้า 1, กุ้งดำ 1, กุ้งขาว 4, ปลา 4, หมึก 1"]
+      }),
+      it("2. 海鮮奢饗宴", "$739", {
+        en: ["Seafood Luxury", "Clams(6), Japanese Oyster(1), Angel Shrimp(1), Tiger Shrimp(1), White Shrimp(4), Snapper(2), Sea Bass(2), Salmon(2)"],
+        zh: ["2. 海鮮奢饗宴", "蛤蠣6、日本生蠔1、天使紅蝦1、大草蝦1、白蝦4、鯛魚2、鱸魚2、鮭魚2"],
+        jp: ["豪華海鮮セット", "ハマグリ6、生牡蠣1、天使の海老1、草エビ1、白エビ4、鯛2、スズキ2、鮭2"],
+        kr: ["럭셔리 해산물", "조개6, 생굴1, 천사홍새우1, 왕새우1, 흰새우4, 도미2, 농어2, 연어2"],
+        th: ["ทะเลพรีเมียม", "หอย 6, หอยนางรม 1, กุ้งนางฟ้า 1, กุ้งลายเสือ 1, กุ้งขาว 4, ปลา 6"]
+      }, true)
+    ]
   },
 
+  // 5. 肉品套餐 (MEAT SETS) - 牛、豬、鴨、羊、雞 全部列出
   meat: {
-    images:[IMGS.beef, IMGS.meat2],
-    sections:[
-      { title:{en:"🐄 Beef Set",zh:"🐄 牛肉套餐",jp:"🐄 牛肉セット",kr:"🐄 소고기 세트",fr:"🐄 Bœuf Set",es:"🐄 Set Res",de:"🐄 Rindfleisch Set",th:"🐄 ชุดเนื้อวัว"}, items:[
-        it("美國特選五花牛","7oz $399 / 11oz $479",{en:["US Prime Beef Belly","Tender, juicy US-grade marbled beef belly"],zh:["美國特選五花牛","7oz $399 / 11oz $479"],jp:["米国プレミアムバラ肉","柔らかくジューシーな米国産霜降りバラ肉"],kr:["미국 프라임 소고기 삼겹살","부드럽고 육즙 풍부한 미국산 마블링 삼겹살"],fr:["Poitrine de Bœuf US Prime","Tendre et juteuse poitrine de bœuf marbré américain"],es:["Panceta de Res US Prime","Tierna y jugosa panceta de res marmolada americana"],de:["US Prime Rinderbauch","Zartes, saftiges amerikanisches marmoriertes Rinderbauchfleisch"],th:["เนื้อพรีเมียม USA","เนื้อท้องวัว US เกรดพรีเมียม นุ่มฉ่ำ"]}),
-      ]},
-    ],
-    items:null
+    images: [IMGS.beef, IMGS.meat2],
+    sections: [
+      {
+        title: { en: "🐄 Beef Sets", zh: "🐄 牛肉套餐", jp: "🐄 牛肉セット", kr: "🐄 소고기 세트", th: "🐄 ชุดเนื้อวัว" },
+        items: [
+          it("美國特選五花牛", "7oz $399 / 11oz $479", {
+            en: ["US Prime Beef Belly", "Tender and juicy with rich fat"],
+            zh: ["美國特選五花牛", "油脂豐富，軟嫩多汁"],
+            jp: ["米国産牛バラ肉", "脂がのって非常にジューシー"],
+            kr: ["미국산 우삼겹", "지방이 풍부하고 부드러움"],
+            th: ["เนื้อท้องวัว US", "มันแทรกนุ่มฉ่ำ"]
+          }),
+          it("澳洲嚴選嫩肩牛", "7oz $469 / 11oz $599", {
+            en: ["Aus Tender Shoulder", "Carefully selected lean and tender cut"],
+            zh: ["澳洲嚴選嫩肩牛", "嚴選部位，口感扎實細緻"],
+            jp: ["豪州産肩ロース", "厳選された柔らかい部位"],
+            kr: ["호주산 부채살", "부드럽고 담백한 육질"],
+            th: ["เนื้อไหล่ออสซี่", "เนื้อนุ่มคัดพิเศษ"]
+          }),
+          it("美國極佳雪花牛", "7oz $489 / 11oz $609", {
+            en: ["US Prime Snow Beef", "Beautiful marbling, exquisite flavor"],
+            zh: ["美國極佳雪花牛", "大理石紋路，口感極佳"],
+            jp: ["米国産雪花牛", "見事な霜降りと豊かな風味"],
+            kr: ["미국산 눈꽃 소고기", "마블링이 훌륭하고 고소함"],
+            th: ["เนื้อลายหิมะ US", "ลายหินอ่อนสวยงาม"]
+          }),
+          it("澳洲 M9+ 和牛板腱", "7oz $989 / 11oz $1,399", {
+            en: ["Aus M9+ Wagyu Chuck", "Top-tier Australian Wagyu marbling"],
+            zh: ["澳洲 M9+ 和牛板腱", "頂級和牛，油脂分佈完美"],
+            jp: ["豪州産 M9+ 和牛板腱", "最高級オーストラリア和牛"],
+            kr: ["호주산 M9+ 와규", "최상급 와규의 풍부한 맛"],
+            th: ["วากิวออสซี่ M9+", "วากิวเกรดพรีเมียม"]
+          }),
+          it("日本 A5 和牛霜降", "7oz $999 / 11oz $1,409", {
+            en: ["Japan A5 Wagyu Ribeye", "World-class Wagyu, melts in your mouth"],
+            zh: ["日本 A5 和牛霜降", "入口即化，究極美味"],
+            jp: ["日本産 A5 和牛", "口の中でとろける究極の霜降り"],
+            kr: ["일본산 A5 와규", "입안에서 녹는 최상의 마블링"],
+            th: ["วากิวญี่ปุ่น A5", "ละลายในปาก"]
+          }, true)
+        ]
+      },
+      {
+        title: { en: "🐷 Pork / Duck / Lamb / Chicken", zh: "🐷 豬、鴨、羊、雞", jp: "🐷 豚・鴨・羊・鶏", kr: "🐷 돼지, 오리, 양, 닭", th: "🐷 หมู, เป็ด, แกะ, ไก่" },
+        items: [
+          it("嚴選特級豬梅花", "7oz $369 / 11oz $439", {
+            en: ["Premium Pork Collar", "Tender and lean with mild fat"],
+            zh: ["嚴選特級豬梅花", "肉質鮮嫩，油脂適中"],
+            jp: ["特選豚肩ロース", "柔らかくバランスの良い部位"],
+            kr: ["엄선 목살", "부드럽고 담백한 맛"],
+            th: ["หมูส่วนไหล่พรีเมียม", "เนื้อนุ่มไขมันพอเหมาะ"]
+          }),
+          it("西班牙松阪豬", "7oz $499 / 11oz $609", {
+            en: ["Spanish Matsusaka Pork", "Crispy and bouncy texture"],
+            zh: ["西班牙松阪豬", "口感脆彈，油脂香醇"],
+            jp: ["スペイン産松坂豚", "サクサクとした独特の食感"],
+            kr: ["스페인 항정살", "아삭하고 쫄깃한 식감"],
+            th: ["หมูมัตสึซากะสเปน", "กรอบเด้งเคี้ยวเพลิน"]
+          }),
+          it("宜蘭櫻桃鴨肉捲", "7oz $429 / 11oz $519", {
+            en: ["Yilan Cherry Duck", "Sweet and tender local duck"],
+            zh: ["宜蘭櫻桃鴨肉捲", "在地食材，鮮甜軟嫩"],
+            jp: ["宜蘭産チェリーダック", "台湾ブランド鴨の甘み"],
+            kr: ["이란 체리 오리", "대만 로컬 오리의 달콤함"],
+            th: ["เป็ดเชอร์รี่ยี่หลาน", "เนื้อเป็ดหวานนุ่ม"]
+          }),
+          it("酒香雞腿肉", "$429", {
+            en: ["Sake Chicken Thigh", "Marinated in wine for rich aroma"],
+            zh: ["酒香雞腿肉", "酒香入味，肉質紮實"],
+            jp: ["酒香鶏もも肉", "お酒の香りが引き立つ鶏肉"],
+            kr: ["취권 닭다리살", "은은한 술향과 쫄깃한 다리살"],
+            th: ["ไก่หมักเหล้า", "หอมกลิ่นเหล้าเนื้อนุ่ม"]
+          })
+        ]
+      }
+    ]
   },
 
+  // 6. 單點 (A LA CARTE) - 蔬菜、火鍋料全部翻譯
   alacarte: {
-    images:[IMGS.ac1, IMGS.ac2],
-    sections:[
-      { title:{en:"🥩 À La Carte · Meat (5oz)",zh:"🥩 單點 · 肉類 (5oz)",jp:"🥩 単品 · 肉類 (5oz)",kr:"🥩 단품 · 육류 (5oz)",fr:"🥩 À La Carte · Viandes (5oz)",es:"🥩 À La Carte · Carnes (5oz)",de:"🥩 Einzelgerichte · Fleisch (5oz)",th:"🥩 สั่งแยก · เนื้อ (5oz)"}, items:[
-        it("美國特選五花牛","$209",{en:["US Prime Beef Belly",""],zh:["美國特選五花牛",""],jp:["米国プレミアムバラ肉",""],kr:["미국 프라임 삼겹 소고기",""],fr:["Poitrine Bœuf US Prime",""],es:["Panceta Res US Prime",""],de:["US Prime Rinderbauch",""],th:["เนื้อท้องวัว USA",""]}),
-      ]},
-    ],
-    items:null
+    images: [IMGS.ac1, IMGS.ac2],
+    sections: [
+      {
+        title: { en: "🍢 Hotpot Snacks", zh: "🍢 火鍋小點 (均為4顆)", jp: "🍢 鍋の具材 (各4個)", kr: "🍢 추가 사리 (각 4개)", th: "🍢 ลูกชิ้น (4 ชิ้น)" },
+        items: [
+          it("蟹肉棒 / 凍豆腐", "$40", { en: ["Crab Stick / Frozen Tofu", ""], zh: ["蟹肉棒 / 凍豆腐", ""], jp: ["カニカマ / 凍り豆腐", ""], kr: ["게맛살 / 얼린 두부", ""], th: ["ปูอัด / เต้าหู้แช่แข็ง", ""] }),
+          it("龍蝦丸 / 起司燒", "$40", { en: ["Lobster Ball / Cheese Bite", ""], zh: ["龍蝦丸 / 起司燒", ""], jp: ["ロブスターボール / チーズ焼き", ""], kr: ["랍스터볼 / 치즈볼", ""], th: ["ลูกชิ้นล็อบสเตอร์ / ชีสบอล", ""] }),
+          it("燕餃 / 蛋餃 / 魚餃", "$40", { en: ["Pork / Egg / Fish Dumpling", ""], zh: ["燕餃 / 蛋餃 / 魚餃", ""], jp: ["燕皮 / 卵 / 魚 餃子", ""], kr: ["고기 / 계란 / 생선 만두", ""], th: ["เกี๊ยวหมู / ไข่ / ปลา", ""] })
+        ]
+      },
+      {
+        title: { en: "🥬 Vegetables", zh: "🥬 蔬菜", jp: "🥬 野菜", kr: "🥬 채소", th: "🥬 ผัก" },
+        items: [
+          it("高麗菜 / 季節時蔬", "$50", { en: ["Cabbage / Seasonal Veg", ""], zh: ["高麗菜 / 季節時蔬", ""], jp: ["キャベツ / 旬の野菜", ""], kr: ["양배추 / 제철 채소", ""], th: ["กะหล่ำปลี / ผักตามฤดูกาล", ""] }),
+          it("玉米筍 / 南瓜 / 川耳", "$50", { en: ["Baby Corn / Pumpkin / Wood Ear", ""], zh: ["玉米筍 / 南瓜 / 川耳", ""], jp: ["ヤングコーン / カボチャ / 木耳", ""], kr: ["베이비콘 / 단호박 / 목이버섯", ""], th: ["ข้าวโพดอ่อน / ฟักทอง / เห็ดหูหนู", ""] })
+        ]
+      }
+    ]
   }
 };
 
