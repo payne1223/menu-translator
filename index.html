@@ -329,7 +329,29 @@ const SOUP = [
   { zh:"南洋叻沙鍋", price:"+$120", popular:false, t:{en:"Southeast Asian Laksa Broth",jp:"南洋ラクサ鍋",kr:"동남아 락사 육수",fr:"Bouillon Laksa d'Asie du Sud-Est",es:"Caldo Laksa del Sudeste Asiático",de:"Südostasiatische Laksa Brühe",th:"ซุปหลักซา"}, d:{en:"Rich coconut milk broth with bold Southeast Asian spices",jp:"ココナッツミルクと南洋スパイスの濃厚スープ",kr:"진한 코코넛 밀크와 향긋한 동남아 향신료",fr:"Riche au lait de coco avec des épices d'Asie du Sud-Est",es:"Rico en leche de coco con audaces especias del sudeste asiático",de:"Reichhaltige Kokosbrühe mit kräftigen Gewürzen",th:"หอมกะทิเข้มข้นและเครื่องเทศอาเซียน"} },
 ];
 
-const SET2 = [
+const SET_NOTE = {
+  en: "Each set includes 2 side dishes & a vegetable platter. Choose any 2 soup bases at no extra charge. (4-person sets follow the same rule.)",
+  zh: "雙人套餐附兩份菜盤與副食，可任選兩種湯底免加價；四人套餐依此類推。",
+  jp: "セットには2種の副食と野菜盛りが付きます。スープは2種まで無料で選べます（4人セットも同様）。",
+  kr: "세트에는 사이드 2개와 채소 플래터가 포함됩니다. 육수 2가지를 추가 비용 없이 선택 가능합니다.",
+  fr: "Chaque set inclut 2 accompagnements et un plateau de légumes. Choisissez 2 soupes sans supplément (valable pour les sets 4 personnes).",
+  es: "Cada set incluye 2 guarniciones y una fuente de verduras. Elige 2 sopas sin cargo extra (aplica para sets de 4 personas).",
+  de: "Jedes Set beinhaltet 2 Beilagen und eine Gemüseplatte. Wählen Sie bis zu 2 Suppen ohne Aufpreis (gilt auch für 4-Personen-Sets).",
+  th: "แต่ละเซ็ตรวมเครื่องเคียง 2 อย่างและผักรวม เลือกซุป 2 ชนิดได้ฟรี (เซ็ต 4 ที่ก็เช่นกัน)"
+};
+
+const SIDE_NOTE = {
+  en: "Side dish options: Steamed Rice / Prince Noodles / Glass Noodles / Hakka Rice Noodles / Udon / Egg",
+  zh: "副食選項：白飯 / 王子麵 / 冬粉 / 客家粿條 / 烏龍麵 / 雞蛋",
+  jp: "副食の選択肢：白ごはん / 王子麺 / 春雨 / 客家麺 / うどん / 卵",
+  kr: "사이드 옵션: 쌀밥 / 왕자 라면 / 당면 / 하카 쌀국수 / 우동 / 달걀",
+  fr: "Options d'accompagnement: Riz blanc / Nouilles Prince / Vermicelles / Nouilles Hakka / Udon / Œuf",
+  es: "Opciones de guarnición: Arroz blanco / Fideos Príncipe / Fideos de vidrio / Fideos Hakka / Udon / Huevo",
+  de: "Beilage Optionen: Gedämpfter Reis / Prinz Nudeln / Glasnudeln / Hakka Nudeln / Udon / Ei",
+  th: "ตัวเลือกเครื่องเคียง: ข้าวสวย / บะหมี่เจ้าชาย / วุ้นเส้น / เส้นฮากกา / อุด้ง / ไข่"
+};
+  
+  const SET2 = [
   {zh:"1. 經典滿築雙饗宴",price:"$1,329",popular:false,t:{en:"Classic Duo Feast",jp:"クラシック海陸ダブル",kr:"클래식 듀오 성찬",fr:"Festin Duo Classique",es:"Festín Dúo Clásico",de:"Klassisches Duo Fest",th:"ดูโอ้คลาสสิก"},d:{en:"Aus Shoulder 8oz, Pork Collar 8oz, Angel Shrimp ×2, White Shrimp ×4, Snapper ×2, Salmon ×2, Clams ×6, King Scallop ×1",jp:"牛肩ロース8oz、豚肉8oz、エビ3種×8、鯛×2、鮭×2、ハマグリ×6、帆立貝×1",kr:"소 어깨살 8oz, 목살 8oz, 새우 3종, 도미×2, 연어×2, 조개×6, 관자×1",fr:"Bœuf épaule 8oz, Porc 8oz, Crevettes 3 types, Daurade×2, Saumon×2, Palourdes×6, Saint-Jacques×1",es:"Ternera hombro 8oz, Cerdo 8oz, Gambas 3 tipos, Besugo×2, Salmón×2, Almejas×6, Vieira×1",de:"Schulter 8oz, Schwein 8oz, Garnelen 3 Arten, Schnapper×2, Lachs×2, Muscheln×6, Jakobsmuschel×1",th:"เนื้อไหล่ 8oz, หมู 8oz, กุ้ง 3 ชนิด, ปลา×2, แซลมอน×2, หอย×6, หอยเชลล์×1"}},
   {zh:"2. 滿派海陸雙饗宴",price:"$1,659",popular:false,t:{en:"Grand Surf & Turf Duo",jp:"グランド海陸セット",kr:"그랜드 산해진미",fr:"Grand Surf & Turf Duo",es:"Gran Surf & Tierra Dúo",de:"Großes Surf & Turf Duo",th:"แกรนด์เซิร์ฟแอนด์เทิร์ฟ"},d:{en:"US Beef Belly 8oz, Pork 8oz, Angel Shrimp ×2, Black Shrimp ×2, White Shrimp ×4, Clams ×6, Snapper ×4, Baby Squid ×1, Scallop ×2, Abalone ×2, King Scallop ×2",jp:"牛バラ8oz、豚8oz、エビ3種×8、ハマグリ×6、鯛×4、イカ×1、干貝×2、アワビ×2、帆立×2",kr:"우삼겹 8oz, 목살 8oz, 새우 3종, 조개×6, 도미×4, 꼴뚜기×1, 가리비×2, 전복×2",fr:"Poitrine bœuf 8oz, Porc 8oz, Crevettes 3 types, Palourdes×6, Daurade×4, Calmar×1, Noix×2, Ormeau×2, Grande st-jacques×2",es:"Panceta res 8oz, Cerdo 8oz, Gambas 3 tipos, Almejas×6, Besugo×4, Calamar×1, Vieiras×2, Abulón×2",de:"Rinderbauch 8oz, Schwein 8oz, Garnelen 3 Arten, Muscheln×6, Schnapper×4, Tintenfisch×1, Jakobsmuscheln×2, Abalone×2",th:"เนื้อท้อง 8oz, หมู 8oz, กุ้ง 3 ชนิด, หอย×6, ปลา×4, หมึก×1, หอยเชลล์×2, เป๋าฮื้อ×2"}},
   {zh:"3. 大心滿築雙饗宴",price:"$1,469",popular:false,t:{en:"Meat Lover's Duo Feast",jp:"肉好きのダブルセット",kr:"고기 듬뿍 듀오",fr:"Festin Duo Carnivore",es:"Festín Dúo Carnívoro",de:"Fleischliebhaber Duo",th:"ดูโอ้คนรักเนื้อ"},d:{en:"Aus Shoulder 7.5oz, US Snow Beef 7.5oz, Spanish Iberico 7.5oz, Pork Collar 7.5oz",jp:"豪州肩ロース7.5oz、米国雪花牛7.5oz、スペイン松坂豚7.5oz、豚首肉7.5oz",kr:"호주 어깨살 7.5oz, 미국 눈꽃 7.5oz, 스페인 이베리코 7.5oz, 목살 7.5oz",fr:"Épaule aus. 7.5oz, Bœuf neige US 7.5oz, Ibérique 7.5oz, Échine 7.5oz",es:"Hombro 7.5oz, Res nevada 7.5oz, Ibérico 7.5oz, Cabecero 7.5oz",de:"Schulter 7.5oz, US Schneerind 7.5oz, Ibérico 7.5oz, Schweinekamm 7.5oz",th:"เนื้อไหล่ 7.5oz, เนื้อหิมะ 7.5oz, หมูสเปน 7.5oz, หมูคอ 7.5oz"}},
@@ -532,7 +554,15 @@ function makeItemCard(item) {
   </div>`;
 }
 
-function renderAll() {
+function renderAll() {// 更新導覽列語言
+document.querySelectorAll('.nav-tab').forEach(btn => {
+  const onclick = btn.getAttribute('onclick');
+  const match = onclick.match(/'(\w+)'/);
+  if (match) {
+    const key = match[1];
+    if (NAV_LABELS[key]) btn.textContent = NAV_LABELS[key][lang] || NAV_LABELS[key].en;
+  }
+});
   // NOTICE
   const notices = NOTICES[lang] || NOTICES.en;
   document.getElementById('noticeItems').innerHTML = notices.map(n=>`
@@ -551,9 +581,19 @@ function renderAll() {
   // SOUP
   document.getElementById('soupItems').innerHTML = SOUP.map(makeItemCard).join('');
   // SET2
-  document.getElementById('set2Items').innerHTML = SET2.map(makeItemCard).join('');
+  const noteHtml = `
+  <div style="background:#fff3ee;border:1px solid #e8d5c4;border-radius:10px;padding:14px 18px;margin-bottom:16px;">
+    <div style="font-size:13px;color:#c5734a;font-weight:600;margin-bottom:6px;">📋 ${SET_NOTE[lang]||SET_NOTE.en}</div>
+    <div style="font-size:12px;color:#8a9e95;">🍚 ${SIDE_NOTE[lang]||SIDE_NOTE.en}</div>
+  </div>`;
+document.getElementById('set2Items').innerHTML = noteHtml + SET2.map(makeItemCard).join('');
   // SEAFOOD
-  document.getElementById('seafoodItems').innerHTML = SEAFOOD.map(makeItemCard).join('');
+ const sfNoteHtml = `
+  <div style="background:#fff3ee;border:1px solid #e8d5c4;border-radius:10px;padding:14px 18px;margin-bottom:16px;">
+    <div style="font-size:13px;color:#c5734a;font-weight:600;margin-bottom:6px;">📋 ${SET_NOTE[lang]||SET_NOTE.en}</div>
+    <div style="font-size:12px;color:#8a9e95;">🍚 ${SIDE_NOTE[lang]||SIDE_NOTE.en}</div>
+  </div>`;
+document.getElementById('seafoodItems').innerHTML = sfNoteHtml + SEAFOOD.map(makeItemCard).join('');
   // MEAT
   document.getElementById('meatItems').innerHTML = MEAT.map(makeItemCard).join('');
   // A LA CARTE grids
