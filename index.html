@@ -611,7 +611,23 @@ const sfNoteHtml = `
   </div>`;
 document.getElementById('seafoodItems').innerHTML = sfNoteHtml + SEAFOOD.map(makeItemCard).join('');
   // MEAT
-  document.getElementById('meatItems').innerHTML = MEAT.map(makeItemCard).join('');
+  const seaUpgrade = {
+  en: "🦞 Seafood Combo Upgrade +$200 — Pick 4 of 11: Giant Clams×4 / Snapper×4 / Sea Bass×2 / Salmon×2 / Abalone×2 / King Scallop×2 / White Shrimp×4 / Japanese Oyster×1 / Angel Shrimp×2 / Black Shrimp×2 / Hokkaido Scallop×1",
+  zh: "🦞 升級海陸組合 +$200 — 海鮮11選4：巨無霸蛤蠣×4 / 台灣黃金鯛×4 / 現流鱸魚×2 / 鮭魚菲力×2 / 野生鮑魚×2 / 帆立國王貝×2 / 南美白蝦×4 / 日本生蠔×1 / 天使紅蝦×2 / 黑美人蝦×2 / 北海道干貝×1",
+  jp: "🦞 海陸アップグレード +$200 — 11種から4つ選択：ハマグリ×4 / 鯛×4 / スズキ×2 / 鮭×2 / アワビ×2 / 帆立×2 / 白エビ×4 / 生牡蠣×1 / 天使エビ×2 / 黒エビ×2 / 北海道干貝×1",
+  kr: "🦞 해산물 업그레이드 +$200 — 11종 중 4개 선택：조개×4 / 도미×4 / 농어×2 / 연어×2 / 전복×2 / 관자×2 / 흰새우×4 / 생굴×1 / 천사새우×2 / 흑새우×2 / 가리비×1",
+  fr: "🦞 Upgrade Fruits de Mer +$200 — 4 au choix parmi 11：Palourdes×4 / Daurade×4 / Loup×2 / Saumon×2 / Ormeau×2 / Grande st-jacques×2 / Crevettes blanches×4 / Huître×1 / Crevettes ange×2 / Crevettes noires×2 / Noix×1",
+  es: "🦞 Upgrade Mariscos +$200 — Elige 4 de 11：Almejas×4 / Besugo×4 / Lubina×2 / Salmón×2 / Abulón×2 / Gran vieira×2 / Gambas blancas×4 / Ostra×1 / Gamba ángel×2 / Gamba negra×2 / Vieira×1",
+  de: "🦞 Meeresfrüchte Upgrade +$200 — 4 von 11 wählen：Muscheln×4 / Schnapper×4 / Seebarsch×2 / Lachs×2 / Abalone×2 / Große Jakobsmuschel×2 / Weiße Garnelen×4 / Auster×1 / Engelsgarnelen×2 / Schwarze Garnelen×2 / Jakobsmuschel×1",
+  th: "🦞 อัปเกรดทะเล +$200 — เลือก 4 จาก 11：หอยใหญ่×4 / ปลาทอง×4 / ปลากะพง×2 / แซลมอน×2 / เป๋าฮื้อ×2 / หอยเชลล์ใหญ่×2 / กุ้งขาว×4 / หอยนางรม×1 / กุ้งนางฟ้า×2 / กุ้งดำ×2 / หอยเชลล์×1"
+};
+const meatNoteHtml = `
+  <div style="background:#fff3ee;border:1px solid #e8d5c4;border-radius:10px;padding:14px 18px;margin-bottom:12px;">
+    <div style="font-size:13px;color:#c5734a;font-weight:600;margin-bottom:6px;">📋 ${SET_NOTE[lang]||SET_NOTE.en}</div>
+    <div style="font-size:12px;color:#8a9e95;margin-bottom:6px;">🍚 ${SIDE_NOTE[lang]||SIDE_NOTE.en}</div>
+    <div style="font-size:12px;color:#2c6e6a;font-weight:600;">${seaUpgrade[lang]||seaUpgrade.en}</div>
+  </div>`;
+document.getElementById('meatItems').innerHTML = meatNoteHtml + MEAT.map(makeItemCard).join('');
   // A LA CARTE grids
   makeGrid(VEG, 'vegGrid');
   makeGrid(SF_AC, 'sfGrid');
