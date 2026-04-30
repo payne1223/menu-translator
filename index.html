@@ -8,76 +8,75 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Noto Serif TC',serif;background:#f5f0e6;min-height:100vh;color:#2c3e35;}
-    .header{background:#fff;border-bottom:1px solid #e0d8cc;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;gap:12px;}
-    .logo-area{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+    .header{background:#fff;border-bottom:1px solid #e0d8cc;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;gap:8px;}
+    .logo-area{display:flex;align-items:center;gap:10px;flex-shrink:0;}
     .logo-icon{width:36px;height:36px;background:#c5734a;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;}
-    .logo-text{line-height:1.2;}
-    .logo-zh{font-size:16px;font-weight:600;color:#2c3e35;letter-spacing:0.05em;}
+    .logo-zh{font-size:15px;font-weight:600;color:#2c3e35;letter-spacing:0.05em;}
     .logo-en{font-size:10px;color:#8a9e95;letter-spacing:0.12em;}
-    .nav-tabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+    .nav-tabs{display:flex;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:center;}
     .nav-tabs::-webkit-scrollbar{display:none;}
-    .nav-tab{padding:8px 14px;font-size:12px;cursor:pointer;color:#8a9e95;border:none;background:none;letter-spacing:0.05em;transition:all 0.2s;border-bottom:2px solid transparent;white-space:nowrap;}
+    .nav-tab{padding:8px 12px;font-size:12px;cursor:pointer;color:#8a9e95;border:none;background:none;letter-spacing:0.05em;transition:all 0.2s;border-bottom:2px solid transparent;white-space:nowrap;}
     .nav-tab.active{color:#c5734a;border-bottom-color:#c5734a;font-weight:600;}
-    .nav-tab:hover{color:#2c3e35;}
-    .lang-row{display:flex;gap:4px;flex-shrink:0;}
-    .lang-btn{padding:4px 10px;border:1px solid #d0c9be;border-radius:20px;background:#fff;font-size:11px;cursor:pointer;color:#8a9e95;transition:all 0.15s;}
+    .lang-row{display:flex;gap:3px;flex-shrink:0;}
+    .lang-btn{padding:4px 8px;border:1px solid #d0c9be;border-radius:20px;background:#fff;font-size:11px;cursor:pointer;color:#8a9e95;transition:all 0.15s;}
     .lang-btn.active{background:#2c6e6a;border-color:#2c6e6a;color:#fff;font-weight:600;}
     .layout{display:flex;min-height:calc(100vh - 64px);}
-    .sidebar{width:240px;min-width:240px;background:linear-gradient(180deg,#2c5f5a 0%,#1e4440 60%,#0f2b28 100%);color:#fff;padding:40px 28px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
-    .sidebar-wave{position:absolute;bottom:0;left:0;right:0;height:200px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cpath d='M0,100 Q100,50 200,100 Q300,150 400,100 L400,200 L0,200Z' fill='%23ffffff10'/%3E%3C/svg%3E") no-repeat bottom;background-size:cover;}
-    .sidebar-deco{position:absolute;right:-20px;top:50%;transform:translateY(-50%);opacity:0.15;font-size:120px;line-height:1;}
-    .sidebar-tag{font-size:10px;letter-spacing:0.2em;color:#8eccc7;margin-bottom:12px;}
-    .sidebar-title-en{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.1;color:#fff;margin-bottom:8px;}
-    .sidebar-title-zh{font-size:16px;color:#8eccc7;letter-spacing:0.1em;margin-bottom:28px;}
-    .sidebar-divider{width:40px;height:2px;background:#c5734a;margin-bottom:24px;}
-    .sidebar-desc{font-size:12px;color:#8eccc7;line-height:2.2;letter-spacing:0.08em;}
-    .main{flex:1;padding:24px 28px;overflow-y:auto;}
+    .sidebar{width:220px;min-width:220px;background:linear-gradient(180deg,#2c5f5a 0%,#1e4440 60%,#0f2b28 100%);color:#fff;padding:36px 24px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+    .sidebar-wave{position:absolute;bottom:0;left:0;right:0;height:180px;opacity:0.1;background:radial-gradient(ellipse at bottom,#fff 0%,transparent 70%);}
+    .sidebar-deco{position:absolute;right:-10px;top:50%;transform:translateY(-50%);opacity:0.1;font-size:100px;line-height:1;}
+    .sidebar-tag{font-size:10px;letter-spacing:0.2em;color:#8eccc7;margin-bottom:10px;}
+    .sidebar-title-en{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1.1;color:#fff;margin-bottom:6px;}
+    .sidebar-title-zh{font-size:15px;color:#8eccc7;letter-spacing:0.1em;margin-bottom:24px;}
+    .sidebar-divider{width:36px;height:2px;background:#c5734a;margin-bottom:20px;}
+    .sidebar-desc{font-size:12px;color:#8eccc7;line-height:2.2;letter-spacing:0.06em;}
+    .main{flex:1;padding:20px 24px;overflow-y:auto;}
     .page{display:none;}
     .page.active{display:block;}
-    .card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;border:1px solid #e8e0d4;}
-    .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0ebe2;}
-    .card-title-en{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;letter-spacing:0.15em;color:#c5734a;}
-    .card-title-zh{font-size:12px;color:#8a9e95;margin-top:2px;letter-spacing:0.08em;}
-    .best-badge{background:#2c6e6a;color:#fff;font-size:9px;padding:4px 10px;border-radius:20px;letter-spacing:0.1em;}
-    .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;}
-    .menu-row{display:flex;align-items:baseline;padding:7px 0;border-bottom:1px dotted #e8e0d4;}
+    .card{background:#fff;border-radius:12px;padding:18px 22px;margin-bottom:14px;border:1px solid #e8e0d4;}
+    .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #f0ebe2;}
+    .card-title-en{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;letter-spacing:0.15em;color:#c5734a;}
+    .card-title-zh{font-size:11px;color:#8a9e95;margin-top:2px;}
+    .best-badge{background:#2c6e6a;color:#fff;font-size:9px;padding:3px 8px;border-radius:20px;letter-spacing:0.1em;}
+    .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+    .menu-row{display:flex;align-items:baseline;padding:6px 0;border-bottom:1px dotted #e8e0d4;}
     .menu-row:last-child{border-bottom:none;}
-    .menu-name-en{font-family:'Playfair Display',serif;font-size:13px;color:#2c3e35;flex:1;}
+    .menu-name-en{font-family:'Playfair Display',serif;font-size:12px;color:#2c3e35;flex:1;}
     .menu-name-zh{font-size:10px;color:#8a9e95;margin-top:1px;}
-    .menu-qty{font-size:10px;color:#8a9e95;margin-right:6px;white-space:nowrap;}
+    .menu-qty{font-size:10px;color:#8a9e95;margin-right:4px;white-space:nowrap;}
     .menu-price{font-family:'Playfair Display',serif;font-size:13px;color:#c5734a;white-space:nowrap;font-weight:600;}
     .menu-price::before{content:"$ ";font-size:10px;}
-    .notice-card{background:#fff;border-radius:12px;padding:24px;margin-bottom:14px;border:1px solid #e8e0d4;}
+    .notice-card{background:#fff;border-radius:12px;padding:22px;margin-bottom:14px;border:1px solid #e8e0d4;}
     .notice-title{font-family:'Playfair Display',serif;font-size:20px;color:#2c3e35;margin-bottom:4px;}
-    .notice-sub{font-size:11px;color:#8a9e95;letter-spacing:0.1em;margin-bottom:16px;}
-    .notice-item{display:flex;gap:10px;padding:9px 0;border-bottom:1px dotted #f0ebe2;}
+    .notice-sub{font-size:11px;color:#8a9e95;letter-spacing:0.1em;margin-bottom:14px;}
+    .notice-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px dotted #f0ebe2;}
     .notice-item:last-child{border-bottom:none;}
     .notice-dot{width:6px;height:6px;border-radius:50%;background:#c5734a;margin-top:6px;flex-shrink:0;}
     .notice-text{font-size:13px;color:#2c3e35;line-height:1.7;}
-    .steps-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
-    .step-box{flex:1;min-width:80px;background:#f5f0e6;border-radius:10px;padding:12px;text-align:center;}
-    .step-num{font-size:9px;color:#8a9e95;letter-spacing:0.1em;margin-bottom:5px;}
-    .step-icon{font-size:22px;margin-bottom:5px;}
-    .step-zh{font-size:13px;font-weight:600;color:#2c3e35;}
-    .step-en{font-size:10px;color:#8a9e95;margin-top:2px;}
-    .item-card{background:#fff;border:1px solid #e8e0d4;border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+    .steps-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+    .step-box{flex:1;min-width:75px;background:#f5f0e6;border-radius:10px;padding:12px;text-align:center;}
+    .step-num{font-size:9px;color:#8a9e95;letter-spacing:0.1em;margin-bottom:4px;}
+    .step-icon{font-size:20px;margin-bottom:4px;}
+    .step-zh{font-size:12px;font-weight:600;color:#2c3e35;}
+    .item-card{background:#fff;border:1px solid #e8e0d4;border-radius:10px;padding:12px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
     .item-info{flex:1;}
     .item-orig{font-size:10px;color:#b0a898;margin-bottom:3px;}
-    .item-name{font-family:'Playfair Display',serif;font-size:15px;color:#2c3e35;font-weight:600;margin-bottom:3px;line-height:1.3;}
+    .item-name{font-family:'Playfair Display',serif;font-size:14px;color:#2c3e35;font-weight:600;margin-bottom:3px;line-height:1.3;}
     .item-desc{font-size:11px;color:#8a9e95;line-height:1.6;font-style:italic;}
-    .item-price-box{background:#f5f0e6;border:1px solid #e0d8cc;border-radius:8px;padding:6px 10px;text-align:center;white-space:nowrap;align-self:center;}
-    .item-price-text{font-family:'Playfair Display',serif;font-size:14px;color:#c5734a;font-weight:700;}
-    .popular-tag{display:inline-block;background:#c5734a;color:#fff;font-size:9px;padding:2px 7px;border-radius:4px;margin-bottom:4px;letter-spacing:0.05em;}
-    .menu-img-wrap{margin-bottom:16px;border-radius:12px;overflow:hidden;border:1px solid #e8e0d4;}
+    .item-price-box{background:#f5f0e6;border:1px solid #e0d8cc;border-radius:8px;padding:5px 10px;text-align:center;white-space:nowrap;align-self:center;}
+    .item-price-text{font-family:'Playfair Display',serif;font-size:13px;color:#c5734a;font-weight:700;}
+    .popular-tag{display:inline-block;background:#c5734a;color:#fff;font-size:9px;padding:2px 6px;border-radius:4px;margin-bottom:4px;}
+    .menu-img-wrap{margin-bottom:14px;border-radius:12px;overflow:hidden;border:1px solid #e8e0d4;}
     .menu-img-wrap img{width:100%;display:block;}
-    .info-box{border-radius:10px;padding:14px 16px;margin-bottom:14px;}
+    .info-box{border-radius:10px;padding:12px 16px;margin-bottom:12px;}
     .info-box-orange{background:#fff3ee;border:1px solid #e8d5c4;}
     .info-box-green{background:#e8f4f3;border:1px solid #b8dcd9;}
-    .footer{background:#2c5f5a;color:#8eccc7;text-align:center;padding:16px;font-size:11px;letter-spacing:0.1em;}
+    .info-line{margin-bottom:4px;}
+    .info-line:last-child{margin-bottom:0;}
+    .footer{background:#2c5f5a;color:#8eccc7;text-align:center;padding:14px;font-size:11px;letter-spacing:0.1em;}
     @media(max-width:768px){
-      .header{padding:8px 12px;height:auto;flex-wrap:wrap;}
+      .header{padding:8px 10px;height:auto;flex-wrap:wrap;}
       .sidebar{display:none;}
-      .main{padding:14px;}
+      .main{padding:12px;}
       .menu-grid{grid-template-columns:1fr;}
     }
   </style>
@@ -86,7 +85,7 @@
 <div class="header">
   <div class="logo-area">
     <div class="logo-icon">滿</div>
-    <div class="logo-text">
+    <div>
       <div class="logo-zh">滿築鍋物</div>
       <div class="logo-en">MANZHU HOTPOT</div>
     </div>
@@ -111,7 +110,7 @@
 </div>
 
 <div class="layout">
-  <div class="sidebar" id="sidebar">
+  <div class="sidebar">
     <div class="sidebar-deco">🐟</div>
     <div class="sidebar-wave"></div>
     <div style="position:relative;z-index:1;">
@@ -126,84 +125,59 @@
   <div class="main">
     <div class="page active" id="page-notice">
       <div class="notice-card">
-        <div class="notice-title" id="noticeTitle">Dining Notice</div>
+        <div class="notice-title">Dining Notice</div>
         <div class="notice-sub">用餐須知 · DINING GUIDE</div>
         <div id="noticeItems"></div>
       </div>
       <div class="notice-card">
-        <div class="notice-title" style="font-size:16px;" id="howTitle">How to Order</div>
+        <div class="notice-title" style="font-size:16px;">How to Order</div>
         <div class="notice-sub">點餐步驟 · HOW TO ORDER</div>
         <div class="steps-row" id="stepsRow"></div>
       </div>
     </div>
 
     <div class="page" id="page-soup">
-      <div class="menu-img-wrap">
-        <img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE%E6%9B%B4%E6%96%B0%E7%89%88-0423-03.png" alt="湯底菜單" loading="lazy"/>
-      </div>
+      <div class="menu-img-wrap"><img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE%E6%9B%B4%E6%96%B0%E7%89%88-0423-03.png" loading="lazy"/></div>
       <div id="soupItems"></div>
     </div>
 
     <div class="page" id="page-set2">
-      <div class="menu-img-wrap">
-        <img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E9%9B%99%E4%BA%BA%E5%A5%97%E9%A4%90%E5%B0%81%E9%9D%A2.jpg" alt="雙人套餐封面" loading="lazy"/>
-      </div>
-      <div class="menu-img-wrap">
-        <img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E9%9B%99%E4%BA%BA%E5%A5%97%E9%A4%90.jpg" alt="雙人套餐" loading="lazy"/>
-      </div>
+      <div class="menu-img-wrap"><img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E9%9B%99%E4%BA%BA%E5%A5%97%E9%A4%90%E5%B0%81%E9%9D%A2.jpg" loading="lazy"/></div>
+      <div class="menu-img-wrap"><img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E9%9B%99%E4%BA%BA%E5%A5%97%E9%A4%90.jpg" loading="lazy"/></div>
       <div id="set2Items"></div>
     </div>
 
     <div class="page" id="page-seafood1">
-      <div class="menu-img-wrap">
-        <img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E5%96%AE%E4%BA%BA%E6%B5%B7%E9%AE%AE%E5%B0%81%E9%9D%A2.jpg" alt="單人海鮮封面" loading="lazy"/>
-      </div>
-      <div class="menu-img-wrap">
-        <img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E5%96%AE%E4%BA%BA%E6%B5%B7%E9%AE%AE.jpg" alt="單人海鮮" loading="lazy"/>
-      </div>
+      <div class="menu-img-wrap"><img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E5%96%AE%E4%BA%BA%E6%B5%B7%E9%AE%AE%E5%B0%81%E9%9D%A2.jpg" loading="lazy"/></div>
+      <div class="menu-img-wrap"><img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E5%96%AE%E4%BA%BA%E6%B5%B7%E9%AE%AE.jpg" loading="lazy"/></div>
       <div id="seafoodItems"></div>
     </div>
 
     <div class="page" id="page-meat">
-      <div class="menu-img-wrap">
-        <img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E7%89%9B%E8%82%89.jpg" alt="牛肉" loading="lazy"/>
-      </div>
-      <div class="menu-img-wrap">
-        <img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E9%9B%9E%E8%B1%AC%E9%B4%A8%E7%BE%8A.jpg" alt="雞豬鴨羊" loading="lazy"/>
-      </div>
+      <div class="menu-img-wrap"><img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E7%89%9B%E8%82%89.jpg" loading="lazy"/></div>
+      <div class="menu-img-wrap"><img src="https://raw.githubusercontent.com/payne1223/menu-translator/main/%E6%BB%BF%E7%AF%89%E8%8F%9C%E5%96%AE-%E9%9B%9E%E8%B1%AC%E9%B4%A8%E7%BE%8A.jpg" loading="lazy"/></div>
       <div id="meatItems"></div>
     </div>
 
     <div class="page" id="page-alacarte">
       <div class="card">
-        <div class="card-header">
-          <div><div class="card-title-en" id="vegTitle">VEGETABLES</div><div class="card-title-zh">蔬菜</div></div>
-        </div>
+        <div class="card-header"><div><div class="card-title-en">VEGETABLES</div><div class="card-title-zh">蔬菜</div></div></div>
         <div class="menu-grid" id="vegGrid"></div>
       </div>
       <div class="card">
-        <div class="card-header">
-          <div><div class="card-title-en" id="sfTitle">SEAFOOD</div><div class="card-title-zh">海鮮</div></div>
-          <div class="best-badge">嚴選 BEST CHOICE</div>
-        </div>
+        <div class="card-header"><div><div class="card-title-en">SEAFOOD</div><div class="card-title-zh">海鮮</div></div><div class="best-badge">嚴選 BEST CHOICE</div></div>
         <div class="menu-grid" id="sfGrid"></div>
       </div>
       <div class="card">
-        <div class="card-header">
-          <div><div class="card-title-en" id="meatAcTitle">MEAT (5oz)</div><div class="card-title-zh">肉類單點</div></div>
-        </div>
+        <div class="card-header"><div><div class="card-title-en">MEAT (5oz)</div><div class="card-title-zh">肉類單點</div></div></div>
         <div class="menu-grid" id="meatAcGrid"></div>
       </div>
       <div class="card">
-        <div class="card-header">
-          <div><div class="card-title-en" id="snackTitle">HOTPOT SNACKS</div><div class="card-title-zh">火鍋小點 (4pc)</div></div>
-        </div>
+        <div class="card-header"><div><div class="card-title-en">HOTPOT SNACKS (4pc)</div><div class="card-title-zh">火鍋小點</div></div></div>
         <div class="menu-grid" id="snackGrid"></div>
       </div>
       <div class="card">
-        <div class="card-header">
-          <div><div class="card-title-en" id="sideTitle">SIDE DISHES</div><div class="card-title-zh">副食</div></div>
-        </div>
+        <div class="card-header"><div><div class="card-title-en">SIDE DISHES</div><div class="card-title-zh">副食</div></div></div>
         <div class="menu-grid" id="sideGrid"></div>
       </div>
     </div>
@@ -213,36 +187,36 @@
 <div class="footer">Fresh ingredients, carefully selected. · A thoughtful hotpot experience, from our table to yours.</div>
 
 <script>
-const SIDEBAR_DATA = {
-  notice:   {step:"GUIDE",   en:"DINING NOTICE",      zh:"用餐須知",     desc:"每一位客人\n都是我們最重要的賓客\n感謝您的光臨"},
-  soup:     {step:"STEP 01", en:"SOUP BASE",           zh:"研製湯底",     desc:"精選天然食材\n慢火熬製\n每一口都是暖心滋味"},
-  set2:     {step:"STEP 02", en:"SET MENU FOR TWO",    zh:"雙人套餐",     desc:"精心搭配\n海陸雙享\n與摯愛共享美好時光"},
-  seafood1: {step:"STEP 02", en:"SEAFOOD SETS",        zh:"單人海鮮套餐", desc:"嚴選新鮮海味\n品嚐來自大海\n最純粹的鮮甜"},
-  meat:     {step:"STEP 02", en:"MEAT SETS",           zh:"肉品套餐",     desc:"頂級肉品嚴選\n呈現食材本味\n口感細緻鮮嫩"},
-  alacarte: {step:"STEP 04", en:"À LA CARTE",          zh:"精選單點",     desc:"每一道嚴選食材\n呈現自然鮮甜\n都是滿築的用心"},
+const SIDEBAR_DATA={
+  notice:{step:"GUIDE",en:"DINING NOTICE",zh:"用餐須知",desc:"每一位客人\n都是我們最重要的賓客\n感謝您的光臨"},
+  soup:{step:"STEP 01",en:"SOUP BASE",zh:"研製湯底",desc:"精選天然食材\n慢火熬製\n每一口都是暖心滋味"},
+  set2:{step:"STEP 02",en:"SET MENU FOR TWO",zh:"雙人套餐",desc:"精心搭配\n海陸雙享\n與摯愛共享美好時光"},
+  seafood1:{step:"STEP 02",en:"SEAFOOD SETS",zh:"單人海鮮套餐",desc:"嚴選新鮮海味\n品嚐來自大海\n最純粹的鮮甜"},
+  meat:{step:"STEP 02",en:"MEAT SETS",zh:"肉品套餐",desc:"頂級肉品嚴選\n呈現食材本味\n口感細緻鮮嫩"},
+  alacarte:{step:"STEP 04",en:"À LA CARTE",zh:"精選單點",desc:"每一道嚴選食材\n呈現自然鮮甜\n都是滿築的用心"},
 };
 
-const NAV_LABELS = {
-  notice:   {en:"Notices",          jp:"ご案内",           kr:"안내",          zh:"用餐須知",   fr:"Avis",              es:"Avisos",        de:"Hinweise",        th:"ข้อกำหนด"},
-  soup:     {en:"Featured Soup Base",jp:"精選スープ",       kr:"추천 육수",     zh:"精選湯底",   fr:"Soupes",            es:"Sopas",         de:"Suppen",          th:"ซุปแนะนำ"},
-  set2:     {en:"Set Menus",        jp:"セットメニュー",    kr:"세트 메뉴",     zh:"套餐",       fr:"Menus Set",         es:"Menús Set",     de:"Set-Menüs",       th:"เซ็ตเมนู"},
-  seafood1: {en:"Seafood Sets",     jp:"海鮮セット",        kr:"해산물 세트",   zh:"單人海鮮",   fr:"Sets Fruits de Mer",es:"Sets Mariscos", de:"Meeresfrüchte Sets",th:"เซ็ตซีฟู้ด"},
-  meat:     {en:"Meat Sets",        jp:"肉品セット",        kr:"고기 세트",     zh:"肉品套餐",   fr:"Sets Viandes",      es:"Sets Carnes",   de:"Fleisch Sets",    th:"เซ็ตเนื้อ"},
-  alacarte: {en:"À La Carte",       jp:"単品",             kr:"단품",          zh:"精選單點",   fr:"À La Carte",        es:"À La Carte",    de:"Einzelgerichte",  th:"สั่งแยก"},
+const NAV_LABELS={
+  notice:{en:"Notices",jp:"ご案内",kr:"안내",zh:"用餐須知",fr:"Avis",es:"Avisos",de:"Hinweise",th:"ข้อกำหนด"},
+  soup:{en:"Featured Soup Base",jp:"精選スープ",kr:"추천 육수",zh:"精選湯底",fr:"Soupes",es:"Sopas",de:"Suppen",th:"ซุปแนะนำ"},
+  set2:{en:"Set Menus",jp:"セットメニュー",kr:"세트 메뉴",zh:"套餐",fr:"Menus Set",es:"Menús Set",de:"Set-Menüs",th:"เซ็ตเมนู"},
+  seafood1:{en:"Seafood Sets",jp:"海鮮セット",kr:"해산물 세트",zh:"單人海鮮",fr:"Sets Fruits de Mer",es:"Sets Mariscos",de:"Meeresfrüchte Sets",th:"เซ็ตซีฟู้ด"},
+  meat:{en:"Meat Sets",jp:"肉品セット",kr:"고기 세트",zh:"肉品套餐",fr:"Sets Viandes",es:"Sets Carnes",de:"Fleisch Sets",th:"เซ็ตเนื้อ"},
+  alacarte:{en:"À La Carte",jp:"単品",kr:"단품",zh:"精選單點",fr:"À La Carte",es:"À La Carte",de:"Einzelgerichte",th:"สั่งแยก"},
 };
 
-const NOTICES = {
+const NOTICES={
   en:["90-minute dining limit. 10% cleaning fee applies.","Shared pot fee: $150/person (can offset à la carte). Children under 110cm exempt.","All dishes freshly prepared to order — please be patient.","Leftover food may be packed to go.","Please supervise children to avoid running in the restaurant.","Regular sanitization — dine with peace of mind."],
   zh:["用餐時間平日、假日均為90分鐘，酌收10%清潔費。","共鍋：兩人一鍋為限，每人酌收150元，可折抵單點品項，110公分以下孩童除外。","為確保食材鮮度，餐點皆為現點現做，敬請耐心等候。","未食用完之餐點可提供打包服務。","攜帶孩童請留意安全，避免於店內奔跑。","店內定期消毒，敬請安心用餐。"],
   jp:["お食事時間は90分。10%清掃料を申し受けます。","鍋の共有料金は150元/人（単品で相殺可）。110cm以下の子供は免除。","全料理は注文後に調理。しばらくお待ちください。","食べ残しのお持ち帰りが可能です。","お子様の安全にご注意ください。","定期的に消毒しております。"],
   kr:["식사 시간 90분. 10% 서비스 요금 부과.","공동 냄비 요금: 150원/인 (단품 차감 가능). 110cm 미만 어린이 제외.","모든 요리는 주문 후 조리됩니다.","남은 음식 포장 가능합니다.","어린이 안전에 주의해 주세요.","정기적으로 소독합니다."],
-  fr:["Repas limité à 90 minutes. Frais de nettoyage 10%.","Frais de casserole partagée: 150$/pers (déductible). Enfants <110cm exemptés.","Tous les plats préparés à la commande.","Les restes peuvent être emportés.","Veuillez surveiller les enfants.","Désinfection régulière."],
-  es:["Límite de 90 minutos. Cargo de limpieza del 10%.","Tarifa de olla compartida: $150/pers (deducible). Niños <110cm exentos.","Todos los platos preparados al momento.","Comida sobrante para llevar.","Supervise a los niños.","Desinfección regular."],
-  de:["90-Minuten-Limit. 10% Reinigungsgebühr.","Geteilter Topf: $150/Pers (verrechenbar). Kinder <110cm ausgenommen.","Alle Gerichte frisch zubereitet.","Reste können mitgenommen werden.","Kinder beaufsichtigen.","Regelmäßige Desinfektion."],
+  fr:["Repas limité à 90 minutes. Frais de nettoyage 10%.","Frais de casserole partagée: 150$/pers (déductible). Enfants moins de 110cm exemptés.","Tous les plats préparés à la commande.","Les restes peuvent être emportés.","Veuillez surveiller les enfants.","Désinfection régulière."],
+  es:["Límite de 90 minutos. Cargo de limpieza del 10%.","Tarifa de olla compartida: $150/pers (deducible). Niños menores de 110cm exentos.","Todos los platos preparados al momento.","Comida sobrante para llevar.","Supervise a los niños.","Desinfección regular."],
+  de:["90-Minuten-Limit. 10% Reinigungsgebühr.","Geteilter Topf: $150/Pers (verrechenbar). Kinder unter 110cm ausgenommen.","Alle Gerichte frisch zubereitet.","Reste können mitgenommen werden.","Kinder beaufsichtigen.","Regelmäßige Desinfektion."],
   th:["เวลาทานอาหาร 90 นาที มีค่าบริการ 10%","ค่าบริการหม้อร่วม 150 บาทต่อท่าน เด็กต่ำกว่า 110 ซม. ฟรี","อาหารทุกจานทำสดหลังสั่ง","ห่อกลับบ้านได้","กรุณาดูแลเด็กไม่ให้วิ่งในร้าน","ทำความสะอาดสม่ำเสมอ"]
 };
 
-const STEPS = {
+const STEPS={
   en:["Choose Soup Base","Choose Main Dish","Choose Side","Add À La Carte"],
   zh:["選湯底","選主餐","選副食","加點料"],
   jp:["スープ選択","メイン選択","副食","単品追加"],
@@ -253,7 +227,8 @@ const STEPS = {
   th:["เลือกซุป","เลือกเมนูหลัก","เครื่องเคียง","สั่งเพิ่ม"]
 };
 
-const SET_NOTE = {
+// 雙人套餐說明
+const SET_NOTE_DUO={
   en:"Each set for two includes 2 vegetable platters. Choose any 2 soup bases at no extra charge.",
   zh:"雙人套餐均附兩份菜盤，湯底任選兩種不加價。",
   jp:"2名セットには野菜盛り2皿が付きます。スープは2種まで無料でお選びいただけます。",
@@ -264,7 +239,20 @@ const SET_NOTE = {
   th:"แต่ละเซ็ตสำหรับ 2 ท่านรวมผักรวม 2 จาน เลือกซุปได้ 2 ชนิดไม่มีค่าใช้จ่ายเพิ่ม"
 };
 
-const SET_NOTE_SINGLE = {
+// 雙人套餐副食說明（可選2樣）
+const SIDE_NOTE_DUO={
+  en:"Side dish options (choose 2): Steamed Rice / Prince Noodles / Glass Noodles / Hakka Rice Noodles / Udon / Egg",
+  zh:"副食可選 2 樣：白飯 / 王子麵 / 冬粉 / 客家粿條 / 烏龍麵 / 雞蛋",
+  jp:"副食は2種選択可：白ごはん / 王子麺 / 春雨 / 客家麺 / うどん / 卵",
+  kr:"사이드 2가지 선택 가능: 쌀밥 / 왕자 라면 / 당면 / 하카 쌀국수 / 우동 / 달걀",
+  fr:"Accompagnements (choisir 2): Riz blanc / Nouilles Prince / Vermicelles / Nouilles Hakka / Udon / Œuf",
+  es:"Guarniciones (elegir 2): Arroz / Fideos Príncipe / Fideos vidrio / Fideos Hakka / Udon / Huevo",
+  de:"Beilagen (2 wählen): Gedämpfter Reis / Prinz Nudeln / Glasnudeln / Hakka Nudeln / Udon / Ei",
+  th:"เครื่องเคียงเลือกได้ 2 อย่าง: ข้าวสวย / บะหมี่เจ้าชาย / วุ้นเส้น / เส้นฮากกา / อุด้ง / ไข่"
+};
+
+// 單人套餐說明（菜盤1份，副食6擇1）
+const SET_NOTE_SINGLE={
   en:"Each set includes 1 vegetable platter. Choose 1 of 6 side dishes.",
   zh:"套餐均附一份菜盤。副食6擇一。",
   jp:"セットには野菜盛り1皿が付きます。副食は6種から1つお選びください。",
@@ -275,7 +263,19 @@ const SET_NOTE_SINGLE = {
   th:"แต่ละเซ็ตรวมผักรวม 1 จาน เลือกเครื่องเคียงได้ 1 จาก 6 อย่าง"
 };
 
-const MEAT_UPGRADE = {
+// 單人套餐副食說明（6擇1）
+const SIDE_NOTE_SINGLE={
+  en:"Side dish options (choose 1 of 6): Steamed Rice / Prince Noodles / Glass Noodles / Hakka Rice Noodles / Udon / Egg",
+  zh:"副食6擇一：白飯 / 王子麵 / 冬粉 / 客家粿條 / 烏龍麵 / 雞蛋",
+  jp:"副食は6種から1つ選択：白ごはん / 王子麺 / 春雨 / 客家麺 / うどん / 卵",
+  kr:"사이드 6가지 중 1개 선택: 쌀밥 / 왕자 라면 / 당면 / 하카 쌀국수 / 우동 / 달걀",
+  fr:"Accompagnements (choisir 1 parmi 6): Riz blanc / Nouilles Prince / Vermicelles / Nouilles Hakka / Udon / Œuf",
+  es:"Guarniciones (elegir 1 de 6): Arroz / Fideos Príncipe / Fideos vidrio / Fideos Hakka / Udon / Huevo",
+  de:"Beilagen (1 von 6 wählen): Gedämpfter Reis / Prinz Nudeln / Glasnudeln / Hakka Nudeln / Udon / Ei",
+  th:"เครื่องเคียงเลือกได้ 1 จาก 6: ข้าวสวย / บะหมี่เจ้าชาย / วุ้นเส้น / เส้นฮากกา / อุด้ง / ไข่"
+};
+
+const MEAT_UPGRADE={
   en:"🥩 Meat Upgrade +$100 — Add 5oz (choose 1): Premium US Beef Belly OR Premium Pork Collar",
   zh:"🥩 加購升級 +$100 — 肉品2選1 (5oz)：特選五花牛 或 嚴選特級豬梅花",
   jp:"🥩 お肉追加 +$100 — 5oz（1つ選択）: 牛バラ または 豚肩ロース",
@@ -286,12 +286,12 @@ const MEAT_UPGRADE = {
   th:"🥩 เพิ่มเนื้อ +$100 — 5oz (เลือก 1): เนื้อท้องวัว US หรือ หมูส่วนไหล่"
 };
 
-const SEA_UPGRADE = {
+const SEA_UPGRADE={
   en:"🦞 Seafood Combo Upgrade +$200 — Pick 4 of 11: Giant Clams×4 / Snapper×4 / Sea Bass×2 / Salmon×2 / Abalone×2 / King Scallop×2 / White Shrimp×4 / Japanese Oyster×1 / Angel Shrimp×2 / Black Shrimp×2 / Hokkaido Scallop×1",
   zh:"🦞 升級海陸組合 +$200 — 海鮮11選4：巨無霸蛤蠣×4 / 台灣黃金鯛×4 / 現流鱸魚×2 / 鮭魚菲力×2 / 野生鮑魚×2 / 帆立國王貝×2 / 南美白蝦×4 / 日本生蠔×1 / 天使紅蝦×2 / 黑美人蝦×2 / 北海道干貝×1",
   jp:"🦞 海陸アップグレード +$200 — 11種から4つ選択：ハマグリ×4 / 鯛×4 / スズキ×2 / 鮭×2 / アワビ×2 / 帆立×2 / 白エビ×4 / 生牡蠣×1 / 天使エビ×2 / 黒エビ×2 / 北海道干貝×1",
   kr:"🦞 해산물 업그레이드 +$200 — 11종 중 4개 선택：조개×4 / 도미×4 / 농어×2 / 연어×2 / 전복×2 / 관자×2 / 흰새우×4 / 생굴×1 / 천사새우×2 / 흑새우×2 / 가리비×1",
-  fr:"🦞 Upgrade Fruits de Mer +$200 — 4 au choix parmi 11：Palourdes×4 / Daurade×4 / Loup×2 / Saumon×2 / Ormeau×2 / Grande st-jacques×2 / Crevettes blanches×4 / Huître×1 / Crevettes ange×2 / Crevettes noires×2 / Noix×1",
+  fr:"🦞 Upgrade Fruits de Mer +$200 — 4 au choix parmi 11：Palourdes×4 / Daurade×4 / Loup×2 / Saumon×2 / Ormeau×2 / Grande×2 / Crevettes blanches×4 / Huître×1 / Crevettes ange×2 / Crevettes noires×2 / Noix×1",
   es:"🦞 Upgrade Mariscos +$200 — Elige 4 de 11：Almejas×4 / Besugo×4 / Lubina×2 / Salmón×2 / Abulón×2 / Gran vieira×2 / Gambas blancas×4 / Ostra×1 / Gamba ángel×2 / Gamba negra×2 / Vieira×1",
   de:"🦞 Meeresfrüchte Upgrade +$200 — 4 von 11 wählen：Muscheln×4 / Schnapper×4 / Seebarsch×2 / Lachs×2 / Abalone×2 / Große Jakobsmuschel×2 / Weiße Garnelen×4 / Auster×1 / Engelsgarnelen×2 / Schwarze Garnelen×2 / Jakobsmuschel×1",
   th:"🦞 อัปเกรดทะเล +$200 — เลือก 4 จาก 11：หอยใหญ่×4 / ปลาทอง×4 / ปลากะพง×2 / แซลมอน×2 / เป๋าฮื้อ×2 / หอยเชลล์ใหญ่×2 / กุ้งขาว×4 / หอยนางรม×1 / กุ้งนางฟ้า×2 / กุ้งดำ×2 / หอยเชลล์×1"
@@ -308,10 +308,10 @@ const SOUP=[
 ];
 
 const SET2=[
-  {zh:"1. 經典滿築雙饗宴",price:"$1,329",popular:false,t:{en:"Classic Duo Feast",jp:"クラシック海陸ダブル",kr:"클래식 듀오 성찬",fr:"Festin Duo Classique",es:"Festín Dúo Clásico",de:"Klassisches Duo Fest",th:"ดูโอ้คลาสสิก"},d:{en:"Aus Shoulder Beef 8oz, Pork Collar 8oz, Angel Shrimp ×2, White Shrimp ×4, Golden Snapper ×2, Salmon ×2, Giant Clams ×6, King Scallop ×1",jp:"牛肩ロース8oz、豚肉8oz、天使エビ×2、白エビ×4、鯛×2、鮭×2、ハマグリ×6、帆立貝×1",kr:"소 어깨살 8oz, 목살 8oz, 천사새우×2, 흰새우×4, 도미×2, 연어×2, 조개×6, 관자×1",fr:"Bœuf épaule 8oz, Porc 8oz, Crevettes ange×2, Blanches×4, Daurade×2, Saumon×2, Palourdes×6, Saint-Jacques×1",es:"Ternera hombro 8oz, Cerdo 8oz, Gamba ángel×2, Blancas×4, Besugo×2, Salmón×2, Almejas×6, Vieira×1",de:"Schulter 8oz, Schwein 8oz, Engelsgarnelen×2, Weiße×4, Schnapper×2, Lachs×2, Muscheln×6, Jakobsmuschel×1",th:"เนื้อไหล่ 8oz, หมู 8oz, กุ้งนางฟ้า×2, กุ้งขาว×4, ปลาทอง×2, แซลมอน×2, หอย×6, หอยเชลล์×1"}},
-  {zh:"2. 滿派海陸雙饗宴",price:"$1,659",popular:false,t:{en:"Grand Surf & Turf Duo",jp:"グランド海陸セット",kr:"그랜드 산해진미",fr:"Grand Surf & Turf Duo",es:"Gran Surf & Tierra Dúo",de:"Großes Surf & Turf Duo",th:"แกรนด์เซิร์ฟแอนด์เทิร์ฟ"},d:{en:"US Beef Belly 8oz, Pork 8oz, Angel Shrimp×2, Black Shrimp×2, White Shrimp×4, Clams×6, Snapper×4, Baby Squid×1, Scallop×2, Abalone×2, King Scallop×2",jp:"牛バラ8oz、豚8oz、エビ3種、ハマグリ×6、鯛×4、イカ×1、干貝×2、アワビ×2、帆立×2",kr:"우삼겹 8oz, 목살 8oz, 새우3종, 조개×6, 도미×4, 꼴뚜기×1, 가리비×2, 전복×2, 관자×2",fr:"Poitrine bœuf 8oz, Porc 8oz, 3 types crevettes, Palourdes×6, Daurade×4, Calmar×1, Noix×2, Ormeau×2, Grande×2",es:"Panceta res 8oz, Cerdo 8oz, Gambas 3 tipos, Almejas×6, Besugo×4, Calamar×1, Vieiras×2, Abulón×2, Gran vieira×2",de:"Rinderbauch 8oz, Schwein 8oz, Garnelen 3 Arten, Muscheln×6, Schnapper×4, Tintenfisch×1, Jakobsmuscheln×2, Abalone×2, Große×2",th:"เนื้อท้อง 8oz, หมู 8oz, กุ้ง 3 ชนิด, หอย×6, ปลา×4, หมึก×1, หอยเชลล์×2, เป๋าฮื้อ×2, หอยเชลล์ใหญ่×2"}},
+  {zh:"1. 經典滿築雙饗宴",price:"$1,329",popular:false,t:{en:"Classic Duo Feast",jp:"クラシック海陸ダブル",kr:"클래식 듀오 성찬",fr:"Festin Duo Classique",es:"Festín Dúo Clásico",de:"Klassisches Duo Fest",th:"ดูโอ้คลาสสิก"},d:{en:"Aus Shoulder Beef 8oz, Pork Collar 8oz, Angel Shrimp×2, White Shrimp×4, Golden Snapper×2, Salmon×2, Giant Clams×6, King Scallop×1",jp:"牛肩ロース8oz、豚肉8oz、天使エビ×2、白エビ×4、鯛×2、鮭×2、ハマグリ×6、帆立貝×1",kr:"소 어깨살 8oz, 목살 8oz, 천사새우×2, 흰새우×4, 도미×2, 연어×2, 조개×6, 관자×1",fr:"Bœuf épaule 8oz, Porc 8oz, Crevettes ange×2, Blanches×4, Daurade×2, Saumon×2, Palourdes×6, Saint-Jacques×1",es:"Ternera hombro 8oz, Cerdo 8oz, Gamba ángel×2, Blancas×4, Besugo×2, Salmón×2, Almejas×6, Vieira×1",de:"Schulter 8oz, Schwein 8oz, Engelsgarnelen×2, Weiße×4, Schnapper×2, Lachs×2, Muscheln×6, Jakobsmuschel×1",th:"เนื้อไหล่ 8oz, หมู 8oz, กุ้งนางฟ้า×2, กุ้งขาว×4, ปลาทอง×2, แซลมอน×2, หอย×6, หอยเชลล์×1"}},
+  {zh:"2. 滿派海陸雙饗宴",price:"$1,659",popular:false,t:{en:"Grand Surf & Turf Duo",jp:"グランド海陸セット",kr:"그랜드 산해진미",fr:"Grand Surf & Turf Duo",es:"Gran Surf & Tierra Dúo",de:"Großes Surf & Turf Duo",th:"แกรนด์เซิร์ฟแอนด์เทิร์ฟ"},d:{en:"US Beef Belly 8oz, Pork 8oz, Angel Shrimp×2, Black Shrimp×2, White Shrimp×4, Clams×6, Snapper×4, Baby Squid×1, Scallop×2, Abalone×2, King Scallop×2",jp:"牛バラ8oz、豚8oz、エビ3種、ハマグリ×6、鯛×4、イカ×1、干貝×2、アワビ×2、帆立×2",kr:"우삼겹 8oz, 목살 8oz, 새우3종, 조개×6, 도미×4, 꼴뚜기×1, 가리비×2, 전복×2, 관자×2",fr:"Poitrine bœuf 8oz, Porc 8oz, Crevettes 3 types, Palourdes×6, Daurade×4, Calmar×1, Noix×2, Ormeau×2, Grande×2",es:"Panceta res 8oz, Cerdo 8oz, Gambas 3 tipos, Almejas×6, Besugo×4, Calamar×1, Vieiras×2, Abulón×2, Gran vieira×2",de:"Rinderbauch 8oz, Schwein 8oz, Garnelen 3 Arten, Muscheln×6, Schnapper×4, Tintenfisch×1, Jakobsmuscheln×2, Abalone×2, Große×2",th:"เนื้อท้อง 8oz, หมู 8oz, กุ้ง 3 ชนิด, หอย×6, ปลา×4, หมึก×1, หอยเชลล์×2, เป๋าฮื้อ×2, หอยเชลล์ใหญ่×2"}},
   {zh:"3. 大心滿築雙饗宴",price:"$1,469",popular:false,t:{en:"Meat Lover's Duo Feast",jp:"肉好きのダブルセット",kr:"고기 듬뿍 듀오",fr:"Festin Duo Carnivore",es:"Festín Dúo Carnívoro",de:"Fleischliebhaber Duo",th:"ดูโอ้คนรักเนื้อ"},d:{en:"Aus Shoulder 7.5oz, US Snow Beef 7.5oz, Spanish Iberico Pork 7.5oz, Pork Collar 7.5oz",jp:"豪州肩ロース7.5oz、米国雪花牛7.5oz、スペイン松坂豚7.5oz、豚首肉7.5oz",kr:"호주 어깨살 7.5oz, 미국 눈꽃 7.5oz, 스페인 이베리코 7.5oz, 목살 7.5oz",fr:"Épaule aus. 7.5oz, Bœuf neige US 7.5oz, Ibérique 7.5oz, Échine 7.5oz",es:"Hombro 7.5oz, Res nevada 7.5oz, Ibérico 7.5oz, Cabecero 7.5oz",de:"Schulter 7.5oz, US Schneerind 7.5oz, Ibérico 7.5oz, Schweinekamm 7.5oz",th:"เนื้อไหล่ 7.5oz, เนื้อหิมะ 7.5oz, หมูสเปน 7.5oz, หมูคอ 7.5oz"}},
-  {zh:"4. 輕奢滿築雙饗宴",price:"$1,559",popular:false,t:{en:"Light Luxury Duo Feast",jp:"ライトラグジュアリー",kr:"라이트 럭셔리",fr:"Festin Duo Luxe Léger",es:"Festín Dúo Lujo Ligero",de:"Leichtes Luxus Duo",th:"ไลท์ลักชัวรี่ดูโอ้"},d:{en:"US Wing Rib 8oz, Pork Collar 8oz, Angel Shrimp×2, Black Shrimp×2, White Shrimp×4, Clams×6, Abalone×2, King Scallop×2",jp:"ミスジ8oz、豚8oz、エビ3種、ハマグリ×6、アワビ×2、帆立×2",kr:"부채살 8oz, 목살 8oz, 새우3종, 조개×6, 전복×2, 관자×2",fr:"Wing rib US 8oz, Porc 8oz, 3 types crevettes, Palourdes×6, Ormeau×2, Grande saint-jacques×2",es:"Wing rib US 8oz, Cerdo 8oz, Gambas 3 tipos, Almejas×6, Abulón×2, Gran vieira×2",de:"Flügelrippe 8oz, Schwein 8oz, Garnelen 3 Arten, Muscheln×6, Abalone×2, Jakobsmuschel×2",th:"วิงริบ 8oz, หมู 8oz, กุ้ง 3 ชนิด, หอย×6, เป๋าฮื้อ×2, หอยเชลล์×2"}},
+  {zh:"4. 輕奢滿築雙饗宴",price:"$1,559",popular:false,t:{en:"Light Luxury Duo Feast",jp:"ライトラグジュアリー",kr:"라이트 럭셔리",fr:"Festin Duo Luxe Léger",es:"Festín Dúo Lujo Ligero",de:"Leichtes Luxus Duo",th:"ไลท์ลักชัวรี่ดูโอ้"},d:{en:"US Wing Rib 8oz, Pork Collar 8oz, Angel Shrimp×2, Black Shrimp×2, White Shrimp×4, Clams×6, Abalone×2, King Scallop×2",jp:"ミスジ8oz、豚8oz、エビ3種、ハマグリ×6、アワビ×2、帆立×2",kr:"부채살 8oz, 목살 8oz, 새우3종, 조개×6, 전복×2, 관자×2",fr:"Wing rib US 8oz, Porc 8oz, Crevettes 3 types, Palourdes×6, Ormeau×2, Grande saint-jacques×2",es:"Wing rib US 8oz, Cerdo 8oz, Gambas 3 tipos, Almejas×6, Abulón×2, Gran vieira×2",de:"Flügelrippe 8oz, Schwein 8oz, Garnelen 3 Arten, Muscheln×6, Abalone×2, Jakobsmuschel×2",th:"วิงริบ 8oz, หมู 8oz, กุ้ง 3 ชนิด, หอย×6, เป๋าฮื้อ×2, หอยเชลล์×2"}},
   {zh:"5. 奢華海神雙饗宴",price:"$1,999",popular:true,t:{en:"Poseidon Seafood Duo Feast",jp:"豪華ポセイドン海鮮",kr:"럭셔리 포세이돈 성찬",fr:"Festin Poseidon Luxueux",es:"Festín Poseidón Lujoso",de:"Poseidon Luxus Duo",th:"โพไซดอนดูโอ้หรู"},d:{en:"Wild Lobster×1, Tiger Shrimp×2, Angel Shrimp×2, White Shrimp×4, Clams×6, Snapper×2, Salmon×2, Sea Bass×2, Scallop×2, Abalone×2, King Scallop×2, Oyster×2",jp:"伊勢海老×1、草エビ×2、天使エビ×2、白エビ×4、ハマグリ×6、鯛×2、鮭×2、スズキ×2、干貝×2、アワビ×2、帆立×2、生牡蠣×2",kr:"랍스터×1, 왕새우×2, 천사새우×2, 흰새우×4, 조개×6, 도미×2, 연어×2, 농어×2, 가리비×2, 전복×2, 관자×2, 생굴×2",fr:"Homard×1, Grandes crevettes×2, Ange×2, Blanches×4, Palourdes×6, Daurade×2, Saumon×2, Loup×2, Noix×2, Ormeau×2, Grande×2, Huîtres×2",es:"Langosta×1, Tigre×2, Ángel×2, Blancas×4, Almejas×6, Besugo×2, Salmón×2, Lubina×2, Vieiras×2, Abulón×2, Gran vieira×2, Ostras×2",de:"Hummer×1, Tigergarnelen×2, Engelsgarnelen×2, Weiße×4, Muscheln×6, Schnapper×2, Lachs×2, Seebarsch×2, Jakobsmuscheln×2, Abalone×2, Große×2, Austern×2",th:"ล็อบสเตอร์×1, กุ้งใหญ่×2, กุ้งนางฟ้า×2, กุ้งขาว×4, หอย×6, ปลา×2, แซลมอน×2, ปลากะพง×2, หอยเชลล์×2, เป๋าฮื้อ×2, หอยเชลล์ใหญ่×2, หอยนางรม×2"}},
   {zh:"6. 豪華滿意雙饗宴",price:"$2,519",popular:true,t:{en:"Deluxe Satisfaction Duo Feast",jp:"デラックス満足セット",kr:"디럭스 만족 성찬",fr:"Festin Duo Satisfaction Deluxe",es:"Festín Dúo Satisfacción Deluxe",de:"Deluxe Zufriedenheits Duo",th:"ดีลักซ์แซทิสแฟคชั่น"},d:{en:"US Boneless Short Rib 8oz, Spanish Iberico 8oz, Wild Lobster×1, Angel Shrimp×2, Tiger Shrimp×2, White Shrimp×4, Scallop×2, Clams×6, Japanese Oyster×2",jp:"牛ショートリブ8oz、松坂豚8oz、伊勢海老×1、エビ3種、干貝×2、ハマグリ×6、生牡蠣×2",kr:"뼈없는 갈비 8oz, 이베리코 8oz, 랍스터×1, 새우3종, 가리비×2, 조개×6, 생굴×2",fr:"Côte bœuf US 8oz, Ibérique 8oz, Homard×1, Crevettes 3 types, Noix×2, Palourdes×6, Huîtres×2",es:"Costilla US 8oz, Ibérico 8oz, Langosta×1, Gambas 3 tipos, Vieiras×2, Almejas×6, Ostras×2",de:"Rippchen US 8oz, Ibérico 8oz, Hummer×1, Garnelen 3 Arten, Jakobsmuscheln×2, Muscheln×6, Austern×2",th:"ซี่โครง US 8oz, หมูสเปน 8oz, ล็อบสเตอร์×1, กุ้ง 3 ชนิด, หอยเชลล์×2, หอย×6, หอยนางรม×2"}},
   {zh:"7. 和牛超滿築雙饗宴",price:"$2,429",popular:false,t:{en:"Premium Wagyu Duo Feast",jp:"プレミアム和牛ダブル",kr:"프리미엄 와규 듀오",fr:"Festin Duo Wagyu Premium",es:"Festín Dúo Wagyu Premium",de:"Premium Wagyu Duo",th:"พรีเมียมวากิวดูโอ้"},d:{en:"Aus M9+ Wagyu Chuck Roll 8oz, Japan A5 Wagyu 8oz, Scallop×2, Tiger Shrimp×2, Salmon×2, Sea Bass×2, Snapper×2, Clams×6",jp:"豪州M9+和牛8oz、日本A5和牛8oz、ホタテ×2、草エビ×2、鮭×2、スズキ×2、鯛×2、ハマグリ×6",kr:"호주 와규 8oz, 일본 A5 와규 8oz, 가리비×2, 왕새우×2, 연어×2, 농어×2, 도미×2, 조개×6",fr:"Wagyu M9+ aus. 8oz, Wagyu A5 jap. 8oz, Noix×2, Grandes crevettes×2, Saumon×2, Loup×2, Daurade×2, Palourdes×6",es:"Wagyu M9+ aus. 8oz, Wagyu A5 jap. 8oz, Vieiras×2, Gambas tigre×2, Salmón×2, Lubina×2, Besugo×2, Almejas×6",de:"Wagyu M9+ Aus. 8oz, Wagyu A5 Jap. 8oz, Jakobsmuscheln×2, Tigergarnelen×2, Lachs×2, Seebarsch×2, Schnapper×2, Muscheln×6",th:"วากิวออสซี่ M9+ 8oz, วากิวญี่ปุ่น A5 8oz, หอยเชลล์×2, กุ้งใหญ่×2, แซลมอน×2, ปลากะพง×2, ปลาทอง×2, หอย×6"}},
@@ -328,25 +328,25 @@ const SEAFOOD=[
 ];
 
 const MEAT=[
-  {zh:"美國特選五花牛",price:"7oz $399 / 11oz $479",t:{en:"US Prime Beef Belly",jp:"米国産牛バラ",kr:"미국산 우삼겹",fr:"Poitrine Bœuf US Prime",es:"Panceta Res US Prime",de:"US Prime Rinderbauch",th:"เนื้อท้องวัว US"},d:{en:"Tender, juicy marbled beef belly. Includes vegetable platter & side dish.",jp:"柔らかくジューシーな霜降り牛バラ。野菜盛り・副食付き。",kr:"부드럽고 육즙 풍부한 마블링. 채소 플래터 & 사이드 포함.",fr:"Tendre et juteuse poitrine marbrée. Inclut plateau légumes.",es:"Tierna y jugosa panceta marmolada. Incluye verduras.",de:"Zartes, saftiges marmoriertes Rinderbauchfleisch. Inkl. Gemüse.",th:"เนื้อท้องวัวนุ่มฉ่ำ รวมผักและเครื่องเคียง"}},
-  {zh:"澳洲嚴選嫩肩牛",price:"7oz $469 / 11oz $599",t:{en:"Australian Tender Shoulder Beef",jp:"豪州産肩ロース",kr:"호주산 부드러운 어깨살",fr:"Épaule Tendre Australienne",es:"Hombro Tierno Australiano",de:"Australische Zarte Schulter",th:"เนื้อไหล่อ่อนออสซี่"},d:{en:"Carefully selected tender shoulder. Includes vegetable platter & side dish.",jp:"厳選された柔らかい肩ロース。野菜盛り・副食付き。",kr:"엄선된 부드러운 어깨살. 채소 플래터 & 사이드 포함.",fr:"Épaule tendre soigneusement sélectionnée. Inclut plateau légumes.",es:"Hombro tierno cuidadosamente seleccionado. Incluye verduras.",de:"Sorgfältig ausgewähltes zartes Schulterfleisch. Inkl. Gemüse.",th:"เนื้อไหล่คัดพิเศษ รวมผักและเครื่องเคียง"}},
-  {zh:"美國極佳雪花牛",price:"7oz $489 / 11oz $609",t:{en:"US Prime Snow Marbling Beef",jp:"米国産雪花牛",kr:"미국산 눈꽃 소고기",fr:"Bœuf Marbré Neige US Prime",es:"Res Mármol Nieve US Prime",de:"US Prime Schnee-Marmor Rind",th:"เนื้อลายหิมะ US"},d:{en:"Beautiful snow-pattern marbling for extra richness. Includes vegetable platter & side dish.",jp:"美しい雪模様の霜降り。野菜盛り・副食付き。",kr:"아름다운 눈꽃 무늬 마블링. 채소 플래터 & 사이드 포함.",fr:"Marbré en motif neige pour richesse extra. Inclut plateau légumes.",es:"Marmolado en patrón de nieve para mayor riqueza. Incluye verduras.",de:"Wunderschönes Schnee-Muster-Marmorrindfleisch. Inkl. Gemüse.",th:"เนื้อลายหิมะสวยงาม รวมผักและเครื่องเคียง"}},
-  {zh:"美國極佳牛脆胸",price:"7oz $539 / 11oz $669",t:{en:"US Prime Beef Brisket",jp:"米国産ブリスケット",kr:"미국산 양지",fr:"Poitrine Croustillante US Prime",es:"Pecho Crujiente US Prime",de:"US Prime Rinderbrust",th:"อกวัว US"},d:{en:"Crispy and tender US prime brisket. Includes vegetable platter & side dish.",jp:"サクサクで柔らかい米国産プライムブリスケット。野菜盛り・副食付き。",kr:"바삭하고 부드러운 미국산 프라임 양지. 채소 플래터 & 사이드 포함.",fr:"Poitrine US prime croustillante et tendre. Inclut plateau légumes.",es:"Pecho US prime crujiente y tierno. Incluye verduras.",de:"Knuspriges und zartes US Prime Rinderbrust. Inkl. Gemüse.",th:"อกวัว US กรอบนอกนุ่มใน รวมผักและเครื่องเคียง"}},
-  {zh:"美國極佳翼板牛",price:"7oz $599 / 11oz $769",t:{en:"US Prime Wing Rib Beef",jp:"米国産ハネシタ",kr:"미국산 살치살",fr:"Côte Ailée US Prime",es:"Costilla Alada US Prime",de:"US Prime Flügelrippe",th:"วิงริบวัว US"},d:{en:"Premium US wing rib with excellent marbling. Includes vegetable platter & side dish.",jp:"優れた霜降りの米国産プレミアムハネシタ。野菜盛り・副食付き。",kr:"우수한 마블링의 프리미엄 미국산 살치살. 채소 플래터 & 사이드 포함.",fr:"Wing rib US prime de qualité supérieure. Inclut plateau légumes.",es:"Costilla alada US prime con excelente marmolado. Incluye verduras.",de:"Premium US Flügelrippe mit ausgezeichneter Marmorierung. Inkl. Gemüse.",th:"วิงริบวัว US เกรดพรีเมียม รวมผักและเครื่องเคียง"}},
-  {zh:"澳洲熟成特選菲力牛",price:"7oz $599 / 11oz $769",t:{en:"Australian Aged Tenderloin",jp:"豪州産熟成フィレ",kr:"호주산 숙성 안심",fr:"Filet Mignon Australien Affiné",es:"Solomillo Australiano Añejado",de:"Australisches Gereiftes Filet",th:"สันในวัวบ่มออสซี่"},d:{en:"Premium dry-aged Australian tenderloin. Includes vegetable platter & side dish.",jp:"プレミアム熟成豪州テンダーロイン。野菜盛り・副食付き。",kr:"프리미엄 드라이에이징 호주산 안심. 채소 플래터 & 사이드 포함.",fr:"Filet mignon australien affiné premium. Inclut plateau légumes.",es:"Solomillo australiano añejado premium. Incluye verduras.",de:"Premium Dry-Aged Australisches Filet. Inkl. Gemüse.",th:"สันในวัวออสซี่บ่มสุก รวมผักและเครื่องเคียง"}},
-  {zh:"澳洲嚴選牛舌",price:"7oz $699 / 11oz $899",t:{en:"Australian Selected Beef Tongue",jp:"豪州産牛タン",kr:"호주산 우설",fr:"Langue de Bœuf Australienne",es:"Lengua de Res Australiana",de:"Australische Rinderzunge",th:"ลิ้นวัวออสซี่"},d:{en:"Tender and rich Australian beef tongue. Includes vegetable platter & side dish.",jp:"柔らかく風味豊かな豪州産牛タン。野菜盛り・副食付き。",kr:"부드럽고 풍부한 호주산 소혀. 채소 플래터 & 사이드 포함.",fr:"Langue de bœuf australienne tendre et riche. Inclut plateau légumes.",es:"Tierna y rica lengua de res australiana. Incluye verduras.",de:"Zarte und reichhaltige australische Rinderzunge. Inkl. Gemüse.",th:"ลิ้นวัวออสซี่นุ่มและรสชาติเข้มข้น รวมผักและเครื่องเคียง"}},
-  {zh:"美國極佳無骨牛小排",price:"7oz $729 / 11oz $999",t:{en:"US Prime Boneless Short Rib",jp:"米国産骨なし牛リブ",kr:"미국산 뼈없는 갈비",fr:"Côte Courte Désossée US Prime",es:"Costilla Sin Hueso US Prime",de:"US Prime Knochenlose Rippe",th:"ซี่โครงไม่มีกระดูก US"},d:{en:"Juicy and flavorful US prime boneless short rib. Includes vegetable platter & side dish.",jp:"ジューシーで風味豊かな米国産無骨リブ。野菜盛り・副食付き。",kr:"육즙 풍부하고 맛있는 미국산 뼈없는 갈비. 채소 플래터 & 사이드 포함.",fr:"Côte courte désossée US prime juteuse et savoureuse. Inclut plateau légumes.",es:"Jugosa y sabrosa costilla sin hueso US prime. Incluye verduras.",de:"Saftiges und wohlschmeckendes US Prime Rippchen ohne Knochen. Inkl. Gemüse.",th:"ซี่โครงไม่มีกระดูก US ฉ่ำน้ำ รสเข้มข้น รวมผักและเครื่องเคียง"}},
-  {zh:"澳洲M7+和牛霜降",price:"7oz $549 / 11oz $689",t:{en:"Australian M7+ Wagyu Ribeye",jp:"豪州M7+和牛霜降り",kr:"호주 M7+ 와규",fr:"Wagyu Australien M7+",es:"Wagyu Australiano M7+",de:"Australisches M7+ Wagyu",th:"วากิวออสซี่ M7+"},d:{en:"Rich marbling M7+ grade Australian wagyu. Includes vegetable platter & side dish.",jp:"豊かな霜降りM7+等級豪州和牛。野菜盛り・副食付き。",kr:"풍부한 마블링 M7+ 등급 호주산 와규. 채소 플래터 & 사이드 포함.",fr:"Wagyu australien M7+ richement marbré. Inclut plateau légumes.",es:"Wagyu australiano M7+ con rico marmolado. Incluye verduras.",de:"Reichhaltig marmoriertes M7+ australisches Wagyu. Inkl. Gemüse.",th:"วากิว M7+ ออสซี่ ลายหินอ่อนสวยงาม รวมผักและเครื่องเคียง"}},
-  {zh:"澳洲M9+和牛板腱",price:"7oz $989 / 11oz $1,399",t:{en:"Australian M9+ Wagyu Chuck Roll",jp:"豪州M9+和牛ミスジ",kr:"호주 M9+ 와규 척롤",fr:"Wagyu Australien M9+ Chuck Roll",es:"Wagyu Australiano M9+ Chuck Roll",de:"Australisches M9+ Wagyu Chuck Roll",th:"วากิวออสซี่ M9+"},d:{en:"Premium M9+ grade Australian wagyu. Includes vegetable platter & side dish.",jp:"プレミアムM9+等級豪州和牛。野菜盛り・副食付き。",kr:"프리미엄 M9+ 등급 호주산 와규. 채소 플래터 & 사이드 포함.",fr:"Wagyu australien M9+ de qualité supérieure. Inclut plateau légumes.",es:"Wagyu australiano M9+ de calidad superior. Incluye verduras.",de:"Premium M9+ australisches Wagyu. Inkl. Gemüse.",th:"วากิว M9+ ออสซี่ คุณภาพสูงสุด รวมผักและเครื่องเคียง"}},
-  {zh:"日本A5和牛霜降",price:"7oz $999 / 11oz $1,409",t:{en:"Japanese A5 Wagyu Ribeye",jp:"日本産A5和牛霜降り",kr:"일본산 A5 와규",fr:"Wagyu Japonais A5",es:"Wagyu Japonés A5",de:"Japanisches A5 Wagyu",th:"วากิวญี่ปุ่น A5"},d:{en:"Top-grade certified Japanese A5 wagyu. Includes vegetable platter & side dish.",jp:"最高級A5認定日本和牛。野菜盛り・副食付き。",kr:"최상급 일본 A5 인증 와규. 채소 플래터 & 사이드 포함.",fr:"Wagyu japonais A5 certifié haut de gamme. Inclut plateau légumes.",es:"Wagyu japonés A5 certificado de máxima calidad. Incluye verduras.",de:"Top-Klasse japanisches A5 zertifiziertes Wagyu. Inkl. Gemüse.",th:"วากิวญี่ปุ่น A5 เกรดสูงสุด รวมผักและเครื่องเคียง"}},
-  {zh:"日本A5和牛小排",price:"7oz $1,299 / 11oz $1,699",t:{en:"Japanese A5 Wagyu Short Rib",jp:"日本産A5和牛リブ",kr:"일본산 A5 와규 갈비",fr:"Côte Courte Wagyu Japonais A5",es:"Costilla Corta Wagyu Japonés A5",de:"Japanisches A5 Wagyu Rippe",th:"ซี่โครงวากิวญี่ปุ่น A5"},d:{en:"Exquisite Japanese A5 wagyu short rib. Includes vegetable platter & side dish.",jp:"精巧な日本A5和牛の小リブ。野菜盛り・副食付き。",kr:"정교한 일본 A5 와규 갈비살. 채소 플래터 & 사이드 포함.",fr:"Exquise côte courte wagyu japonais A5. Inclut plateau légumes.",es:"Exquisita costilla corta wagyu japonés A5. Incluye verduras.",de:"Exquisite japanische A5 Wagyu Kurzrippe. Inkl. Gemüse.",th:"ซี่โครงสั้นวากิวญี่ปุ่น A5 รสชาติยอดเยี่ยม รวมผักและเครื่องเคียง"}},
-  {zh:"嚴選特級豬梅花",price:"7oz $369 / 11oz $439",t:{en:"Premium Selected Pork Collar",jp:"特選豚肩ロース",kr:"엄선 목살",fr:"Échine Porc Premium",es:"Cabecero Cerdo Premium",de:"Premium Schweinekamm",th:"หมูส่วนไหล่พรีเมียม"},d:{en:"Carefully selected tender pork collar. Includes vegetable platter & side dish.",jp:"丁寧に選ばれた柔らかい豚首肉。野菜盛り・副食付き。",kr:"엄선된 부드러운 목살. 채소 플래터 & 사이드 포함.",fr:"Échine de porc tendre soigneusement sélectionnée. Inclut plateau légumes.",es:"Cabecero de cerdo tierno cuidadosamente seleccionado. Incluye verduras.",de:"Sorgfältig ausgewählter zarter Schweinekamm. Inkl. Gemüse.",th:"คอหมูนุ่มคัดสรร รวมผักและเครื่องเคียง"}},
-  {zh:"台灣本土豬五花",price:"7oz $429 / 11oz $519",t:{en:"Taiwanese Local Pork Belly",jp:"台湾産豚バラ",kr:"대만 삼겹살",fr:"Poitrine Porc Local Taïwanais",es:"Panceta Cerdo Local Taiwanés",de:"Taiwanesischer Lokaler Schweinebauch",th:"หมูสามชั้นไต้หวัน"},d:{en:"Fresh local Taiwanese pork belly. Includes vegetable platter & side dish.",jp:"新鮮な台湾産豚バラ。野菜盛り・副食付き。",kr:"신선한 대만산 삼겹살. 채소 플래터 & 사이드 포함.",fr:"Poitrine de porc locale fraîche. Inclut plateau légumes.",es:"Panceta de cerdo local fresca. Incluye verduras.",de:"Frischer lokaler taiwanesischer Schweinebauch. Inkl. Gemüse.",th:"หมูสามชั้นไต้หวันสด รวมผักและเครื่องเคียง"}},
-  {zh:"嚴選松阪豬",price:"7oz $499 / 11oz $609",t:{en:"Selected Matsusaka Style Pork Jowl",jp:"特選松坂豚",kr:"엄선 항정살",fr:"Joue Porc Style Matsusaka",es:"Carrillada Cerdo Matsusaka",de:"Matsusaka-Stil Schweinewange",th:"หมูมัตสึซากะ"},d:{en:"Prized fatty pork jowl, melt-in-mouth texture. Includes vegetable platter & side dish.",jp:"珍重される脂の乗った豚ほっぺ、口の中でとろける。野菜盛り・副食付き。",kr:"귀한 지방이 풍부한 볼살, 입에서 녹는 식감. 채소 플래터 & 사이드 포함.",fr:"Précieuse joue de porc grasse, texture fondante. Inclut plateau légumes.",es:"Preciada carrillada de cerdo grasa, textura que se deshace. Incluye verduras.",de:"Wertvolle fettige Schweinewange, schmelzende Textur. Inkl. Gemüse.",th:"หมูแก้มมัตสึซากะ ไขมันแทรก ละลายในปาก รวมผักและเครื่องเคียง"}},
-  {zh:"宜蘭櫻桃鴨肉捲",price:"7oz $429 / 11oz $519",t:{en:"Yilan Cherry Duck Roll",jp:"チェリーダックロール",kr:"이란 체리 오리 롤",fr:"Rouleau Canard Cerise Yilan",es:"Rollo Pato Cereza Yilan",de:"Yilan Kirschenten-Rolle",th:"เป็ดเชอร์รี่ยี่หลาน"},d:{en:"Premium Yilan cherry duck, tender and flavorful. Includes vegetable platter & side dish.",jp:"プレミアム宜蘭チェリーダック。野菜盛り・副食付き。",kr:"프리미엄 이란 체리 오리, 부드럽고 맛있음. 채소 플래터 & 사이드 포함.",fr:"Canard cerise Yilan premium, tendre et savoureux. Inclut plateau légumes.",es:"Pato cereza Yilan premium, tierno y sabroso. Incluye verduras.",de:"Premium Yilan Kirschente, zart und schmackhaft. Inkl. Gemüse.",th:"เป็ดเชอร์รี่ยี่หลานพรีเมียม รวมผักและเครื่องเคียง"}},
-  {zh:"澳洲嫩肩羊",price:"7oz $469 / 11oz $599",t:{en:"Australian Tender Shoulder Lamb",jp:"豪州産テンダーラム",kr:"호주산 부드러운 양고기",fr:"Agneau Tendre Australien",es:"Cordero Tierno Australiano",de:"Australische Zarte Lammschulter",th:"แกะนุ่มออสซี่"},d:{en:"Delicate and tender Australian shoulder lamb. Includes vegetable platter & side dish.",jp:"繊細で柔らかい豪州産ラムショルダー。野菜盛り・副食付き。",kr:"섬세하고 부드러운 호주산 어깨 양고기. 채소 플래터 & 사이드 포함.",fr:"Épaule d'agneau australienne délicate et tendre. Inclut plateau légumes.",es:"Hombro de cordero australiano delicado y tierno. Incluye verduras.",de:"Delikate und zarte australische Lammschulter. Inkl. Gemüse.",th:"ไหล่แกะออสซี่นุ่มละเอียด รวมผักและเครื่องเคียง"}},
-  {zh:"酒香雞腿肉",price:"$429",t:{en:"Sake-Marinated Chicken Thigh",jp:"酒香鶏もも肉",kr:"사케 마리네이드 닭허벅지",fr:"Cuisse Poulet au Saké",es:"Muslo Pollo al Sake",de:"Sake-Mariniertes Hähnchenschenkel",th:"ขาไก่หมักสาเก"},d:{en:"Aromatic sake-marinated tender chicken thigh. Includes vegetable platter & side dish.",jp:"香り豊かな酒マリネの柔らかいもも肉。野菜盛り・副食付き。",kr:"향기로운 사케 마리네이드 부드러운 닭 허벅지. 채소 플래터 & 사이드 포함.",fr:"Cuisse de poulet tendre marinée au saké. Inclut plateau légumes.",es:"Muslo de pollo tierno marinado en sake aromático. Incluye verduras.",de:"Aromatisch sake-mariniertes zartes Hähnchenschenkel. Inkl. Gemüse.",th:"ขาไก่หมักสาเกหอมกลิ่น รวมผักและเครื่องเคียง"}},
-  {zh:"全素蔬菜鍋",price:"$329",t:{en:"Full Vegetarian Vegetable Hot Pot",jp:"完全菜食野菜鍋",kr:"완전 채식 채소 나베",fr:"Fondue Végétarienne",es:"Fondue Vegetariana",de:"Vollvegetarischer Gemüse-Hotpot",th:"หม้อไฟผักมังสวิรัติ"},d:{en:"Fresh seasonal vegetables, fully plant-based. Includes vegetable platter & side dish.",jp:"新鮮な季節の野菜、完全植物性。野菜盛り・副食付き。",kr:"신선한 제철 채소, 완전 식물성. 채소 플래터 & 사이드 포함.",fr:"Légumes frais de saison, entièrement végétal. Inclut plateau légumes.",es:"Verduras frescas de temporada, completamente vegetal. Incluye verduras.",de:"Frisches Saisongemüse, vollständig pflanzenbasiert. Inkl. Gemüse.",th:"ผักสดตามฤดูกาล 100% พืช รวมผักและเครื่องเคียง"}},
+  {zh:"美國特選五花牛",price:"7oz $399 / 11oz $479",t:{en:"US Prime Beef Belly",jp:"米国産牛バラ",kr:"미국산 우삼겹",fr:"Poitrine Bœuf US Prime",es:"Panceta Res US Prime",de:"US Prime Rinderbauch",th:"เนื้อท้องวัว US"},d:{en:"Tender, juicy marbled beef belly.",jp:"柔らかくジューシーな霜降り牛バラ。",kr:"부드럽고 육즙 풍부한 마블링.",fr:"Tendre et juteuse poitrine marbrée.",es:"Tierna y jugosa panceta marmolada.",de:"Zartes, saftiges marmoriertes Rinderbauchfleisch.",th:"เนื้อท้องวัวนุ่มฉ่ำ"}},
+  {zh:"澳洲嚴選嫩肩牛",price:"7oz $469 / 11oz $599",t:{en:"Australian Tender Shoulder Beef",jp:"豪州産肩ロース",kr:"호주산 부드러운 어깨살",fr:"Épaule Tendre Australienne",es:"Hombro Tierno Australiano",de:"Australische Zarte Schulter",th:"เนื้อไหล่อ่อนออสซี่"},d:{en:"Carefully selected tender shoulder.",jp:"厳選された柔らかい肩ロース。",kr:"엄선된 부드러운 어깨살.",fr:"Épaule tendre soigneusement sélectionnée.",es:"Hombro tierno cuidadosamente seleccionado.",de:"Sorgfältig ausgewähltes zartes Schulterfleisch.",th:"เนื้อไหล่คัดพิเศษ"}},
+  {zh:"美國極佳雪花牛",price:"7oz $489 / 11oz $609",t:{en:"US Prime Snow Marbling Beef",jp:"米国産雪花牛",kr:"미국산 눈꽃 소고기",fr:"Bœuf Marbré Neige US Prime",es:"Res Mármol Nieve US Prime",de:"US Prime Schnee-Marmor Rind",th:"เนื้อลายหิมะ US"},d:{en:"Beautiful snow-pattern marbling for extra richness.",jp:"美しい雪模様の霜降り。",kr:"아름다운 눈꽃 무늬 마블링.",fr:"Marbré en motif neige pour richesse extra.",es:"Marmolado en patrón de nieve para mayor riqueza.",de:"Wunderschönes Schnee-Muster-Marmorrindfleisch.",th:"เนื้อลายหิมะสวยงาม"}},
+  {zh:"美國極佳牛脆胸",price:"7oz $539 / 11oz $669",t:{en:"US Prime Beef Brisket",jp:"米国産ブリスケット",kr:"미국산 양지",fr:"Poitrine Croustillante US Prime",es:"Pecho Crujiente US Prime",de:"US Prime Rinderbrust",th:"อกวัว US"},d:{en:"Crispy and tender US prime brisket.",jp:"サクサクで柔らかい米国産プライムブリスケット。",kr:"바삭하고 부드러운 미국산 프라임 양지.",fr:"Poitrine US prime croustillante et tendre.",es:"Pecho US prime crujiente y tierno.",de:"Knuspriges und zartes US Prime Rinderbrust.",th:"อกวัว US กรอบนอกนุ่มใน"}},
+  {zh:"美國極佳翼板牛",price:"7oz $599 / 11oz $769",t:{en:"US Prime Wing Rib Beef",jp:"米国産ハネシタ",kr:"미국산 살치살",fr:"Côte Ailée US Prime",es:"Costilla Alada US Prime",de:"US Prime Flügelrippe",th:"วิงริบวัว US"},d:{en:"Premium US wing rib with excellent marbling.",jp:"優れた霜降りの米国産プレミアムハネシタ。",kr:"우수한 마블링의 프리미엄 미국산 살치살.",fr:"Wing rib US prime de qualité supérieure.",es:"Costilla alada US prime con excelente marmolado.",de:"Premium US Flügelrippe mit ausgezeichneter Marmorierung.",th:"วิงริบวัว US เกรดพรีเมียม"}},
+  {zh:"澳洲熟成特選菲力牛",price:"7oz $599 / 11oz $769",t:{en:"Australian Aged Tenderloin",jp:"豪州産熟成フィレ",kr:"호주산 숙성 안심",fr:"Filet Mignon Australien Affiné",es:"Solomillo Australiano Añejado",de:"Australisches Gereiftes Filet",th:"สันในวัวบ่มออสซี่"},d:{en:"Premium dry-aged Australian tenderloin.",jp:"プレミアム熟成豪州テンダーロイン。",kr:"프리미엄 드라이에이징 호주산 안심.",fr:"Filet mignon australien affiné premium.",es:"Solomillo australiano añejado premium.",de:"Premium Dry-Aged Australisches Filet.",th:"สันในวัวออสซี่บ่มสุก"}},
+  {zh:"澳洲嚴選牛舌",price:"7oz $699 / 11oz $899",t:{en:"Australian Selected Beef Tongue",jp:"豪州産牛タン",kr:"호주산 우설",fr:"Langue de Bœuf Australienne",es:"Lengua de Res Australiana",de:"Australische Rinderzunge",th:"ลิ้นวัวออสซี่"},d:{en:"Tender and rich Australian beef tongue.",jp:"柔らかく風味豊かな豪州産牛タン。",kr:"부드럽고 풍부한 호주산 소혀.",fr:"Langue de bœuf australienne tendre et riche.",es:"Tierna y rica lengua de res australiana.",de:"Zarte und reichhaltige australische Rinderzunge.",th:"ลิ้นวัวออสซี่นุ่มและรสชาติเข้มข้น"}},
+  {zh:"美國極佳無骨牛小排",price:"7oz $729 / 11oz $999",t:{en:"US Prime Boneless Short Rib",jp:"米国産骨なし牛リブ",kr:"미국산 뼈없는 갈비",fr:"Côte Courte Désossée US Prime",es:"Costilla Sin Hueso US Prime",de:"US Prime Knochenlose Rippe",th:"ซี่โครงไม่มีกระดูก US"},d:{en:"Juicy and flavorful US prime boneless short rib.",jp:"ジューシーで風味豊かな米国産無骨リブ。",kr:"육즙 풍부하고 맛있는 미국산 뼈없는 갈비.",fr:"Côte courte désossée US prime juteuse et savoureuse.",es:"Jugosa y sabrosa costilla sin hueso US prime.",de:"Saftiges und wohlschmeckendes US Prime Rippchen ohne Knochen.",th:"ซี่โครงไม่มีกระดูก US ฉ่ำน้ำ"}},
+  {zh:"澳洲M7+和牛霜降",price:"7oz $549 / 11oz $689",t:{en:"Australian M7+ Wagyu Ribeye",jp:"豪州M7+和牛霜降り",kr:"호주 M7+ 와규",fr:"Wagyu Australien M7+",es:"Wagyu Australiano M7+",de:"Australisches M7+ Wagyu",th:"วากิวออสซี่ M7+"},d:{en:"Rich marbling M7+ grade Australian wagyu.",jp:"豊かな霜降りM7+等級豪州和牛。",kr:"풍부한 마블링 M7+ 등급 호주산 와규.",fr:"Wagyu australien M7+ richement marbré.",es:"Wagyu australiano M7+ con rico marmolado.",de:"Reichhaltig marmoriertes M7+ australisches Wagyu.",th:"วากิว M7+ ออสซี่ ลายหินอ่อนสวยงาม"}},
+  {zh:"澳洲M9+和牛板腱",price:"7oz $989 / 11oz $1,399",t:{en:"Australian M9+ Wagyu Chuck Roll",jp:"豪州M9+和牛ミスジ",kr:"호주 M9+ 와규 척롤",fr:"Wagyu Australien M9+ Chuck Roll",es:"Wagyu Australiano M9+ Chuck Roll",de:"Australisches M9+ Wagyu Chuck Roll",th:"วากิวออสซี่ M9+"},d:{en:"Premium M9+ grade Australian wagyu.",jp:"プレミアムM9+等級豪州和牛。",kr:"프리미엄 M9+ 등급 호주산 와규.",fr:"Wagyu australien M9+ de qualité supérieure.",es:"Wagyu australiano M9+ de calidad superior.",de:"Premium M9+ australisches Wagyu.",th:"วากิว M9+ ออสซี่ คุณภาพสูงสุด"}},
+  {zh:"日本A5和牛霜降",price:"7oz $999 / 11oz $1,409",t:{en:"Japanese A5 Wagyu Ribeye",jp:"日本産A5和牛霜降り",kr:"일본산 A5 와규",fr:"Wagyu Japonais A5",es:"Wagyu Japonés A5",de:"Japanisches A5 Wagyu",th:"วากิวญี่ปุ่น A5"},d:{en:"Top-grade certified Japanese A5 wagyu.",jp:"最高級A5認定日本和牛。",kr:"최상급 일본 A5 인증 와규.",fr:"Wagyu japonais A5 certifié haut de gamme.",es:"Wagyu japonés A5 certificado de máxima calidad.",de:"Top-Klasse japanisches A5 zertifiziertes Wagyu.",th:"วากิวญี่ปุ่น A5 เกรดสูงสุด"}},
+  {zh:"日本A5和牛小排",price:"7oz $1,299 / 11oz $1,699",t:{en:"Japanese A5 Wagyu Short Rib",jp:"日本産A5和牛リブ",kr:"일본산 A5 와규 갈비",fr:"Côte Courte Wagyu Japonais A5",es:"Costilla Corta Wagyu Japonés A5",de:"Japanisches A5 Wagyu Rippe",th:"ซี่โครงวากิวญี่ปุ่น A5"},d:{en:"Exquisite Japanese A5 wagyu short rib.",jp:"精巧な日本A5和牛の小リブ。",kr:"정교한 일본 A5 와규 갈비살.",fr:"Exquise côte courte wagyu japonais A5.",es:"Exquisita costilla corta wagyu japonés A5.",de:"Exquisite japanische A5 Wagyu Kurzrippe.",th:"ซี่โครงสั้นวากิวญี่ปุ่น A5"}},
+  {zh:"嚴選特級豬梅花",price:"7oz $369 / 11oz $439",t:{en:"Premium Selected Pork Collar",jp:"特選豚肩ロース",kr:"엄선 목살",fr:"Échine Porc Premium",es:"Cabecero Cerdo Premium",de:"Premium Schweinekamm",th:"หมูส่วนไหล่พรีเมียม"},d:{en:"Carefully selected tender pork collar.",jp:"丁寧に選ばれた柔らかい豚首肉。",kr:"엄선된 부드러운 목살.",fr:"Échine de porc tendre soigneusement sélectionnée.",es:"Cabecero de cerdo tierno cuidadosamente seleccionado.",de:"Sorgfältig ausgewählter zarter Schweinekamm.",th:"คอหมูนุ่มคัดสรร"}},
+  {zh:"台灣本土豬五花",price:"7oz $429 / 11oz $519",t:{en:"Taiwanese Local Pork Belly",jp:"台湾産豚バラ",kr:"대만 삼겹살",fr:"Poitrine Porc Local Taïwanais",es:"Panceta Cerdo Local Taiwanés",de:"Taiwanesischer Lokaler Schweinebauch",th:"หมูสามชั้นไต้หวัน"},d:{en:"Fresh local Taiwanese pork belly.",jp:"新鮮な台湾産豚バラ。",kr:"신선한 대만산 삼겹살.",fr:"Poitrine de porc locale fraîche.",es:"Panceta de cerdo local fresca.",de:"Frischer lokaler taiwanesischer Schweinebauch.",th:"หมูสามชั้นไต้หวันสด"}},
+  {zh:"嚴選松阪豬",price:"7oz $499 / 11oz $609",t:{en:"Selected Matsusaka Style Pork Jowl",jp:"特選松坂豚",kr:"엄선 항정살",fr:"Joue Porc Style Matsusaka",es:"Carrillada Cerdo Matsusaka",de:"Matsusaka-Stil Schweinewange",th:"หมูมัตสึซากะ"},d:{en:"Prized fatty pork jowl, melt-in-mouth texture.",jp:"珍重される脂の乗った豚ほっぺ、口の中でとろける。",kr:"귀한 지방이 풍부한 볼살, 입에서 녹는 식감.",fr:"Précieuse joue de porc grasse, texture fondante.",es:"Preciada carrillada de cerdo grasa, textura que se deshace.",de:"Wertvolle fettige Schweinewange, schmelzende Textur.",th:"หมูแก้มมัตสึซากะ ไขมันแทรก ละลายในปาก"}},
+  {zh:"宜蘭櫻桃鴨肉捲",price:"7oz $429 / 11oz $519",t:{en:"Yilan Cherry Duck Roll",jp:"チェリーダックロール",kr:"이란 체리 오리 롤",fr:"Rouleau Canard Cerise Yilan",es:"Rollo Pato Cereza Yilan",de:"Yilan Kirschenten-Rolle",th:"เป็ดเชอร์รี่ยี่หลาน"},d:{en:"Premium Yilan cherry duck, tender and flavorful.",jp:"プレミアム宜蘭チェリーダック。",kr:"프리미엄 이란 체리 오리, 부드럽고 맛있음.",fr:"Canard cerise Yilan premium, tendre et savoureux.",es:"Pato cereza Yilan premium, tierno y sabroso.",de:"Premium Yilan Kirschente, zart und schmackhaft.",th:"เป็ดเชอร์รี่ยี่หลานพรีเมียม"}},
+  {zh:"澳洲嫩肩羊",price:"7oz $469 / 11oz $599",t:{en:"Australian Tender Shoulder Lamb",jp:"豪州産テンダーラム",kr:"호주산 부드러운 양고기",fr:"Agneau Tendre Australien",es:"Cordero Tierno Australiano",de:"Australische Zarte Lammschulter",th:"แกะนุ่มออสซี่"},d:{en:"Delicate and tender Australian shoulder lamb.",jp:"繊細で柔らかい豪州産ラムショルダー。",kr:"섬세하고 부드러운 호주산 어깨 양고기.",fr:"Épaule d'agneau australienne délicate et tendre.",es:"Hombro de cordero australiano delicado y tierno.",de:"Delikate und zarte australische Lammschulter.",th:"ไหล่แกะออสซี่นุ่มละเอียด"}},
+  {zh:"酒香雞腿肉",price:"$429",t:{en:"Sake-Marinated Chicken Thigh",jp:"酒香鶏もも肉",kr:"사케 마리네이드 닭허벅지",fr:"Cuisse Poulet au Saké",es:"Muslo Pollo al Sake",de:"Sake-Mariniertes Hähnchenschenkel",th:"ขาไก่หมักสาเก"},d:{en:"Aromatic sake-marinated tender chicken thigh.",jp:"香り豊かな酒マリネの柔らかいもも肉。",kr:"향기로운 사케 마리네이드 부드러운 닭 허벅지.",fr:"Cuisse de poulet tendre marinée au saké.",es:"Muslo de pollo tierno marinado en sake aromático.",de:"Aromatisch sake-mariniertes zartes Hähnchenschenkel.",th:"ขาไก่หมักสาเกหอมกลิ่น"}},
+  {zh:"全素蔬菜鍋",price:"$329",t:{en:"Full Vegetarian Vegetable Hot Pot",jp:"完全菜食野菜鍋",kr:"완전 채식 채소 나베",fr:"Fondue Végétarienne",es:"Fondue Vegetariana",de:"Vollvegetarischer Gemüse-Hotpot",th:"หม้อไฟผักมังสวิรัติ"},d:{en:"Fresh seasonal vegetables, fully plant-based.",jp:"新鮮な季節の野菜、完全植物性。",kr:"신선한 제철 채소, 완전 식물성.",fr:"Légumes frais de saison, entièrement végétal.",es:"Verduras frescas de temporada, completamente vegetal.",de:"Frisches Saisongemüse, vollständig pflanzenbasiert.",th:"ผักสดตามฤดูกาล 100% พืช"}},
 ];
 
 const VEG=[
@@ -411,7 +411,7 @@ const SNACKS=[
   {zh:"龍蝦丸",price:"40",qty:"4pc",t:{en:"Lobster Ball",jp:"ロブスターボール",kr:"랍스터 볼",fr:"Boule de Homard",es:"Bola de Langosta",de:"Hummerball",th:"ลูกชิ้นล็อบสเตอร์"}},
   {zh:"起司燒",price:"40",qty:"4pc",t:{en:"Cheese Bite",jp:"チーズ焼き",kr:"치즈구이",fr:"Bouchée au Fromage",es:"Bocado de Queso",de:"Käse-Bissen",th:"ชีสย่าง"}},
   {zh:"魚餃",price:"40",qty:"4pc",t:{en:"Fish Dumpling",jp:"魚餃子",kr:"물고기 만두",fr:"Ravioli de Poisson",es:"Dumpling de Pescado",de:"Fisch Knödel",th:"เกี๊ยวปลา"}},
-  {zh:"燕餃",price:"40",qty:"4pc",t:{en:"Swallow Skin Dumpling",jp:"燕皮餃子",kr:"제비껍질 만두",fr:"Ravioli Peau d'Hirondelle",es:"Dumpling Piel Golondrina",de:"Schwalbenteig Knödel",th:"เกี๊ยวหนังนก"}},
+  {zh:"燕餃",price:"40",qty:"4pc",t:{en:"Swallow Skin Dumpling",jp:"燕皮餃子",kr:"제비껍질 만두",fr:"Ravioli Peau Hirondelle",es:"Dumpling Piel Golondrina",de:"Schwalbenteig Knödel",th:"เกี๊ยวหนังนก"}},
   {zh:"蛋餃",price:"40",qty:"4pc",t:{en:"Egg Dumpling",jp:"卵餃子",kr:"달걀 만두",fr:"Ravioli à l'Œuf",es:"Dumpling de Huevo",de:"Ei Knödel",th:"เกี๊ยวไข่"}},
   {zh:"貢丸",price:"40",qty:"4pc",t:{en:"Pork Meatball",jp:"豚肉団子",kr:"돼지 미트볼",fr:"Boulette de Porc",es:"Albóndiga de Cerdo",de:"Schweinefleischball",th:"ลูกชิ้นหมู"}},
   {zh:"芋頭貢丸",price:"40",qty:"4pc",t:{en:"Taro Pork Meatball",jp:"タロ芋肉団子",kr:"타로 미트볼",fr:"Boulette Taro et Porc",es:"Albóndiga Taro y Cerdo",de:"Taro Schweinefleischball",th:"ลูกชิ้นเผือกหมู"}},
@@ -457,15 +457,14 @@ function updateSidebar(){
 
 function T(item){return lang==='zh'?item.zh:(item.t[lang]||item.t.en||item.zh);}
 
-function makeInfoBox(lines, color='orange'){
-  const cls = color==='green' ? 'info-box-green' : 'info-box-orange';
-  return `<div class="info-box ${cls}">${lines.map((l,i)=>`<div style="font-size:${i===0?'13px':'12px'};color:${i===0?'#c5734a':'#6a9e98'};font-weight:${i===0?'600':'400'};margin-bottom:${i<lines.length-1?'5px':'0'};">${l}</div>`).join('')}</div>`;
+function infoBox(lines){
+  return '<div class="info-box info-box-orange">'+lines.map((l,i)=>'<div class="info-line" style="font-size:'+(i===0?'13px':'12px')+';color:'+(i===0?'#c5734a':'#6a9e98')+';font-weight:'+(i===0?'600':'400')+';">'+l+'</div>').join('')+'</div>';
 }
 
 function makeMenuRow(item){
   const name=T(item);
-  const qty=item.qty?`<span class="menu-qty">${item.qty}</span>`:'';
-  return `<div class="menu-row"><div><div class="menu-name-en">${name}</div><div class="menu-name-zh">${item.zh}</div></div>${qty}<span class="menu-price">${item.price}</span></div>`;
+  const qty=item.qty?'<span class="menu-qty">'+item.qty+'</span>':'';
+  return '<div class="menu-row"><div><div class="menu-name-en">'+name+'</div><div class="menu-name-zh">'+item.zh+'</div></div>'+qty+'<span class="menu-price">'+item.price+'</span></div>';
 }
 
 function makeGrid(items,elId){
@@ -477,7 +476,7 @@ function makeItemCard(item){
   const name=T(item);
   const desc=lang==='zh'?'':(item.d?item.d[lang]||item.d.en||'':'');
   const pop=item.popular?'<div class="popular-tag">⭐ POPULAR</div>':'';
-  return `<div class="item-card"><div class="item-info">${pop}<div class="item-orig">${item.zh}</div><div class="item-name">${name}</div>${desc?`<div class="item-desc">${desc}</div>`:''}</div><div class="item-price-box"><div class="item-price-text">${item.price}</div></div></div>`;
+  return '<div class="item-card"><div class="item-info">'+pop+'<div class="item-orig">'+item.zh+'</div><div class="item-name">'+name+'</div>'+(desc?'<div class="item-desc">'+desc+'</div>':'')+'</div><div class="item-price-box"><div class="item-price-text">'+item.price+'</div></div></div>';
 }
 
 function renderAll(){
@@ -489,36 +488,36 @@ function renderAll(){
 
   // NOTICE
   const notices=NOTICES[lang]||NOTICES.en;
-  document.getElementById('noticeItems').innerHTML=notices.map(n=>`<div class="notice-item"><div class="notice-dot"></div><div class="notice-text">${n}</div></div>`).join('');
+  document.getElementById('noticeItems').innerHTML=notices.map(n=>'<div class="notice-item"><div class="notice-dot"></div><div class="notice-text">'+n+'</div></div>').join('');
   const stepLabels=STEPS[lang]||STEPS.en;
-  const stepIcons=['🍲','🥩','🍚','🍽️'];
-  document.getElementById('stepsRow').innerHTML=stepLabels.map((s,i)=>`<div class="step-box"><div class="step-num">STEP ${i+1}</div><div class="step-icon">${stepIcons[i]}</div><div class="step-zh">${s}</div></div>`).join('');
+  const icons=['🍲','🥩','🍚','🍽️'];
+  document.getElementById('stepsRow').innerHTML=stepLabels.map((s,i)=>'<div class="step-box"><div class="step-num">STEP '+(i+1)+'</div><div class="step-icon">'+icons[i]+'</div><div class="step-zh">'+s+'</div></div>').join('');
 
   // SOUP
   document.getElementById('soupItems').innerHTML=SOUP.map(makeItemCard).join('');
 
-  // SET2 — 加說明框
-  const set2Note=makeInfoBox([
-    '📋 '+(SET_NOTE[lang]||SET_NOTE.en),
-    '🍚 '+(SIDE_NOTE[lang]||SIDE_NOTE.en)
-  ]);
-  document.getElementById('set2Items').innerHTML=set2Note+SET2.map(makeItemCard).join('');
+  // SET2 — 雙人：菜盤2份，副食2選
+  document.getElementById('set2Items').innerHTML=
+    infoBox([
+      '📋 '+(SET_NOTE_DUO[lang]||SET_NOTE_DUO.en),
+      '🍚 '+(SIDE_NOTE_DUO[lang]||SIDE_NOTE_DUO.en)
+    ])+SET2.map(makeItemCard).join('');
 
-  // SEAFOOD — 加說明框 + 肉品升級
-  const sfNote=makeInfoBox([
-    '📋 '+(SET_NOTE[lang]||SET_NOTE.en),
-    '🍚 '+(SIDE_NOTE[lang]||SIDE_NOTE.en),
-    MEAT_UPGRADE[lang]||MEAT_UPGRADE.en
-  ]);
-  document.getElementById('seafoodItems').innerHTML=sfNote+SEAFOOD.map(makeItemCard).join('');
+  // SEAFOOD — 單人：菜盤1份，副食6擇1 + 肉品升級
+  document.getElementById('seafoodItems').innerHTML=
+    infoBox([
+      '📋 '+(SET_NOTE_SINGLE[lang]||SET_NOTE_SINGLE.en),
+      '🍚 '+(SIDE_NOTE_SINGLE[lang]||SIDE_NOTE_SINGLE.en),
+      MEAT_UPGRADE[lang]||MEAT_UPGRADE.en
+    ])+SEAFOOD.map(makeItemCard).join('');
 
-  // MEAT — 加說明框 + 海鮮升級
-  const meatNote=makeInfoBox([
-    '📋 '+(SET_NOTE[lang]||SET_NOTE.en),
-    '🍚 '+(SIDE_NOTE[lang]||SIDE_NOTE.en),
-    SEA_UPGRADE[lang]||SEA_UPGRADE.en
-  ]);
-  document.getElementById('meatItems').innerHTML=meatNote+MEAT.map(makeItemCard).join('');
+  // MEAT — 單人：菜盤1份，副食6擇1 + 海鮮升級
+  document.getElementById('meatItems').innerHTML=
+    infoBox([
+      '📋 '+(SET_NOTE_SINGLE[lang]||SET_NOTE_SINGLE.en),
+      '🍚 '+(SIDE_NOTE_SINGLE[lang]||SIDE_NOTE_SINGLE.en),
+      SEA_UPGRADE[lang]||SEA_UPGRADE.en
+    ])+MEAT.map(makeItemCard).join('');
 
   // A LA CARTE
   makeGrid(VEG,'vegGrid');
