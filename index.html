@@ -331,7 +331,7 @@ const SOUP = [
 
 const SET_NOTE = {
   en: "Each set includes 2 side dishes & a vegetable platter. Choose any 2 soup bases at no extra charge. (4-person sets follow the same rule.)",
-  zh: "雙人套餐附兩份菜盤與副食，可任選兩種湯底免加價；四人套餐依此類推。",
+  zh: "雙人套餐附兩份菜盤與副食，可任選兩種湯底免加價。",
   jp: "セットには2種の副食と野菜盛りが付きます。スープは2種まで無料で選べます（4人セットも同様）。",
   kr: "세트에는 사이드 2개와 채소 플래터가 포함됩니다. 육수 2가지를 추가 비용 없이 선택 가능합니다.",
   fr: "Chaque set inclut 2 accompagnements et un plateau de légumes. Choisissez 2 soupes sans supplément (valable pour les sets 4 personnes).",
@@ -592,6 +592,22 @@ document.getElementById('set2Items').innerHTML = noteHtml + SET2.map(makeItemCar
   <div style="background:#fff3ee;border:1px solid #e8d5c4;border-radius:10px;padding:14px 18px;margin-bottom:16px;">
     <div style="font-size:13px;color:#c5734a;font-weight:600;margin-bottom:6px;">📋 ${SET_NOTE[lang]||SET_NOTE.en}</div>
     <div style="font-size:12px;color:#8a9e95;">🍚 ${SIDE_NOTE[lang]||SIDE_NOTE.en}</div>
+  </div>`;
+const meatUpgrade = {
+  en: "🥩 Meat Upgrade +$100 — Add 5oz: Premium US Beef Belly OR Premium Pork Collar (choose 1)",
+  zh: "🥩 加購升級 +$100 — 肉品2選1 (5oz)：特選五花牛 或 嚴選特級豬梅花",
+  jp: "🥩 お肉追加 +$100 — 5oz: 牛バラ または 豚肩ロース（1つ選択）",
+  kr: "🥩 고기 업그레이드 +$100 — 5oz: 미국산 우삼겹 또는 목살 (1개 선택)",
+  fr: "🥩 Upgrade Viande +$100 — 5oz: Poitrine bœuf US OU Échine porc (au choix)",
+  es: "🥩 Upgrade Carne +$100 — 5oz: Panceta res US O Cabecero cerdo (a elegir)",
+  de: "🥩 Fleisch Upgrade +$100 — 5oz: US Rinderbauch ODER Schweinekamm (1 wählen)",
+  th: "🥩 เพิ่มเนื้อ +$100 — 5oz: เนื้อท้องวัว US หรือ หมูส่วนไหล่ (เลือก 1)"
+};
+const sfNoteHtml = `
+  <div style="background:#fff3ee;border:1px solid #e8d5c4;border-radius:10px;padding:14px 18px;margin-bottom:12px;">
+    <div style="font-size:13px;color:#c5734a;font-weight:600;margin-bottom:6px;">📋 ${SET_NOTE[lang]||SET_NOTE.en}</div>
+    <div style="font-size:12px;color:#8a9e95;margin-bottom:6px;">🍚 ${SIDE_NOTE[lang]||SIDE_NOTE.en}</div>
+    <div style="font-size:12px;color:#2c6e6a;font-weight:600;">${meatUpgrade[lang]||meatUpgrade.en}</div>
   </div>`;
 document.getElementById('seafoodItems').innerHTML = sfNoteHtml + SEAFOOD.map(makeItemCard).join('');
   // MEAT
